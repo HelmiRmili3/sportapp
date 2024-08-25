@@ -9,13 +9,18 @@ import '../../presentation/screens/change_password.dart/change_password.dart';
 import '../../presentation/screens/dashbord_screen/dashboard_screen.dart';
 import '../../presentation/screens/forget/forget_otp_verification_screen.dart';
 import '../../presentation/screens/forget_password_screen/forget_password_screen.dart';
+import '../../presentation/screens/history_screen/history_screen.dart';
+import '../../presentation/screens/home_screen/home_screen.dart';
 import '../../presentation/screens/onbording_screen/onbording_screen.dart';
 import '../../presentation/screens/login_screen/login_screen.dart';
+import '../../presentation/screens/payment_screen/payment_screen.dart';
+import '../../presentation/screens/profile_screen/profile_screen.dart';
 import '../../presentation/screens/registration_screen/choose_city_screen.dart';
 import '../../presentation/screens/registration_screen/face_recognize_screen.dart';
 import '../../presentation/screens/registration_screen/number_already_register_screen.dart';
 import '../../presentation/screens/registration_screen/otp_verification_screen.dart';
 import '../../presentation/screens/registration_screen/create_account_screen.dart';
+import '../../presentation/screens/registration_screen/phone_number_screen.dart';
 import '../../presentation/screens/registration_screen/recognise_profile_screen.dart';
 import '../../presentation/screens/registration_screen/register_email_screen.dart';
 import '../../presentation/screens/registration_screen/registration_done_screen.dart';
@@ -50,27 +55,25 @@ class AppRouter {
             );
           },
         ),
-        // GoRoute(
-        //   name: AppRouteConstants.homeView,
-        //   path: AppRouteConstants.homeView,
-        //   pageBuilder: (context, state) {
-        //     saveLocalData(screenName: state.name!);
-        //     return CustomTransitionPage(
-        //       child: const HomeScreen(
-        //         screenName: "Home",
-        //       ),
-        //       transitionDuration: const Duration(seconds: 0),
-        //       transitionsBuilder:
-        //           (context, animation, secondaryAnimation, child) {
-        //         return FadeTransition(
-        //           opacity: CurveTween(curve: Curves.easeInOutCirc)
-        //               .animate(animation),
-        //           child: child,
-        //         );
-        //       },
-        //     );
-        //   },
-        // ),
+        GoRoute(
+          name: AppRouteConstants.homeView,
+          path: AppRouteConstants.homeView,
+          pageBuilder: (context, state) {
+            saveLocalData(screenName: state.name!);
+            return CustomTransitionPage(
+              child: HomeScreen(),
+              transitionDuration: const Duration(seconds: 0),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
         GoRoute(
           name: AppRouteConstants.faceRecognization1,
           path: AppRouteConstants.faceRecognization1,
@@ -449,18 +452,18 @@ class AppRouter {
             );
           },
         ),
-        // GoRoute(
-        //   name: AppRouteConstants.historyScreen,
-        //   path: AppRouteConstants.historyScreen,
-        //   pageBuilder: (context, state) {
-        //     saveLocalData(screenName: state.name!);
-        //     return MaterialPage(
-        //       child: HistoryScreen(
-        //         screenName: "History",
-        //       ),
-        //     );
-        //   },
-        // ),
+        GoRoute(
+          name: AppRouteConstants.historyScreen,
+          path: AppRouteConstants.historyScreen,
+          pageBuilder: (context, state) {
+            saveLocalData(screenName: state.name!);
+            return MaterialPage(
+              child: HistoryScreen(
+                screenName: "History",
+              ),
+            );
+          },
+        ),
         GoRoute(
           name: AppRouteConstants.login,
           path: AppRouteConstants.login,
@@ -654,46 +657,44 @@ class AppRouter {
             );
           },
         ),
-        // GoRoute(
-        //   name: AppRouteConstants.validateAccount,
-        //   path: AppRouteConstants.validateAccount,
-        //   pageBuilder: (context, state) {
-        //     saveLocalData(screenName: state.name!);
-        //     return CustomTransitionPage(
-        //       child: const ValidateAccount(),
-        //       transitionDuration: const Duration(seconds: 0),
-        //       transitionsBuilder:
-        //           (context, animation, secondaryAnimation, child) {
-        //         return FadeTransition(
-        //           opacity: CurveTween(curve: Curves.easeInOutCubic)
-        //               .animate(animation),
-        //           child: child,
-        //         );
-        //       },
-        //     );
-        //   },
-        // ),
-        // GoRoute(
-        //   name: AppRouteConstants.profileScreen,
-        //   path: AppRouteConstants.profileScreen,
-        //   pageBuilder: (context, state) {
-        //     saveLocalData(screenName: state.name!);
-        //     return CustomTransitionPage(
-        //       child: ProfileScreen(
-        //         screenName: "ProfileScreen",
-        //       ),
-        //       transitionDuration: const Duration(seconds: 0),
-        //       transitionsBuilder:
-        //           (context, animation, secondaryAnimation, child) {
-        //         return FadeTransition(
-        //           opacity: CurveTween(curve: Curves.easeInOutCubic)
-        //               .animate(animation),
-        //           child: child,
-        //         );
-        //       },
-        //     );
-        //   },
-        // ),
+        GoRoute(
+          name: AppRouteConstants.validateAccount,
+          path: AppRouteConstants.validateAccount,
+          pageBuilder: (context, state) {
+            saveLocalData(screenName: state.name!);
+            return CustomTransitionPage(
+              child: const ValidateAccount(),
+              transitionDuration: const Duration(seconds: 0),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCubic)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          name: AppRouteConstants.profileScreen,
+          path: AppRouteConstants.profileScreen,
+          pageBuilder: (context, state) {
+            saveLocalData(screenName: state.name!);
+            return CustomTransitionPage(
+              child: ProfileScreen(),
+              transitionDuration: const Duration(seconds: 0),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCubic)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
         // GoRoute(
         //   name: AppRouteConstants.editProfileScreen,
         //   path: AppRouteConstants.editProfileScreen,
@@ -751,25 +752,25 @@ class AppRouter {
         //     );
         //   },
         // ),
-        // GoRoute(
-        //   name: AppRouteConstants.payment2,
-        //   path: AppRouteConstants.payment2,
-        //   pageBuilder: (context, state) {
-        //     saveLocalData(screenName: state.name!);
-        //     return CustomTransitionPage(
-        //       child: const Payment2Screen(),
-        //       transitionDuration: const Duration(seconds: 0),
-        //       transitionsBuilder:
-        //           (context, animation, secondaryAnimation, child) {
-        //         return FadeTransition(
-        //           opacity: CurveTween(curve: Curves.easeInOutCirc)
-        //               .animate(animation),
-        //           child: child,
-        //         );
-        //       },
-        //     );
-        //   },
-        // ),
+        GoRoute(
+          name: AppRouteConstants.payment2,
+          path: AppRouteConstants.payment2,
+          pageBuilder: (context, state) {
+            saveLocalData(screenName: state.name!);
+            return CustomTransitionPage(
+              child: const PaymentScreen(),
+              transitionDuration: const Duration(seconds: 0),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
         // GoRoute(
         //   name: AppRouteConstants.securityScreenmob,
         //   path: AppRouteConstants.securityScreenmob,

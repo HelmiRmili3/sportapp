@@ -3,9 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:sportapp/core/app_colors.dart';
 import 'package:sportapp/core/app_sizes.dart';
 import 'package:sportapp/generated/l10n.dart';
@@ -18,8 +16,6 @@ import 'widgets/profile_container.dart';
 enum Language { english, urdu }
 
 class ProfileScreen extends StatefulWidget {
-  ProfileScreen({super.key});
-
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -27,13 +23,6 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   bool isSwitched = false;
   var textValue = 'Switch is OFF';
-
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   Provider.of<LanguageProvider>(context, listen: false);
-  // }
 
   bool isDarkMode = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -67,10 +56,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       width: AppSizes.size100,
                       height: AppSizes.size100,
                       child: ClipRRect(
-                          borderRadius: BorderRadius.circular(AppSizes.size100),
-                          child: const Image(
-                              image: NetworkImage(
-                                  "https://picsum.photos/250?image=9"))),
+                        borderRadius: BorderRadius.circular(AppSizes.size100),
+                        child: const Image(
+                          image:
+                              NetworkImage("https://picsum.photos/250?image=9"),
+                        ),
+                      ),
                     ),
                   ),
                   Column(
