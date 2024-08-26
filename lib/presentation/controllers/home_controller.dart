@@ -16,8 +16,11 @@ class HomeController extends GetxController {
   ].obs;
 
   // Use RxDouble for reactive latitude and longitude
-  RxDouble lat = 31.520370.obs;
-  RxDouble long = 74.358749.obs;
+  RxDouble _lat = 31.520370.obs;
+  RxDouble _long = 74.358749.obs;
+
+  double get lat => _lat.value;
+  double get long => _long.value;
 
   RxInt currentIndex = 0.obs;
   RxBool showList = false.obs;
@@ -28,13 +31,13 @@ class HomeController extends GetxController {
   }
 
   void setInitialPoint() {
-    lat.value = double.parse(pageViewModel[0].lat.toString());
-    long.value = double.parse(pageViewModel[0].long.toString());
+    _lat.value = double.parse(pageViewModel[0].lat.toString());
+    _long.value = double.parse(pageViewModel[0].long.toString());
   }
 
   void changeLatAdnLong({String? latitude, String? longitude}) {
-    lat.value = double.parse(latitude.toString());
-    long.value = double.parse(longitude.toString());
+    _lat.value = double.parse(latitude.toString());
+    _long.value = double.parse(longitude.toString());
   }
 
   void setCurrentIndex(int index) {

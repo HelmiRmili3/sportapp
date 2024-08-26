@@ -8,12 +8,13 @@ class ProfileContainer extends StatelessWidget {
   void Function()? ontap;
   Color? color;
 
-  ProfileContainer(
-      {super.key,
-      this.color,
-      required this.ontap,
-      required this.title,
-      required this.icon});
+  ProfileContainer({
+    super.key,
+    this.color,
+    required this.ontap,
+    required this.title,
+    required this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {

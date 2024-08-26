@@ -34,14 +34,12 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   void initState() {
     super.initState();
     if (widget.number.isNotEmpty) {
-      // Get the last 4 digits using substring
       lastFourDigits = widget.number.substring(widget.number.length - 4);
       print("Last four digits: $lastFourDigits");
     } else {
       print("The string is empty.");
     }
     print('here is number get rom previous screen ${widget.number}');
-    // phoneController.addListener(_updateFormState); // Step 4
     startTimer();
   }
 

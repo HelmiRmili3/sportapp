@@ -82,11 +82,10 @@ class _PrivateCoachState extends State<PrivateCoach> {
                         borderRadius: BorderRadius.circular(40.0),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.5), // Shadow color
-                            spreadRadius: 2, // Spread radius
-                            blurRadius: 8, // Blur radius
-                            offset:
-                                const Offset(0, 3), // Offset position of shadow
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 8,
+                            offset: const Offset(0, 3),
                           ),
                         ],
                       ),
@@ -96,38 +95,29 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                 Theme.of(context).textTheme.bodySmall!.color),
                         decoration: InputDecoration(
                           filled: true,
-                          // Makes the background color visible
                           fillColor: Theme.of(context).primaryColor,
-                          // Set background color to white
                           contentPadding:
                               const EdgeInsets.symmetric(horizontal: 16.0),
-                          // Add padding
                           enabledBorder: OutlineInputBorder(
-                            // Define a border without color
                             borderRadius: BorderRadius.circular(40.0),
-                            // Set rounded corners
-                            borderSide: BorderSide.none, // Remove border color
+                            borderSide: BorderSide.none,
                           ),
                           focusedBorder: OutlineInputBorder(
-                            // Define green border for focus
                             borderRadius: BorderRadius.circular(40.0),
                             borderSide: const BorderSide(
-                                color: Colors.white,
-                                width: 2.0), // Green border
+                                color: Colors.white, width: 2.0),
                           ),
                           prefixIcon: Icon(Icons.search,
                               color:
                                   Theme.of(context).textTheme.bodySmall!.color),
-                          // Add prefix icon
                           suffixIcon: Container(
                             padding: const EdgeInsets.all(10),
                             child: SvgPicture.asset(
                               'assets/Images/map.svg',
                               color:
                                   Theme.of(context).textTheme.bodySmall!.color,
-                              // semanticsLabel: 'Acme Logo'
                             ),
-                          ), // Add suffix icon
+                          ),
                         ),
                       ),
                     ),
@@ -165,26 +155,24 @@ class _PrivateCoachState extends State<PrivateCoach> {
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: GestureDetector(
                         onTap: () {
-                          context.push(AppRouteConstants.coachDetail,
-                              extra: model[index]);
+                          // GoRouter.of(context).push(
+                          //     AppRouteConstants.coachDetail,
+                          //     extra: model[index]);
                         },
                         child: Container(
-                          //height: 270,
-                          width: 350, margin: const EdgeInsets.all(5),
+                          width: 350,
+                          margin: const EdgeInsets.all(5),
                           decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.grey
-                                      .withOpacity(0.5), // Shadow color
-                                  spreadRadius: 2, // Spread radius
-                                  blurRadius: 8, // Blur radius
-                                  offset: const Offset(
-                                      0, 2), // Offset position of shadow
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 2),
                                 ),
                               ],
                               color: Theme.of(context).primaryColor,
                               borderRadius: BorderRadius.circular(15)),
-
                           child: Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Column(
@@ -373,25 +361,26 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                               scrollDirection: Axis.horizontal,
                                               itemBuilder: (context, index) {
                                                 return Container(
-                                                    margin: const EdgeInsets
-                                                        .symmetric(
-                                                        horizontal: 5),
-                                                    height: 45,
-                                                    width: 70,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      color: AppColors.seGreen,
-                                                    ),
-                                                    child: Center(
-                                                        child: Text(
+                                                  margin: const EdgeInsets
+                                                      .symmetric(horizontal: 5),
+                                                  height: 45,
+                                                  width: 70,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    color: AppColors.seGreen,
+                                                  ),
+                                                  child: Center(
+                                                    child: Text(
                                                       schedule[index].time,
                                                       style: const TextStyle(
                                                           color: Colors.white,
                                                           fontWeight:
                                                               FontWeight.bold),
-                                                    )));
+                                                    ),
+                                                  ),
+                                                );
                                               },
                                             ),
                                           ),

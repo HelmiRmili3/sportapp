@@ -265,7 +265,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 GoogleMap(
                   initialCameraPosition: CameraPosition(
                     target: LatLng(
-                        homeController.lat.value, homeController.long.value),
+                      homeController.lat,
+                      homeController.long,
+                    ),
                     zoom: 15,
                   ),
                   onMapCreated: (controller) {

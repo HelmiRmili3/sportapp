@@ -16,6 +16,8 @@ import 'widgets/profile_container.dart';
 enum Language { english, urdu }
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
+
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -25,17 +27,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   var textValue = 'Switch is OFF';
 
   bool isDarkMode = false;
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     ThemeController themeController = Get.find();
     AppSizes().init(context);
-    List languageText = [
-      "English",
-      "Urdu",
-      "Greek",
-    ];
+    // List languageText = [
+    //   "English",
+    //   "Urdu",
+    //   "Greek",
+    // ];
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Padding(

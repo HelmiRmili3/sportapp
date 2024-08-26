@@ -8,10 +8,11 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import '../gyms_screen/gyms_screen.dart';
 import '../home_screen/home_screen.dart';
-import '../private_coach_screen/private_coach.dart';
+import '../private_coach_screen/private_coach_screen.dart';
 import '../profile_screen/profile_screen.dart';
 import '../qr_code_screen/qr_code_scanner_screen.dart';
 
+// ignore: must_be_immutable
 class DashboardScreen extends StatelessWidget {
   final DashboardController controller = Get.put(DashboardController());
 

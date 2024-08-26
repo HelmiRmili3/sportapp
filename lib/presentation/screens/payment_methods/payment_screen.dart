@@ -20,7 +20,6 @@ class PaymentScreen extends GetView<PaymentController> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GestureDetector(
@@ -28,7 +27,6 @@ class PaymentScreen extends GetView<PaymentController> {
                       context.pop();
                     },
                     child: Container(
-                      // margin: EdgeInsets.all(10),
                       height: 35,
                       width: 35,
                       decoration: BoxDecoration(
@@ -106,33 +104,35 @@ class PaymentScreen extends GetView<PaymentController> {
                       },
                       child: Column(
                         children: [
-                          controller.packages[index].savePercent == ''
-                              ? SizedBox(
-                                  height: 20.h,
-                                )
-                              : CustomPaint(
-                                  size:
-                                      Size(105.w, (105.w * 0.2073170731707317)),
-                                  painter: RPSCustomPainter(),
-                                  child: SizedBox(
-                                    width: 95.w,
-                                    height: 20.sp,
-                                    child: Center(
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 5),
-                                        child: Text(
-                                          controller.packages[index]
-                                                  .savePercent ??
-                                              "",
-                                          style: TextStyle(
-                                              fontSize: 8.sp,
-                                              fontWeight: FontWeight.w500),
+                          SizedBox(
+                            child: controller.packages[index].savePercent == ''
+                                ? SizedBox(
+                                    height: 20.h,
+                                  )
+                                : CustomPaint(
+                                    size: Size(
+                                        105.w, (105.w * 0.2073170731707317)),
+                                    painter: RPSCustomPainter(),
+                                    child: SizedBox(
+                                      width: 95.w,
+                                      height: 20.sp,
+                                      child: Center(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 5),
+                                          child: Text(
+                                            controller.packages[index]
+                                                    .savePercent ??
+                                                "",
+                                            style: TextStyle(
+                                                fontSize: 8.sp,
+                                                fontWeight: FontWeight.w500),
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
+                          ),
                           Container(
                             width: 105.w,
                             padding: EdgeInsets.symmetric(
@@ -181,42 +181,44 @@ class PaymentScreen extends GetView<PaymentController> {
                                 ),
                                 10.verticalSpace,
                                 RichText(
-                                    text: TextSpan(children: [
-                                  TextSpan(
-                                      text: controller.packages[index].price ??
-                                          "",
-                                      style: TextStyle(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.w700,
-                                          color: controller.packages[index]
-                                                      .isSelected ??
-                                                  false
-                                              ? Colors.black
-                                              : Colors.grey,
-                                          height: 1.sp)),
-                                  TextSpan(
-                                      text: "TND",
-                                      style: TextStyle(
-                                          fontSize: 8.sp,
-                                          fontWeight: FontWeight.w600,
-                                          color: controller.packages[index]
-                                                      .isSelected ??
-                                                  false
-                                              ? Colors.black
-                                              : Colors.grey,
-                                          height: 1.sp)),
-                                  TextSpan(
-                                      text: "/month",
-                                      style: TextStyle(
-                                          fontSize: 7.sp,
-                                          fontWeight: FontWeight.w500,
-                                          color: controller.packages[index]
-                                                      .isSelected ??
-                                                  false
-                                              ? Colors.black
-                                              : Colors.grey,
-                                          height: 1.sp)),
-                                ])),
+                                  text: TextSpan(children: [
+                                    TextSpan(
+                                        text:
+                                            controller.packages[index].price ??
+                                                "",
+                                        style: TextStyle(
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.w700,
+                                            color: controller.packages[index]
+                                                        .isSelected ??
+                                                    false
+                                                ? Colors.black
+                                                : Colors.grey,
+                                            height: 1.sp)),
+                                    TextSpan(
+                                        text: "TND",
+                                        style: TextStyle(
+                                            fontSize: 8.sp,
+                                            fontWeight: FontWeight.w600,
+                                            color: controller.packages[index]
+                                                        .isSelected ??
+                                                    false
+                                                ? Colors.black
+                                                : Colors.grey,
+                                            height: 1.sp)),
+                                    TextSpan(
+                                        text: "/month",
+                                        style: TextStyle(
+                                            fontSize: 7.sp,
+                                            fontWeight: FontWeight.w500,
+                                            color: controller.packages[index]
+                                                        .isSelected ??
+                                                    false
+                                                ? Colors.black
+                                                : Colors.grey,
+                                            height: 1.sp)),
+                                  ]),
+                                ),
                               ],
                             ),
                           ),
