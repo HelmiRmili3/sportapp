@@ -9,7 +9,7 @@ import '../../../generated/l10n.dart';
 import '../profile_screen/widgets/profile_container.dart';
 
 class PaymentMethodScreen extends StatefulWidget {
-  PaymentMethodScreen({super.key});
+  const PaymentMethodScreen({super.key});
 
   @override
   State<PaymentMethodScreen> createState() => _PaymentMethodScreenState();
@@ -17,16 +17,11 @@ class PaymentMethodScreen extends StatefulWidget {
 
 class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
   bool _isChecked = false;
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     AppSizes().init(context);
-    List languageText = [
-      "English",
-      "Urdu",
-      "Greek",
-    ];
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,

@@ -9,9 +9,7 @@ import 'package:sportapp/generated/l10n.dart';
 import '../login_screen/widgets/button.dart';
 
 class BreakScreen extends StatefulWidget {
-  String? screenName;
-
-  BreakScreen({required this.screenName, super.key});
+  const BreakScreen({super.key});
 
   @override
   State<BreakScreen> createState() => _BreakScreenState();
@@ -19,7 +17,6 @@ class BreakScreen extends StatefulWidget {
 
 class _BreakScreenState extends State<BreakScreen> {
   bool isChecked = false;
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {

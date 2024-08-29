@@ -67,11 +67,6 @@ class _SubscriptionPackagesScreenState
         color: const Color(0xFFB6B7BB),
       ),
     ];
-    // List languageText = [
-    //   "English",
-    //   "Urdu",
-    //   "Greek",
-    // ];
     return Scaffold(
       body: Container(
           width: double.infinity,

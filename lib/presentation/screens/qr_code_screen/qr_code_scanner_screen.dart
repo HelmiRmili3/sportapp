@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:sportapp/generated/l10n.dart';
 
 class QrCodeScannerScreen extends StatefulWidget {
   const QrCodeScannerScreen({Key? key}) : super(key: key);
@@ -56,10 +55,10 @@ class _QrCodeScannerScreenState extends State<QrCodeScannerScreen> {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 10),
-                  Text(
+                  const Text(
                     "to register",
                     // S.of(context).to_register,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 16),
@@ -68,7 +67,7 @@ class _QrCodeScannerScreenState extends State<QrCodeScannerScreen> {
                   const Text(
                     "Complete the authentication",
                     // S.of(context).complete_the_authentication,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 18),
@@ -95,7 +94,7 @@ class _QrCodeScannerScreenState extends State<QrCodeScannerScreen> {
                   const Text(
                     "After authentication scan qr code etc",
                     // S.of(context).after_authentication_scan_qr_code_at_etc,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 14),
@@ -104,20 +103,20 @@ class _QrCodeScannerScreenState extends State<QrCodeScannerScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                         children: [
-                          const Icon(
+                          Icon(
                             Icons.search_outlined,
                             color: Colors.white,
                             size: 24,
                           ),
-                          const Text(
+                          Text(
                             "See the roomsw",
                             // S.of(context).see_the_rooms,
-                            style: const TextStyle(
+                            style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14),
@@ -127,7 +126,7 @@ class _QrCodeScannerScreenState extends State<QrCodeScannerScreen> {
                       ),
                       Column(
                         children: [
-                          const Icon(
+                          Icon(
                             Icons.electric_bolt_outlined,
                             color: Colors.white,
                             size: 24,
@@ -135,7 +134,7 @@ class _QrCodeScannerScreenState extends State<QrCodeScannerScreen> {
                           Text(
                             "lantern",
                             // S.of(context).lantern,
-                            style: const TextStyle(
+                            style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14),
@@ -167,8 +166,6 @@ class _QRViewExampleState extends State<QRViewExample> {
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
-  // In order to get hot reload to work we need to pause the camera if the platform
-  // is android, or resume the camera if the platform is iOS.
   @override
   void reassemble() {
     super.reassemble();
@@ -271,13 +268,11 @@ class _QRViewExampleState extends State<QRViewExample> {
   }
 
   Widget _buildQrView(BuildContext context) {
-    // For this example we check how width or tall the device is and change the scanArea and overlay accordingly.
     var scanArea = (MediaQuery.of(context).size.width < 400 ||
             MediaQuery.of(context).size.height < 400)
         ? 150.0
         : 300.0;
-    // To ensure the Scanner view is properly sizes after rotation
-    // we need to listen for Flutter SizeChanged notification and update controller
+
     return QRView(
       key: qrKey,
       onQRViewCreated: _onQRViewCreated,

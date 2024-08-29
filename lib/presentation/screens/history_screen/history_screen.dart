@@ -8,6 +8,7 @@ import '../../../core/routes/route_names.dart';
 import '../../../shared/widgets/custom_app_bar.dart';
 import '../../../shared/widgets/custom_app_drawer.dart';
 
+// ignore: must_be_immutable
 class HistoryScreen extends GetView<HistoryController> {
   String? screenName;
   HistoryScreen({required this.screenName, super.key});

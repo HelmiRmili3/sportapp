@@ -16,7 +16,7 @@ import '../../../data/models/room_molel.dart';
 import '../../../generated/l10n.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -245,7 +245,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-// Function to filter cities based on search text
   List<String> get filteredCities => allCities
       .where((city) => city.toLowerCase().contains(_searchText.toLowerCase()))
       .toList();
@@ -331,7 +330,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     strictbounds: false,
                                     components: [],
                                     onError: (err) {
-                                      print(err);
+                                      // print(err);
                                     },
                                   );
 
@@ -413,6 +412,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   width: 5.w,
                                   fit: BoxFit.cover,
                                   'assets/Images/filter.svg',
+                                  // ignore: deprecated_member_use
                                   color: Theme.of(context)
                                       .textTheme
                                       .bodySmall!
@@ -442,18 +442,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                     width: 30,
                                     decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
-                                      // color: Colors.white,
                                     ),
                                     child: SvgPicture.asset(
                                       model[index].image,
                                       height: 20,
                                       width: 20,
+                                      // ignore: deprecated_member_use
                                       color: index == 0
                                           ? Theme.of(context).splashColor
                                           : Theme.of(context)
                                               .textTheme
                                               .bodySmall!
-                                              .color, // Change the color as needed
+                                              .color,
                                     ),
                                   ),
                                   backgroundColor:
@@ -598,7 +598,7 @@ class _HomeScreenState extends State<HomeScreen> {
           markerId: MarkerId(i.toString()),
           position: latLng,
           icon: BitmapDescriptor.defaultMarkerWithHue(
-            homeController.currentIndex == i
+            homeController.currentIndex.value == i
                 ? BitmapDescriptor.hueRed
                 : BitmapDescriptor.hueRed,
           ),

@@ -9,11 +9,12 @@ import '../../../core/app_colors.dart';
 import '../../../core/routes/route_names.dart';
 import '../login_screen/widgets/button.dart';
 
-class SecurityScreen extends GetView<SecurityController> {
+class SecurityScreen extends StatelessWidget {
   const SecurityScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    SecurityController controller = Get.put(SecurityController());
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.only(top: 40.0.h, right: 24.w, left: 24.w),

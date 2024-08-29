@@ -6,8 +6,11 @@ class CustomBottomNavBar extends StatefulWidget {
   int currentIndex;
   final Function(int) onTap;
 
-  CustomBottomNavBar(
-      {super.key, required this.currentIndex, required this.onTap});
+  CustomBottomNavBar({
+    super.key,
+    required this.currentIndex,
+    required this.onTap,
+  });
 
   @override
   State<CustomBottomNavBar> createState() => _CustomBottomNavBarState();

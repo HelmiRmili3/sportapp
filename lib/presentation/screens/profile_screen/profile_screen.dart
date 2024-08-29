@@ -3,17 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sportapp/core/app_colors.dart';
 import 'package:sportapp/core/app_sizes.dart';
 import 'package:sportapp/generated/l10n.dart';
 import 'package:sportapp/presentation/controllers/language_controller.dart';
 import 'package:sportapp/presentation/controllers/theme_controller.dart';
-import '../../../core/app_constants.dart';
 import '../../../core/routes/route_names.dart';
 import 'widgets/profile_container.dart';
-
-enum Language { english, urdu }
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -23,21 +19,11 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  bool isSwitched = false;
-  var textValue = 'Switch is OFF';
-
-  bool isDarkMode = false;
-  // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  ThemeController themeController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    ThemeController themeController = Get.find();
     AppSizes().init(context);
-    // List languageText = [
-    //   "English",
-    //   "Urdu",
-    //   "Greek",
-    // ];
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Padding(
@@ -60,8 +46,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(AppSizes.size100),
                         child: const Image(
-                          image:
-                              NetworkImage("https://picsum.photos/250?image=9"),
+                          image: NetworkImage(
+                            "https://picsum.photos/250?image=9",
+                          ),
                         ),
                       ),
                     ),
@@ -75,7 +62,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         },
                         child: Container(
                           height: AppSizes.size40,
-                          width: AppSizes.size160,
+                          width: AppSizes.size160 + 5,
                           decoration: BoxDecoration(
                             color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(10),
@@ -118,20 +105,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ],
               ),
-              Switch(
-                onChanged: (bool value) async {
-                  final prefs = await SharedPreferences.getInstance();
-                  prefs.setBool("themeValue", value);
-                  themeController.setTheme(themeValue: value);
-                },
-                // onChanged: toggleSwitch,
-                value: AppConstant.themValue,
-
-                activeColor: Colors.white,
-                activeTrackColor: AppColors.seGreen,
-                inactiveThumbColor: Colors.white,
-                inactiveTrackColor: Colors.grey,
-              ),
+              Obx(() => Switch(
+                    onChanged: (bool value) {
+                      themeController.setTheme(themeValue: value);
+                    },
+                    value: themeController.isDarkTheme,
+                    activeColor: Colors.white,
+                    activeTrackColor: AppColors.seGreen,
+                    inactiveThumbColor: Colors.white,
+                    inactiveTrackColor: Colors.grey,
+                  )),
               Text(
                 S.of(context).hi,
                 style: TextStyle(

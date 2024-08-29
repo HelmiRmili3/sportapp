@@ -14,7 +14,7 @@ class _AppointmentsState extends State<Appointments> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2, // Define the number of tabs
+      length: 2, 
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -151,8 +151,7 @@ class _AppointmentsState extends State<Appointments> {
                   Expanded(
                     child: TabBarView(
                       children: [
-                        // Past Tab View
-                        Container(
+                        SizedBox(
                           child: Center(
                             child: Text(
                               'No Past Record Found',
@@ -164,7 +163,6 @@ class _AppointmentsState extends State<Appointments> {
                             ),
                           ),
                         ),
-                        // Upcoming Tab View
                         ListView.builder(
                           itemCount: 1,
                           itemBuilder: (context, index) {

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sportapp/core/app_urls.dart';
@@ -69,16 +68,15 @@ class APIClient {
       return response;
     } on DioException catch (error) {
       if (error.response != null) {
-        String content = error.response.toString();
-        Map<String, dynamic> map = jsonDecode(error.response.toString());
-        // AppConstants.flutterToast(message: map['message']);
-        print("This is an error in Dio: ${map['message'].toString()}");
+        // String content = error.response.toString();
+        // Map<String, dynamic> map = jsonDecode(error.response.toString());
+        // // AppConstants.flutterToast(message: map['message']);
+        // print("This is an error in Dio: ${map['message'].toString()}");
       }
       rethrow;
     }
   }
 
-  /// for delete request
   Future<Response> delete({
     required String url,
     dynamic params,
@@ -95,18 +93,17 @@ class APIClient {
       return response;
     } on DioException catch (error) {
       if (error.response != null) {
-        String content = error.response.toString();
-        Map<String, dynamic> map = jsonDecode(error.response.toString());
+        // String content = error.response.toString();
+        // Map<String, dynamic> map = jsonDecode(error.response.toString());
         // AppConstants.flutterToast(message: map['message']);
-        print("This is an error in Dio: ${map['message'].toString()}");
-        print(
-            "This is an error in Dio, complete map in delete method: ${error.response!.statusCode.toString()}");
+        // print("This is an error in Dio: ${map['message'].toString()}");
+        // print(
+        //     "This is an error in Dio, complete map in delete method: ${error.response!.statusCode.toString()}");
       }
       rethrow;
     }
   }
 
-  /// for Put Request.
   Future<Response> put({
     required String url,
     dynamic params,
@@ -122,9 +119,9 @@ class APIClient {
       return response;
     } on DioException catch (error) {
       if (error.response != null) {
-        String content = error.response.toString();
-        print("This is status code: ${error.response!.statusCode}");
-        Map<String, dynamic> map = error.response!.data;
+        // String content = error.response.toString();
+        // print("This is status code: ${error.response!.statusCode}");
+        // Map<String, dynamic> map = error.response!.data;
         // AppConstants.flutterToast(message: map['message']);
       }
       rethrow;
@@ -142,8 +139,8 @@ class APIClient {
         pathName,
         onReceiveProgress: onReceiveProgress,
       );
-    } on DioException catch (error) {
-      String content = error.response.toString();
+    } on DioException catch (_) {
+      // String content = error.response.toString();
       // AppConstant.logger
       //     .e("This is an error in Dio API client: ${content.toString()}");
       rethrow;

@@ -38,7 +38,7 @@ class _FaceRecognization1State extends State<FaceRecognization1> {
         _image = File(pickedFile.path);
         context.push(AppRouteConstants.facialrecognition, extra: _image);
       } else {
-        print('No image selected.');
+        // print('No image selected.');
       }
     });
   }

@@ -5,13 +5,16 @@ import 'package:sportapp/core/theme/app_style.dart';
 import '../../core/app_constants.dart';
 
 class ThemeController extends GetxController {
+  // Themes from AppStyle
   final darkTheme = AppStyle.darkTheme;
   final lightTheme = AppStyle.lightTheme;
 
-  final Rx<ThemeData?> _themeData = Rx<ThemeData>(AppStyle.lightTheme);
-  ThemeData? get themeData => _themeData.value;
+  // Observable to hold the current theme data
+  final Rx<ThemeData> _themeData = Rx<ThemeData>(AppStyle.lightTheme);
+  ThemeData get themeData => _themeData.value;
 
-  RxBool _isDarkTheme = true.obs;
+  // Observable to hold the current theme state (dark or light)
+  final RxBool _isDarkTheme = true.obs;
   bool get isDarkTheme => _isDarkTheme.value;
 
   @override
@@ -20,33 +23,36 @@ class ThemeController extends GetxController {
     initializeTheme();
   }
 
+  // Initialize theme from SharedPreferences or default to true (dark theme)
   Future<void> initializeTheme() async {
-    bool? themeBoolValue = await getStoredThemeValue();
-    _isDarkTheme.value = themeBoolValue ?? true;
+    bool themeBoolValue = await getStoredThemeValue();
+    _isDarkTheme.value = themeBoolValue;
     _themeData.value = _isDarkTheme.value ? darkTheme : lightTheme;
   }
 
-  Future<bool?> getStoredThemeValue() async {
+  // Retrieve stored theme value from SharedPreferences
+  Future<bool> getStoredThemeValue() async {
     final prefs = await SharedPreferences.getInstance();
     bool? themeBoolValue = prefs.getBool("themeValue");
-
     if (themeBoolValue == null) {
-      themeBoolValue = true;
-      await prefs.setBool("themeValue", true);
+      themeBoolValue = true; // Default to dark theme
+      await prefs.setBool("themeValue", themeBoolValue);
     }
     AppConstant.themValue = themeBoolValue;
     return themeBoolValue;
   }
 
+  // Set theme based on the value provided and save it to SharedPreferences
   void setTheme({required bool themeValue}) async {
     _isDarkTheme.value = themeValue;
     AppConstant.themValue = themeValue;
     _themeData.value = themeValue ? darkTheme : lightTheme;
-    update();
-    saveData('themeMode', themeValue);
+    await saveData('themeValue', themeValue);
+    update(); // Notify listeners to update the UI
   }
 
-  static Future<void> saveData(String key, dynamic value) async {
+  // Save data to SharedPreferences based on its type
+  Future<void> saveData(String key, dynamic value) async {
     final prefs = await SharedPreferences.getInstance();
     if (value is int) {
       prefs.setInt(key, value);
@@ -55,5 +61,6 @@ class ThemeController extends GetxController {
     } else if (value is bool) {
       prefs.setBool(key, value);
     }
+    update(); // Notify listeners to update the UI
   }
 }

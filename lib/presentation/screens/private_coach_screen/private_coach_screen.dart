@@ -114,8 +114,8 @@ class _PrivateCoachState extends State<PrivateCoach> {
                             padding: const EdgeInsets.all(10),
                             child: SvgPicture.asset(
                               'assets/Images/map.svg',
-                              color:
-                                  Theme.of(context).textTheme.bodySmall!.color,
+                              // color:
+                              //     Theme.of(context).textTheme.bodySmall!.color,
                             ),
                           ),
                         ),
@@ -135,6 +135,7 @@ class _PrivateCoachState extends State<PrivateCoach> {
                           width: 5.w,
                           fit: BoxFit.cover,
                           'assets/Images/filter.svg',
+                          // ignore: deprecated_member_use
                           color: Theme.of(context).textTheme.bodySmall!.color,
                           semanticsLabel: 'Acme Logo'),
                     ),
@@ -155,9 +156,9 @@ class _PrivateCoachState extends State<PrivateCoach> {
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: GestureDetector(
                         onTap: () {
-                          // GoRouter.of(context).push(
-                          //     AppRouteConstants.coachDetail,
-                          //     extra: model[index]);
+                          GoRouter.of(context).push(
+                              AppRouteConstants.coachDetail,
+                              extra: model[index]);
                         },
                         child: Container(
                           width: 350,

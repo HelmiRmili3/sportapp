@@ -18,6 +18,8 @@ class GymDetailScreen extends StatefulWidget {
 
 class _GymDetailScreenState extends State<GymDetailScreen> {
   HomeController homeController = Get.find();
+  GoogleMapController? mapController;
+
   List<PackageModel> model = [
     PackageModel(name: 'Monthly', pkg: [
       '450 free Video call minutes',
@@ -32,10 +34,9 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> formState = GlobalKey<FormState>();
-    String googleApikey = "YOUR_GOOGLE_API_KEY";
-    GoogleMapController? mapController;
-    CameraPosition? cameraPosition;
+    // GlobalKey<FormState> formState = GlobalKey<FormState>();
+    // String googleApikey = "YOUR_GOOGLE_API_KEY";
+    // CameraPosition? cameraPosition;
     String startLocationDescription = "Destination Location";
     return Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,

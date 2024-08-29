@@ -146,7 +146,7 @@ class _ValidateAccountState extends State<ValidateAccount> {
                   text: S.of(context).proceed,
                   onTap: _isValid
                       ? () {
-                          print('validate ${phoneController.text}');
+                          // print('validate ${phoneController.text}');
                           if (_formKey.currentState!.validate()) {
                             if (phoneController.text == '3111457646') {
                               context.push(AppRouteConstants.phoneNoAlreadyR,
@@ -158,7 +158,7 @@ class _ValidateAccountState extends State<ValidateAccount> {
                           }
                         }
                       : () {
-                          print('else validate ${phoneController.text}');
+                          // print('else validate ${phoneController.text}');
                         },
                   backgroundcolor: _isValid
                       ? AppColors.seGreen

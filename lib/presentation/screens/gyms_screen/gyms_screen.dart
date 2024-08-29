@@ -94,6 +94,7 @@ class _GymsScreenState extends State<GymsScreen> {
                             padding: const EdgeInsets.all(10),
                             child: SvgPicture.asset(
                               'assets/Images/map.svg',
+                              // ignore: deprecated_member_use
                               color:
                                   Theme.of(context).textTheme.bodySmall!.color,
                               // semanticsLabel: 'Acme Logo'

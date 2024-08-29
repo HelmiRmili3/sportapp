@@ -19,6 +19,8 @@ class CoachDetailScreen extends StatefulWidget {
 }
 
 class _CoachDetailScreenState extends State<CoachDetailScreen> {
+  GoogleMapController? mapController;
+
   List<AppointmentModel> schedule = [
     AppointmentModel(booked: true, time: '15:50'),
     AppointmentModel(booked: false, time: '16:10'),
@@ -27,11 +29,10 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> formState = GlobalKey<FormState>();
-    String googleApikey = "YOUR_GOOGLE_API_KEY";
-    GoogleMapController? mapController;
-    CameraPosition? cameraPosition;
-    String startLocationDescription = "Destination Location";
+    // GlobalKey<FormState> formState = GlobalKey<FormState>();
+    // String googleApikey = "YOUR_GOOGLE_API_KEY";
+    // CameraPosition? cameraPosition;
+    // String startLocationDescription = "Destination Location";
     return Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(

@@ -84,10 +84,10 @@ class EditProfileScreen extends StatelessWidget {
         Text(
           labelText ?? "",
           style: TextStyle(
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w500,
-              color:
-                  readOnly ?? false ? AppColors.black.withOpacity(0.1) : null),
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w500,
+            color: readOnly ?? false ? AppColors.black.withOpacity(0.1) : null,
+          ),
         ),
         5.verticalSpace,
         TextFormField(

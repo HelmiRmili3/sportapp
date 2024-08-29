@@ -8,11 +8,12 @@ import 'package:sportapp/presentation/controllers/payment_controller.dart';
 import '../../../core/routes/route_names.dart';
 import '../login_screen/widgets/button.dart';
 
-class PaymentScreen extends GetView<PaymentController> {
+class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    PaymentController controller = Get.put(PaymentController());
     return Scaffold(
       body: Padding(
           padding: EdgeInsets.only(top: 40.0.h, right: 24.w, left: 24.w),

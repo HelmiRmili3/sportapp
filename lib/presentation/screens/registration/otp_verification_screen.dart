@@ -13,7 +13,10 @@ import '../login_screen/widgets/button.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
   String number;
-  OtpVerificationScreen({super.key, required this.number});
+  OtpVerificationScreen({
+    super.key,
+    required this.number,
+  });
 
   @override
   State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();
@@ -35,11 +38,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     super.initState();
     if (widget.number.isNotEmpty) {
       lastFourDigits = widget.number.substring(widget.number.length - 4);
-      print("Last four digits: $lastFourDigits");
+      // print("Last four digits: $lastFourDigits");
     } else {
-      print("The string is empty.");
+      // print("The string is empty.");
     }
-    print('here is number get rom previous screen ${widget.number}');
+    // print('here is number get rom previous screen ${widget.number}');
     startTimer();
   }
 
