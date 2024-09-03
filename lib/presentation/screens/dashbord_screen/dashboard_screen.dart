@@ -58,6 +58,7 @@ class DashboardScreen extends StatelessWidget {
 
     return Scaffold(
       key: _scaffoldKey,
+      resizeToAvoidBottomInset: false,
       body: Obx(() => bottomBarPages[controller.currentIndex.value]),
       extendBody: true,
       bottomNavigationBar: Obx(() {

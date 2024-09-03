@@ -85,348 +85,326 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: Column(
+      body: Stack(
+        alignment: Alignment.bottomCenter,
         children: [
-          Expanded(
-            child: Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                GoogleMap(
-                  initialCameraPosition: CameraPosition(
-                    target: LatLng(
-                      homeController.lat,
-                      homeController.long,
-                    ),
-                    zoom: 15,
-                  ),
-                  onMapCreated: (controller) {
-                    setState(() {
-                      mapController = controller;
-                      var firstLocation = homeController.pageViewModel.first;
-                      var latLng = LatLng(
-                        double.parse(firstLocation.lat.toString()),
-                        double.parse(firstLocation.long.toString()),
-                      );
-                      mapController?.animateCamera(
-                        CameraUpdate.newLatLngZoom(latLng, 10),
-                      );
-                    });
-                  },
-                  markers: _createMarkers(
-                      gymName: "newGym", context, homeController),
-                  onTap: (latLng) {
-                    homeController.changeLatAdnLong(
-                      latitude: latLng.latitude.toString(),
-                      longitude: latLng.longitude.toString(),
-                    );
-                  },
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 15.0, vertical: 50.0),
-                  child: SizedBox(
-                    width: 405.w,
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              width: 290.w,
-                              margin: EdgeInsets.only(left: 5.w),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(40.0),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.5),
-                                    spreadRadius: 1,
-                                    blurRadius: 8,
-                                    offset: const Offset(0, 3),
-                                  ),
-                                ],
-                              ),
-                              child: TextFormField(
-                                style: TextStyle(
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall!
-                                        .color),
-                                onTap: () async {
-                                  var place = await PlacesAutocomplete.show(
-                                    context: context,
-                                    apiKey: googleApikey,
-                                    mode: Mode.overlay,
-                                    types: [],
-                                    strictbounds: false,
-                                    components: [],
-                                    onError: (err) {
-                                      // print(err);
-                                    },
-                                  );
-
-                                  if (place != null) {
-                                    setState(() {
-                                      startLocationDescription =
-                                          place.description.toString();
-                                    });
-
-                                    final plist = GoogleMapsPlaces(
-                                      apiKey: googleApikey,
-                                      apiHeaders: await const GoogleApiHeaders()
-                                          .getHeaders(),
-                                    );
-                                    String placeid = place.placeId ?? "0";
-                                    final detail = await plist
-                                        .getDetailsByPlaceId(placeid);
-                                    final geometry = detail.result.geometry!;
-                                    final lat = geometry.location.lat;
-                                    final lang = geometry.location.lng;
-                                    var newlatlang = LatLng(lat, lang);
-
-                                    mapController?.animateCamera(
-                                      CameraUpdate.newCameraPosition(
-                                        CameraPosition(
-                                            target: newlatlang, zoom: 17),
-                                      ),
-                                    );
-                                  }
-                                },
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Theme.of(context).primaryColor,
-                                  contentPadding: const EdgeInsets.symmetric(
-                                      horizontal: 16.0),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(40.0),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(40.0),
-                                    borderSide: BorderSide(
-                                        color: Theme.of(context).primaryColor,
-                                        width: 2.0),
-                                  ),
-                                  prefixIcon: Icon(Icons.search,
-                                      color: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall!
-                                          .color),
-                                  suffixIcon: Container(
-                                    padding: const EdgeInsets.all(10),
-                                    child: SvgPicture.asset(
-                                      'assets/Images/map.svg',
-                                      color: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall!
-                                          .color,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 10.w),
-                            // this is the the part that open the city model
-                            GestureDetector(
-                              onTap: () {
-                                _openCityBottomSheet(context);
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.all(10),
-                                height: 50.h,
-                                width: 50.w,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: AppColors.seGreen,
-                                ),
-                                child: SvgPicture.asset(
-                                  height: 5.h,
-                                  width: 5.w,
-                                  fit: BoxFit.cover,
-                                  'assets/Images/filter.svg',
-                                  // ignore: deprecated_member_use
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall!
-                                      .color,
-                                  semanticsLabel: 'Acme Logo',
-                                ),
-                              ),
+          GoogleMap(
+            initialCameraPosition: CameraPosition(
+              target: LatLng(
+                homeController.lat,
+                homeController.long,
+              ),
+              zoom: 15,
+            ),
+            onMapCreated: (controller) {
+              setState(() {
+                mapController = controller;
+                var firstLocation = homeController.pageViewModel.first;
+                var latLng = LatLng(
+                  double.parse(firstLocation.lat.toString()),
+                  double.parse(firstLocation.long.toString()),
+                );
+                mapController?.animateCamera(
+                  CameraUpdate.newLatLngZoom(latLng, 10),
+                );
+              });
+            },
+            markers: _createMarkers(gymName: "newGym", context, homeController),
+            onTap: (latLng) {
+              homeController.changeLatAdnLong(
+                latitude: latLng.latitude.toString(),
+                longitude: latLng.longitude.toString(),
+              );
+            },
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 50.0),
+            child: SizedBox(
+              width: 405.w,
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        width: 290.w,
+                        margin: EdgeInsets.only(left: 5.w),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(40.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.5),
+                              spreadRadius: 1,
+                              blurRadius: 8,
+                              offset: const Offset(0, 3),
                             ),
                           ],
                         ),
-                        SizedBox(height: 10.h),
-                        // this the part that have list of categoryes
-                        SizedBox(
-                          height: 40.h,
-                          child: ListView.builder(
-                            itemCount: model.length,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                ),
-                                child: ActionChip(
-                                  onPressed: () {
-                                    // Add your action here
-                                  },
-                                  avatar: Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: SvgPicture.asset(
-                                      model[index].image,
-                                      height: 20,
-                                      width: 20,
-                                      // ignore: deprecated_member_use
-                                      color: index == 0
-                                          ? Theme.of(context).splashColor
-                                          : Theme.of(context)
-                                              .textTheme
-                                              .bodySmall!
-                                              .color,
-                                    ),
-                                  ),
-                                  backgroundColor:
-                                      Theme.of(context).primaryColor,
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                        color: Theme.of(context).primaryColor),
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  label: Text(
-                                    model[index].name,
-                                    style: TextStyle(
-                                      color: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall!
-                                          .color,
-                                    ),
-                                  ),
+                        child: TextFormField(
+                          style: TextStyle(
+                              color:
+                                  Theme.of(context).textTheme.bodySmall!.color),
+                          onTap: () async {
+                            var place = await PlacesAutocomplete.show(
+                              context: context,
+                              apiKey: googleApikey,
+                              mode: Mode.overlay,
+                              types: [],
+                              strictbounds: false,
+                              components: [],
+                              onError: (err) {
+                                // print(err);
+                              },
+                            );
+
+                            if (place != null) {
+                              setState(() {
+                                startLocationDescription =
+                                    place.description.toString();
+                              });
+
+                              final plist = GoogleMapsPlaces(
+                                apiKey: googleApikey,
+                                apiHeaders:
+                                    await const GoogleApiHeaders().getHeaders(),
+                              );
+                              String placeid = place.placeId ?? "0";
+                              final detail =
+                                  await plist.getDetailsByPlaceId(placeid);
+                              final geometry = detail.result.geometry!;
+                              final lat = geometry.location.lat;
+                              final lang = geometry.location.lng;
+                              var newlatlang = LatLng(lat, lang);
+
+                              mapController?.animateCamera(
+                                CameraUpdate.newCameraPosition(
+                                  CameraPosition(target: newlatlang, zoom: 17),
                                 ),
                               );
-                            },
+                            }
+                          },
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Theme.of(context).primaryColor,
+                            contentPadding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40.0),
+                              borderSide: BorderSide.none,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40.0),
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).primaryColor,
+                                  width: 2.0),
+                            ),
+                            prefixIcon: Icon(Icons.search,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .color),
+                            suffixIcon: Container(
+                              padding: const EdgeInsets.all(10),
+                              child: SvgPicture.asset(
+                                'assets/Images/map.svg',
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .color,
+                              ),
+                            ),
                           ),
                         ),
-                      ],
+                      ),
+                      SizedBox(width: 10.w),
+                      // this is the the part that open the city model
+                      GestureDetector(
+                        onTap: () {
+                          _openCityBottomSheet(context);
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          height: 50.h,
+                          width: 50.w,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.seGreen,
+                          ),
+                          child: SvgPicture.asset(
+                            height: 5.h,
+                            width: 5.w,
+                            fit: BoxFit.cover,
+                            'assets/Images/filter.svg',
+                            // ignore: deprecated_member_use
+                            color: Theme.of(context).textTheme.bodySmall!.color,
+                            semanticsLabel: 'Acme Logo',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10.h),
+                  // this the part that have list of categoryes
+                  SizedBox(
+                    height: 40.h,
+                    child: ListView.builder(
+                      itemCount: model.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                          ),
+                          child: ActionChip(
+                            onPressed: () {
+                              // Add your action here
+                            },
+                            avatar: Container(
+                              height: 30,
+                              width: 30,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: SvgPicture.asset(
+                                model[index].image,
+                                height: 20,
+                                width: 20,
+                                // ignore: deprecated_member_use
+                                color: index == 0
+                                    ? Theme.of(context).splashColor
+                                    : Theme.of(context)
+                                        .textTheme
+                                        .bodySmall!
+                                        .color,
+                              ),
+                            ),
+                            backgroundColor: Theme.of(context).primaryColor,
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                  color: Theme.of(context).primaryColor),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            label: Text(
+                              model[index].name,
+                              style: TextStyle(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .color,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 70),
+              width: double.infinity,
+              height: 140.h,
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-                  child: Container(
-                    margin: const EdgeInsets.only(bottom: 70),
-                    width: double.infinity,
-                    height: 140.h,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 8,
-                          offset: const Offset(0, 2),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          S.of(context).listOfGymsSausse,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).textTheme.bodySmall!.color,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            _openGymListBottomSheet(context);
+                          },
+                          icon: const Icon(
+                            Icons.keyboard_arrow_up_outlined,
+                          ),
                         ),
                       ],
                     ),
-                    child: Padding(
+                    Container(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                      ),
-                      child: Column(
+                          horizontal: 10, vertical: 10),
+                      decoration: BoxDecoration(
+                          color: AppColors.seGreen,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                S.of(context).listOfGymsSausse,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall!
-                                      .color,
-                                ),
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  _openGymListBottomSheet(context);
-                                },
-                                icon: const Icon(
-                                  Icons.keyboard_arrow_up_outlined,
-                                ),
-                              ),
-                            ],
-                          ),
                           Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
                             decoration: BoxDecoration(
-                                color: AppColors.seGreen,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: AppColors.seGreen),
-                                  child: Image.asset(
-                                    'assets/Images/app_logo.png',
-                                    height: 44.h,
-                                    width: 35.w,
-                                    scale: 1,
-                                    fit: BoxFit.cover,
+                                borderRadius: BorderRadius.circular(10),
+                                color: AppColors.seGreen),
+                            child: Image.asset(
+                              'assets/Images/app_logo.png',
+                              height: 44.h,
+                              width: 35.w,
+                              scale: 1,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              context.push(AppRouteConstants.subscription);
+                            },
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 6.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    S.of(context).oneSubscription,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w500),
                                   ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    context
-                                        .push(AppRouteConstants.subscription);
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 6.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          S.of(context).oneSubscription,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                        Text(
-                                          S
-                                              .of(context)
-                                              .accessTo132RoomToTunisie,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.w200),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {},
-                                  child: const Icon(
-                                    Icons.close,
-                                    size: 15,
-                                  ),
-                                )
-                              ],
+                                  Text(
+                                    S.of(context).accessTo132RoomToTunisie,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w200),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: const Icon(
+                              Icons.close,
+                              size: 15,
                             ),
                           )
                         ],
                       ),
-                    ),
-                  ),
+                    )
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ],
