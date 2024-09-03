@@ -114,8 +114,8 @@ class _PrivateCoachState extends State<PrivateCoach> {
                             padding: const EdgeInsets.all(10),
                             child: SvgPicture.asset(
                               'assets/Images/map.svg',
-                              // color:
-                              //     Theme.of(context).textTheme.bodySmall!.color,
+                              color:
+                                  Theme.of(context).textTheme.bodySmall!.color,
                             ),
                           ),
                         ),
@@ -146,7 +146,7 @@ class _PrivateCoachState extends State<PrivateCoach> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: SizedBox(
-                height: 700,
+                height: 600,
                 child: ListView.builder(
                   itemCount: model.length,
                   shrinkWrap: true,
@@ -210,114 +210,85 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                Stack(
-                                  children: [
-                                    Positioned(
-                                      child: Container(
-                                        margin:
-                                            const EdgeInsets.only(left: 100),
-                                        height: 20,
-                                        decoration: BoxDecoration(
-                                          color: AppColors.seGreen,
-                                          borderRadius: const BorderRadius.only(
-                                              topRight: Radius.circular(100),
-                                              bottomLeft: Radius.circular(100)),
-                                        ),
-                                        child: Center(
-                                            child: Text(
-                                          model[index].level,
-                                          style:
-                                              TextStyle(color: AppColors.white),
-                                        )),
-                                      ),
+                                Container(
+                                  width: double.infinity,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                        color: Colors.grey.shade400, width: 2),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 20,
                                     ),
-                                    Container(
-                                      width: double.infinity,
-                                      height: 100,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        border: Border.all(
-                                            color: Colors.grey.shade400,
-                                            width: 2),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 20, top: 10),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Row(
                                           children: [
-                                            const SizedBox(
-                                              height: 10,
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  'Tarif',
-                                                  style: TextStyle(
-                                                      color:
-                                                          Colors.grey.shade500,
-                                                      fontSize: 14),
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                                const SizedBox(
-                                                  width: 15,
-                                                ),
-                                                Text(
-                                                  model[index].rate,
-                                                  style: TextStyle(
-                                                      color: Theme.of(context)
-                                                          .textTheme
-                                                          .bodySmall!
-                                                          .color,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 14),
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                              ],
+                                            Text(
+                                              'Tarif',
+                                              style: TextStyle(
+                                                  color: Colors.grey.shade500,
+                                                  fontSize: 14),
+                                              textAlign: TextAlign.center,
                                             ),
                                             const SizedBox(
-                                              height: 10,
+                                              width: 15,
                                             ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Ville ',
-                                                  style: TextStyle(
-                                                      color:
-                                                          Colors.grey.shade500,
-                                                      fontSize: 14),
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                                const SizedBox(
-                                                  width: 15,
-                                                ),
-                                                Expanded(
-                                                  child: Text(
-                                                    model[index].city,
-                                                    style: TextStyle(
-                                                        color: Theme.of(context)
-                                                            .textTheme
-                                                            .bodySmall!
-                                                            .color,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 14),
-                                                    textAlign: TextAlign.start,
-                                                  ),
-                                                ),
-                                              ],
+                                            Text(
+                                              model[index].rate,
+                                              style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .color,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14),
+                                              textAlign: TextAlign.center,
                                             ),
                                           ],
                                         ),
-                                      ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Ville ',
+                                              style: TextStyle(
+                                                  color: Colors.grey.shade500,
+                                                  fontSize: 14),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            const SizedBox(
+                                              width: 15,
+                                            ),
+                                            Expanded(
+                                              child: Text(
+                                                model[index].city,
+                                                style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .color,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14,
+                                                ),
+                                                textAlign: TextAlign.start,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
                                 const SizedBox(
                                   height: 15,
@@ -376,9 +347,10 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                                     child: Text(
                                                       schedule[index].time,
                                                       style: const TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.bold),
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
                                                     ),
                                                   ),
                                                 );

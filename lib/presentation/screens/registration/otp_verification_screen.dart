@@ -11,6 +11,7 @@ import '../../../core/app_colors.dart';
 import '../../../core/routes/route_names.dart';
 import '../login_screen/widgets/button.dart';
 
+// ignore: must_be_immutable
 class OtpVerificationScreen extends StatefulWidget {
   String number;
   OtpVerificationScreen({

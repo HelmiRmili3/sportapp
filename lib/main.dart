@@ -15,7 +15,7 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends GetView<ThemeController> {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
@@ -25,27 +25,28 @@ class MyApp extends GetView<ThemeController> {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return Obx(() => GetMaterialApp.router(
-              locale: Get.find<LanguageController>().locale,
-              routeInformationProvider:
-                  AppRouter.router.routeInformationProvider,
-              routeInformationParser: AppRouter.router.routeInformationParser,
-              routerDelegate: AppRouter.router.routerDelegate,
-              debugShowCheckedModeBanner: false,
-              title: 'LemakLand Sport',
-              theme: Get.find<ThemeController>().themeData,
-              localizationsDelegates: const [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: const [
-                Locale('en', ''), // English
-                Locale('ar', ''), // Arabic
-                Locale('fr', ''), // French
-              ],
-            ));
+        return Obx(
+          () => GetMaterialApp.router(
+            locale: Get.find<LanguageController>().locale,
+            routeInformationProvider: AppRouter.router.routeInformationProvider,
+            routeInformationParser: AppRouter.router.routeInformationParser,
+            routerDelegate: AppRouter.router.routerDelegate,
+            debugShowCheckedModeBanner: false,
+            title: 'LemakLand Sport',
+            theme: Get.find<ThemeController>().themeData,
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('en', ''), // English
+              Locale('ar', ''), // Arabic
+              Locale('fr', ''), // French
+            ],
+          ),
+        );
       },
     );
   }

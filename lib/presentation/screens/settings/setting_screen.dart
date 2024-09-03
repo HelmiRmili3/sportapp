@@ -3,13 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:sportapp/core/app_colors.dart';
-import 'package:sportapp/core/app_sizes.dart';
 import 'package:sportapp/generated/l10n.dart';
 
 import '../../../core/routes/route_names.dart';
 import '../profile_screen/widgets/profile_container.dart';
 
-enum Language { english, urdu }
+// enum Language { english, urdu }
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -19,14 +18,13 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-  bool isSwitched = false;
-  var textValue = 'Switch is OFF';
-
-  bool isDarkMode = false;
+  // bool isSwitched = false;
+  // var textValue = 'Switch is OFF';
+  // bool isDarkMode = false;
 
   @override
   Widget build(BuildContext context) {
-    AppSizes().init(context);
+    // AppSizes().init(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -101,14 +99,14 @@ class _SettingScreenState extends State<SettingScreen> {
                   context.push(AppRouteConstants.sorry, extra: 3);
                 },
               ),
-              ProfileContainer(
-                color: Colors.red,
-                icon: Icons.login_outlined,
-                title: S.of(context).logout,
-                ontap: () {
-                  context.push(AppRouteConstants.login);
-                },
-              ),
+              // ProfileContainer(
+              //   color: Colors.red,
+              //   icon: Icons.login_outlined,
+              //   title: S.of(context).logout,
+              //   ontap: () {
+              //     context.push(AppRouteConstants.login);
+              //   },
+              // ),
               SizedBox(height: 40.h),
               const Center(
                   child: Text('Version 1.0',

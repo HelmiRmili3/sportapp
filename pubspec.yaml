@@ -60,9 +60,14 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   intl_utils: ^2.6.0 
-
+  flutter_launcher_icons: ^0.13.1
   flutter_lints: ^2.0.0
 
+  
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/Images/logo2.png" # Path to your icon file
 
 flutter:
   generate: true

@@ -58,7 +58,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          context.push(AppRouteConstants.editProfileScreen);
+                          GoRouter.of(context)
+                              .push(AppRouteConstants.editProfileScreen);
                         },
                         child: Container(
                           height: AppSizes.size40,
@@ -138,33 +139,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 icon: Icons.diamond_outlined,
                 title: S.of(context).yourSubscription,
                 ontap: () {
-                  context.push(AppRouteConstants.yourSubscription);
+                  GoRouter.of(context).push(AppRouteConstants.yourSubscription);
                 },
               ),
               ProfileContainer(
                 icon: Icons.receipt_sharp,
                 title: S.of(context).checkInHistory,
-                ontap: () {},
+                ontap: () {
+                  // GoRouter.of(context).push(AppRouteConstants.historyScreen);
+                },
               ),
               ProfileContainer(
                 icon: Icons.card_giftcard,
                 title: S.of(context).bonus,
                 ontap: () {
-                  context.push(AppRouteConstants.bonusScreen);
+                  GoRouter.of(context).push(AppRouteConstants.bonusScreen);
                 },
               ),
               ProfileContainer(
                 icon: Icons.settings,
                 title: S.of(context).setting,
                 ontap: () {
-                  context.push(AppRouteConstants.settingScreen);
+                  GoRouter.of(context).push(AppRouteConstants.settingScreen);
                 },
               ),
               ProfileContainer(
                 icon: Icons.info_outline,
                 title: S.of(context).help,
                 ontap: () {
-                  context.push(AppRouteConstants.helpScreen);
+                  // context.push(AppRouteConstants.helpScreen);
+                  GoRouter.of(context).push(AppRouteConstants.helpScreen);
                 },
               ),
               ProfileContainer(
@@ -172,7 +176,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 icon: Icons.login_outlined,
                 title: S.of(context).logout,
                 ontap: () {
-                  context.go(AppRouteConstants.login);
+                  GoRouter.of(context).go(AppRouteConstants.login);
                 },
               ),
               SizedBox(height: 5.h),

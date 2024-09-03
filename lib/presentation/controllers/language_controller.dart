@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageController extends GetxController {
-  Rx<Locale> _locale = Locale('en', 'US').obs;
+  final Rx<Locale> _locale = const Locale('en', 'US').obs;
 
   Locale get locale => _locale.value;
 

@@ -21,18 +21,16 @@ class _ValidateAccountState extends State<ValidateAccount> {
   bool _isValid = false;
   final _formKey = GlobalKey<FormState>();
   void _updateFormState() {
-    // Step 3
     setState(() {
       _isValid = _formKey.currentState?.validate() ?? false; // Step 5
     });
   }
 
-  @override
-  void initState() {
-    super.initState();
-
-    // phoneController.addListener(_updateFormState); // Step 4
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   // phoneController.addListener(_updateFormState); // Step 4
+  // }
 
   TextEditingController phoneController = TextEditingController();
   @override
@@ -84,7 +82,6 @@ class _ValidateAccountState extends State<ValidateAccount> {
                   style: TextStyle(
                     fontWeight: FontWeight.w300,
                     fontSize: 16,
-                    // fontFamily: 'ClashDisplay',
                     color: Theme.of(context).textTheme.bodySmall!.color,
                   ),
                 ),
@@ -102,37 +99,30 @@ class _ValidateAccountState extends State<ValidateAccount> {
                     return null;
                   },
                   // initialValue: '+923176558363', // Set the complete phone number including the country code
-
                   // controller: phoneController,
                   style: TextStyle(
                     color: Theme.of(context).textTheme.bodySmall!.color,
                   ),
                   decoration: InputDecoration(
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                          color: AppColors
-                              .seGreen), // Change line color when focused
+                      borderSide: BorderSide(color: AppColors.seGreen),
                     ),
                     enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Theme.of(context)
-                              .highlightColor), // Change line color when not focused
+                      borderSide:
+                          BorderSide(color: Theme.of(context).highlightColor),
                     ),
                     errorBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Colors.red), // Change line color on error
+                      borderSide: BorderSide(color: Colors.red),
                     ),
                     focusedErrorBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Colors
-                              .red), // Change line color when focused with error
+                      borderSide: BorderSide(color: Colors.red),
                     ),
                   ),
                   showCursor: true,
                   initialCountryCode: 'US',
                   disableLengthCheck: false,
-
-                  // dropdownDecoration: BoxDecoration(color: Theme.of(context).primaryColor),
+                  dropdownDecoration:
+                      BoxDecoration(color: Theme.of(context).primaryColor),
                   dropdownTextStyle: TextStyle(
                       color: Theme.of(context).textTheme.bodySmall!.color),
                   invalidNumberMessage: S.of(context).validPhoneNumber,
@@ -146,13 +136,14 @@ class _ValidateAccountState extends State<ValidateAccount> {
                   text: S.of(context).proceed,
                   onTap: _isValid
                       ? () {
-                          // print('validate ${phoneController.text}');
                           if (_formKey.currentState!.validate()) {
                             if (phoneController.text == '3111457646') {
-                              context.push(AppRouteConstants.phoneNoAlreadyR,
+                              GoRouter.of(context).push(
+                                  AppRouteConstants.phoneNoAlreadyR,
                                   extra: phoneController.text);
                             } else {
-                              context.push(AppRouteConstants.otpverification,
+                              GoRouter.of(context).push(
+                                  AppRouteConstants.otpverification,
                                   extra: phoneController.text);
                             }
                           }

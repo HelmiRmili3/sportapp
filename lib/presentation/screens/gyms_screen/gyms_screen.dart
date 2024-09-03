@@ -181,7 +181,7 @@ class _GymsScreenState extends State<GymsScreen> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: SizedBox(
-                height: 700,
+                height: 580,
                 child: ListView.builder(
                   itemCount: 10,
                   physics: const BouncingScrollPhysics(),
@@ -261,7 +261,7 @@ class _GymsScreenState extends State<GymsScreen> {
                   },
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

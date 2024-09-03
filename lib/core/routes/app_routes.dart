@@ -17,7 +17,7 @@ import '../../presentation/screens/history_screen/history_screen.dart';
 import '../../presentation/screens/home_screen/home_screen.dart';
 import '../../presentation/screens/onbording_screen/onbording_screen.dart';
 import '../../presentation/screens/login_screen/login_screen.dart';
-import '../../presentation/screens/payment_methods/payment_method.dart';
+// import '../../presentation/screens/payment_methods/payment_method.dart';
 import '../../presentation/screens/payment_methods/payment_method_screen.dart';
 import '../../presentation/screens/payment_methods/payment_screen.dart';
 import '../../presentation/screens/private_coach_screen/private_coache_details_screen.dart';
@@ -83,7 +83,7 @@ class AppRouter {
           pageBuilder: (context, state) {
             saveLocalData(screenName: state.name!);
             return CustomTransitionPage(
-              child: HomeScreen(),
+              child: const HomeScreen(),
               transitionDuration: const Duration(seconds: 0),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
@@ -813,25 +813,25 @@ class AppRouter {
             );
           },
         ),
-        GoRoute(
-          name: AppRouteConstants.payments,
-          path: AppRouteConstants.payments,
-          pageBuilder: (context, state) {
-            saveLocalData(screenName: state.name!);
-            return CustomTransitionPage(
-              child: const PaymentMethod(),
-              transitionDuration: const Duration(seconds: 0),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                return FadeTransition(
-                  opacity: CurveTween(curve: Curves.easeInOutCirc)
-                      .animate(animation),
-                  child: child,
-                );
-              },
-            );
-          },
-        ),
+        // GoRoute(
+        //   name: AppRouteConstants.payments,
+        //   path: AppRouteConstants.payments,
+        //   pageBuilder: (context, state) {
+        //     saveLocalData(screenName: state.name!);
+        //     return CustomTransitionPage(
+        //       child: const PaymentMethod(),
+        //       transitionDuration: const Duration(seconds: 0),
+        //       transitionsBuilder:
+        //           (context, animation, secondaryAnimation, child) {
+        //         return FadeTransition(
+        //           opacity: CurveTween(curve: Curves.easeInOutCirc)
+        //               .animate(animation),
+        //           child: child,
+        //         );
+        //       },
+        //     );
+        //   },
+        // ),
       ],
     );
   }

@@ -1,19 +1,21 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_api_headers/google_api_headers.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
 
 import 'package:sportapp/core/app_colors.dart';
 import 'package:sportapp/presentation/controllers/home_controller.dart';
+import 'package:sportapp/presentation/screens/home_screen/widgets/city_model.dart';
 
+import '../../../core/routes/route_names.dart';
 import '../../../data/models/room_molel.dart';
 import '../../../generated/l10n.dart';
+import 'widgets/gyms_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -24,7 +26,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final HomeController homeController = Get.put(HomeController());
-
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   String googleApikey = "YOUR_GOOGLE_API_KEY";
   GoogleMapController? mapController;
@@ -47,199 +48,29 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   String _searchText = '';
 
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _openSubscriptioSheet(context, homeController);
-    });
-  }
-
-  void _openSubscriptioSheet(
-    BuildContext context,
-    HomeController homeController,
-  ) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => Container(
-        height: 200,
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "List",
-              style: TextStyle(
-                color: Theme.of(context).textTheme.bodySmall!.color,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-                homeController.updateList();
-              },
-              child: Container(
-                height: 80,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                decoration: BoxDecoration(
-                  color: Colors.green.shade100,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 40,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        image: const DecorationImage(
-                            image: AssetImage('assets/Images/jim.png'),
-                            fit: BoxFit.cover),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "signle Subscription",
-                          style: TextStyle(
-                            color: Theme.of(context).textTheme.bodySmall!.color,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                        Text(
-                          "subtitle",
-                          style: TextStyle(
-                            color: Theme.of(context).textTheme.bodySmall!.color,
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   void _openCityBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return StatefulBuilder(
-          builder: (context, setState) => Padding(
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const SizedBox(height: 10),
-                  // Search field with OutlineBorde
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Text(
-                          S.of(context).chooseCity,
-                          style: TextStyle(
-                              color:
-                                  Theme.of(context).textTheme.bodySmall!.color),
-                        ),
-                        const Spacer(),
-                        InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                              height: 40,
-                              width: 40,
-                              decoration: BoxDecoration(
-                                  color: AppColors.black.withOpacity(.4),
-                                  borderRadius: BorderRadius.circular(50)),
-                              child: Center(
-                                  child: Icon(
-                                Icons.close,
-                                size: 20,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall!
-                                    .color,
-                              ))),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: TextFormField(
-                      style: TextStyle(
-                          color: Theme.of(context).textTheme.bodySmall!.color),
-                      decoration: InputDecoration(
-                        hintText: 'Search City',
-                        hintStyle: TextStyle(
-                            color:
-                                Theme.of(context).textTheme.bodySmall!.color),
-                        prefixIcon: Icon(
-                          Icons.search,
-                          color: Theme.of(context).textTheme.bodySmall!.color,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      onChanged: (text) {
-                        setState(() {
-                          _searchText = text;
-                        });
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 10.0),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: _searchText.isEmpty
-                        ? allCities.length
-                        : filteredCities.length,
-                    itemBuilder: (context, index) {
-                      final city = _searchText.isEmpty
-                          ? allCities[index]
-                          : filteredCities[index];
-                      return ListTile(
-                        title: Text(
-                          city,
-                          style: TextStyle(
-                              color:
-                                  Theme.of(context).textTheme.bodySmall!.color),
-                        ),
-                        onTap: () => {
-                          Navigator.pop(context),
-                        },
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
+        return const CityBottomSheet();
+      },
+    );
+  }
+
+  void _openGymListBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
+      ),
+      builder: (BuildContext context) {
+        return GymListBottomSheet(
+          model: model, // Pass your model here
         );
       },
     );
@@ -256,7 +87,6 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Column(
         children: [
-          SizedBox(height: Platform.isIOS ? 50.h : 30.h),
           Expanded(
             child: Stack(
               alignment: Alignment.bottomCenter,
@@ -272,13 +102,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   onMapCreated: (controller) {
                     setState(() {
                       mapController = controller;
-                      // Get the location at index 0
                       var firstLocation = homeController.pageViewModel.first;
                       var latLng = LatLng(
                         double.parse(firstLocation.lat.toString()),
                         double.parse(firstLocation.long.toString()),
                       );
-                      // Animate camera to the marker at index 0
                       mapController?.animateCamera(
                         CameraUpdate.newLatLngZoom(latLng, 10),
                       );
@@ -294,7 +122,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 15.0, vertical: 50.0),
                   child: SizedBox(
                     width: 405.w,
                     child: Column(
@@ -302,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Row(
                           children: [
                             Container(
-                              width: 270.w,
+                              width: 290.w,
                               margin: EdgeInsets.only(left: 5.w),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(40.0),
@@ -395,6 +224,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             SizedBox(width: 10.w),
+                            // this is the the part that open the city model
                             GestureDetector(
                               onTap: () {
                                 _openCityBottomSheet(context);
@@ -424,6 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         SizedBox(height: 10.h),
+                        // this the part that have list of categoryes
                         SizedBox(
                           height: 40.h,
                           child: ListView.builder(
@@ -431,8 +262,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                ),
                                 child: ActionChip(
                                   onPressed: () {
                                     // Add your action here
@@ -469,7 +301,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       color: Theme.of(context)
                                           .textTheme
                                           .bodySmall!
-                                          .color, // Change the color as needed
+                                          .color,
                                     ),
                                   ),
                                 ),
@@ -481,98 +313,119 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                homeController.showList.value
-                    ? SizedBox(
-                        height: 380.h,
-                        child: PageView.builder(
-                          onPageChanged: (newIndex) {
-                            var newLatLng = LatLng(
-                              double.parse(homeController
-                                  .pageViewModel[newIndex].lat
-                                  .toString()),
-                              double.parse(homeController
-                                  .pageViewModel[newIndex].long
-                                  .toString()),
-                            );
-                            mapController?.animateCamera(
-                              CameraUpdate.newCameraPosition(
-                                CameraPosition(target: newLatLng, zoom: 10),
-                              ),
-                            );
-                            Future.microtask(
-                                () => homeController.setCurrentIndex(newIndex));
-                          },
-                          itemCount: homeController.pageViewModel.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 40, vertical: 40),
-                              child: Container(
-                                margin: const EdgeInsets.only(bottom: 70),
-                                width: double.infinity,
-                                height: 200.h,
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).primaryColor,
-                                  borderRadius: BorderRadius.circular(20),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 2,
-                                      blurRadius: 8,
-                                      offset: const Offset(0, 2),
-                                    ),
-                                  ],
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      height: 150.h,
-                                      width: double.infinity,
-                                      margin: EdgeInsets.all(10.w),
-                                      decoration: BoxDecoration(
-                                        image: const DecorationImage(
-                                          image: AssetImage(
-                                              'assets/Images/jim.png'),
-                                        ),
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 15.0),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            S.of(context).nameGyms,
-                                            style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .textTheme
-                                                  .bodySmall!
-                                                  .color,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16,
-                                            ),
-                                          ),
-                                          Text(
-                                            S.of(context).addressGyms,
-                                            style: TextStyle(
-                                                color: Theme.of(context)
-                                                    .textTheme
-                                                    .bodySmall!
-                                                    .color),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                  child: Container(
+                    margin: const EdgeInsets.only(bottom: 70),
+                    width: double.infinity,
+                    height: 140.h,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 8,
+                          offset: const Offset(0, 2),
                         ),
-                      )
-                    : Container()
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                S.of(context).listOfGymsSausse,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall!
+                                      .color,
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  _openGymListBottomSheet(context);
+                                },
+                                icon: const Icon(
+                                  Icons.keyboard_arrow_up_outlined,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            decoration: BoxDecoration(
+                                color: AppColors.seGreen,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: AppColors.seGreen),
+                                  child: Image.asset(
+                                    'assets/Images/app_logo.png',
+                                    height: 44.h,
+                                    width: 35.w,
+                                    scale: 1,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    context
+                                        .push(AppRouteConstants.subscription);
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 6.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          S.of(context).oneSubscription,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        Text(
+                                          S
+                                              .of(context)
+                                              .accessTo132RoomToTunisie,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w200),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {},
+                                  child: const Icon(
+                                    Icons.close,
+                                    size: 15,
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

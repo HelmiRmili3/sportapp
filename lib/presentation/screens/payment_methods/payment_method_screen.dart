@@ -71,12 +71,12 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                 },
               ),
               20.verticalSpace,
-              ProfileContainerUpdated(
-                icon: "assets/Images/cash_payment.png",
-                title: 'Payment by Telephone balance',
-                ontap: () {},
-              ),
-              20.verticalSpace,
+              // ProfileContainerUpdated(
+              //   icon: "assets/Images/cash_payment.png",
+              //   title: 'Payment by Telephone balance',
+              //   ontap: () {},
+              // ),
+              // 20.verticalSpace,
               ProfileContainerUpdated(
                 icon: "assets/Images/donate-coin.png",
                 title: 'Pay in cash',

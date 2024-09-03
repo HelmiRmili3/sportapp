@@ -11,6 +11,7 @@ import 'package:sportapp/generated/l10n.dart';
 import '../../../core/routes/route_names.dart';
 import '../login_screen/widgets/button.dart';
 
+// ignore: must_be_immutable
 class Facialrecognition extends StatefulWidget {
   File? image;
   Facialrecognition({super.key, required this.image});

@@ -32,10 +32,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     super.initState();
     emailController.addListener(_updateFormState);
     passwordController.addListener(_updateFormState);
+    referralCodeController.addListener(_updateFormState);
   }
 
   TextEditingController passwordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  TextEditingController referralCodeController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,6 +95,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     return null;
                   },
                 ),
+                SizedBox(height: 20.h),
+                AuthTextField(
+                  controller: referralCodeController,
+                  hintText: "Referral code",
+                  obsecure: false,
+                  onChanged: (value) => _updateFormState(),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Referral code';
+                    }
+                    return null;
+                  },
+                ),
                 SizedBox(height: 50.h),
                 AuthButton(
                   fontcolor: _isValid
@@ -102,7 +118,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ? () {
                           if (_formKey.currentState!.validate()) {
                             GoRouter.of(context)
-                                .go(AppRouteConstants.validateAccount);
+                                .push(AppRouteConstants.validateAccount);
                           }
                         }
                       : () {},

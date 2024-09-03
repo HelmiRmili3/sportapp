@@ -15,6 +15,7 @@ class HistoryScreen extends GetView<HistoryController> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
+    HistoryController controller = Get.put(HistoryController());
     return Scaffold(
       backgroundColor: Theme.of(context).cardColor,
       key: _scaffoldKey,
