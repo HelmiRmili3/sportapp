@@ -6,6 +6,7 @@ import 'package:sportapp/core/app_colors.dart';
 import 'package:sportapp/generated/l10n.dart';
 
 import '../../../core/routes/route_names.dart';
+import '../../../data/models/room_molel.dart';
 
 class GymsScreen extends StatefulWidget {
   const GymsScreen({super.key});
@@ -204,12 +205,10 @@ class _GymsScreenState extends State<GymsScreen> {
                               decoration: BoxDecoration(
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.grey
-                                          .withOpacity(0.5), // Shadow color
-                                      spreadRadius: 2, // Spread radius
-                                      blurRadius: 8, // Blur radius
-                                      offset: const Offset(
-                                          0, 2), // Offset position of shadow
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 2,
+                                      blurRadius: 8,
+                                      offset: const Offset(0, 2),
                                     ),
                                   ],
                                   borderRadius: BorderRadius.circular(20),
@@ -267,13 +266,4 @@ class _GymsScreenState extends State<GymsScreen> {
       ),
     );
   }
-}
-
-class RoomModel {
-  String image;
-  String name;
-  RoomModel({
-    required this.image,
-    required this.name,
-  });
 }

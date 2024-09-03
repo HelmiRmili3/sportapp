@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/app_colors.dart';
 import '../../../../core/routes/route_names.dart';
 import '../../../../data/models/room_molel.dart';
-import '../../../../generated/l10n.dart'; // Replace with your actual import
+import '../../../../generated/l10n.dart';
 
 class GymListBottomSheet extends StatelessWidget {
   final List<RoomModel> model;
@@ -138,9 +139,7 @@ class GymListBottomSheet extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: ActionChip(
-                      onPressed: () {
-                        // Add your action here
-                      },
+                      onPressed: () {},
                       avatar: Container(
                         height: 30,
                         width: 30,
@@ -181,8 +180,9 @@ class GymListBottomSheet extends StatelessWidget {
                   return GestureDetector(
                     onTap: () {
                       // Navigate to gym detail screen
-                      Navigator.pushNamed(
-                          context, AppRouteConstants.gymDetailScreen);
+
+                      GoRouter.of(context)
+                          .push(AppRouteConstants.gymDetailScreen);
                     },
                     child: Stack(
                       alignment: Alignment.topCenter,

@@ -43,9 +43,9 @@ class APIClient {
         ),
       );
       return response;
-    } on DioException catch (error) {
-      String content =
-          error.response?.toString() ?? "Error occurred without a response.";
+    } on DioException catch (_) {
+      // String content =
+      //     error.response?.toString() ?? "Error occurred without a response.";
       // Handle error or log content if needed
       rethrow;
     }

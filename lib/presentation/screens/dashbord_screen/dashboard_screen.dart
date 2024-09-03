@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import '../../../core/app_colors.dart';
 import '../../controllers/dashboard_controller.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import '../gyms_screen/gyms_screen.dart';
 import '../home_screen/home_screen.dart';
 import '../private_coach_screen/private_coach_screen.dart';
 import '../profile_screen/profile_screen.dart';

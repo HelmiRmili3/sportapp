@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sportapp/core/app_sizes.dart';
 import 'package:sportapp/generated/l10n.dart';
 
+// ignore: must_be_immutable
 class CustomBottomNavBar extends StatefulWidget {
   int currentIndex;
   final Function(int) onTap;

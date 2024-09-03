@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// ignore: must_be_immutable
 class AuthButton extends StatelessWidget {
   void Function()? onTap;
   Color? backgroundcolor;

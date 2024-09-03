@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       builder: (BuildContext context) {
         return GymListBottomSheet(
-          model: model, // Pass your model here
+          model: model,
         );
       },
     );

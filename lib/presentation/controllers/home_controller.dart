@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../data/models/page_view_model.dart';
-import '../../data/models/room_molel.dart';
 import '../../services/api_service.dart';
 
 class HomeController extends GetxController {
