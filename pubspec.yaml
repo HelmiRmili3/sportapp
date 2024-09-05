@@ -56,18 +56,22 @@ dependencies:
 
   google_api_headers: any
   google_maps_webservice: any
+  flutter_rating_bar: ^4.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
   intl_utils: ^2.6.0 
   flutter_launcher_icons: ^0.13.1
   flutter_lints: ^2.0.0
+  launcher_name: ^1.0.2
 
-  
+launcher_name:
+  default: "LemakLand Sport"
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/Images/logo2.png" # Path to your icon file
+  image_path: "assets/Images/icon.png"
+  remove_alpha_ios: true
 
 flutter:
   generate: true

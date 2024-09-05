@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_api_headers/google_api_headers.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
 
@@ -133,7 +132,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(40.0),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.5),
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall!
+                                  .color!
+                                  .withOpacity(0.5),
                               spreadRadius: 1,
                               blurRadius: 8,
                               offset: const Offset(0, 3),
@@ -145,43 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               color:
                                   Theme.of(context).textTheme.bodySmall!.color),
                           onTap: () async {
-                            var place = await PlacesAutocomplete.show(
-                              context: context,
-                              apiKey: googleApikey,
-                              mode: Mode.overlay,
-                              types: [],
-                              strictbounds: false,
-                              components: [],
-                              onError: (err) {
-                                // print(err);
-                              },
-                            );
-
-                            if (place != null) {
-                              setState(() {
-                                startLocationDescription =
-                                    place.description.toString();
-                              });
-
-                              final plist = GoogleMapsPlaces(
-                                apiKey: googleApikey,
-                                apiHeaders:
-                                    await const GoogleApiHeaders().getHeaders(),
-                              );
-                              String placeid = place.placeId ?? "0";
-                              final detail =
-                                  await plist.getDetailsByPlaceId(placeid);
-                              final geometry = detail.result.geometry!;
-                              final lat = geometry.location.lat;
-                              final lang = geometry.location.lng;
-                              var newlatlang = LatLng(lat, lang);
-
-                              mapController?.animateCamera(
-                                CameraUpdate.newCameraPosition(
-                                  CameraPosition(target: newlatlang, zoom: 17),
-                                ),
-                              );
-                            }
+                            _showPlacesAutocomplete(context);
                           },
                           decoration: InputDecoration(
                             filled: true,
@@ -216,6 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
+
                       SizedBox(width: 10.w),
                       // this is the the part that open the city model
                       GestureDetector(
@@ -244,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   SizedBox(height: 10.h),
-                  // this the part that have list of categoryes
+                  // this the part that have list of categorys
                   SizedBox(
                     height: 40.h,
                     child: ListView.builder(
@@ -438,5 +406,58 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
     return markers;
+  }
+
+  Future<void> _showPlacesAutocomplete(BuildContext context) async {
+    Prediction? prediction = await PlacesAutocomplete.show(
+      context: context,
+      apiKey: googleApikey,
+      // mode: Mode.overlay, // Can also use Mode.fullscreen
+      types: [],
+      strictbounds: false,
+      components: [],
+      onError: (err) {
+        print(err); // Handle error
+      },
+      decoration: InputDecoration(
+        prefixIcon: Icon(
+          Icons.search,
+          color: Theme.of(context).brightness == Brightness.dark
+              ? Colors.white70 // Search icon color in dark mode
+              : Colors.black54, // Search icon color in light mode
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.deepPurpleAccent // Focused border color in dark mode
+                : Colors.deepPurple, // Focused border color in light mode
+          ),
+          borderRadius: BorderRadius.circular(50.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.white24 // Border color in dark mode
+                : Colors.grey, // Border color in light mode
+          ),
+          borderRadius: BorderRadius.circular(50.0),
+        ),
+        hintText: 'Search here...',
+        hintStyle: TextStyle(
+          color: Theme.of(context).brightness == Brightness.dark
+              ? Colors.white54 // Hint text color in dark mode
+              : Colors.black54, // Hint text color in light mode
+        ),
+        filled: true,
+        fillColor: Theme.of(context).brightness == Brightness.dark
+            ? Colors.black45 // Background color in dark mode
+            : Colors.white, // Background color in light mode
+      ),
+    );
+
+    if (prediction != null) {
+      // Handle selected prediction
+      print("Selected: ${prediction.description}");
+    }
   }
 }

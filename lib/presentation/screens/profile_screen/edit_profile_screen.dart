@@ -5,9 +5,26 @@ import 'package:sportapp/core/app_colors.dart';
 import 'package:sportapp/core/app_sizes.dart';
 
 import '../login_screen/widgets/button.dart';
+import 'widgets/custom_text_field_select_date.dart';
+import 'widgets/custom_text_filed.dart';
+import 'widgets/custom_text_filed_without_icon.dart';
 
-class EditProfileScreen extends StatelessWidget {
+class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
+
+  @override
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
+}
+
+class _EditProfileScreenState extends State<EditProfileScreen> {
+  TextEditingController dateController =
+      TextEditingController(text: "12/7/2000");
+
+  TextEditingController nameController = TextEditingController(text: "Ahmed");
+  TextEditingController passwordController =
+      TextEditingController(text: "Ahmed123");
+  TextEditingController passwordConfirmationController =
+      TextEditingController(text: "Ahmed123");
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +35,10 @@ class EditProfileScreen extends StatelessWidget {
           2.verticalSpace,
           Text(
             "Change Picture",
-            style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400),
+            style: TextStyle(
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w400,
+            ),
           ),
           20.verticalSpace,
           Expanded(
@@ -28,39 +48,54 @@ class EditProfileScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _customTextField(
+                    CustomTextFieldWithoutIcon(
+                      controller: nameController,
                       hintText: "username",
                       labelText: "Username",
+                      readOnly: false,
                     ),
-                    _customTextField(
-                        hintText: "yaounchi@gmail.com",
-                        labelText: "Email I'D",
-                        readOnly: true),
-                    _customTextField(
+                    const CustomTextFieldWithoutIcon(
+                      hintText: "yaounchi@gmail.com",
+                      labelText: "Email I'D",
+                      readOnly: true,
+                    ),
+                    const CustomTextFieldWithoutIcon(
                       hintText: "+143423453532",
                       labelText: "Phone Number",
                       readOnly: true,
                     ),
-                    _customTextField(
-                        hintText: "JJ/MM/AA",
-                        labelText: "Date de Nnaissance",
-                        icon: "assets/Images/calender_icon.png"),
-                    _customTextField(
-                        hintText: "*************",
-                        labelText: "Password",
-                        icon: "assets/Images/open_eye_icon.png",
-                        obscureText: true),
-                    _customTextField(
-                        hintText: "*************",
-                        labelText: "Confime Password",
-                        icon: "assets/Images/open_eye_icon.png",
-                        obscureText: true),
+                    CustomTextFieldSelectDate(
+                      controller: dateController,
+                      hintText: "JJ/MM/AA",
+                      labelText: "Date de Naissance",
+                      icon: "assets/Images/calender_icon.png",
+                      readOnly: false,
+                    ),
+                    CustomTextField(
+                      controller: passwordController,
+                      hintText: "password",
+                      labelText: "Password",
+                      icon: "assets/Images/open_eye_icon.png",
+                      obscureIcon: "assets/Images/open_eye_icon.png",
+                      obscureText: false,
+                      readOnly: false,
+                    ),
+                    CustomTextField(
+                      controller: passwordConfirmationController,
+                      hintText: "password",
+                      labelText: "Confime Password",
+                      icon: "assets/Images/open_eye_icon.png",
+                      obscureIcon: "assets/Images/open_eye_icon.png",
+                      obscureText: false,
+                      readOnly: false,
+                    ),
                     15.verticalSpace,
                     AuthButton(
-                        text: "Update",
-                        fontcolor: AppColors.black,
-                        backgroundcolor: AppColors.seGreen,
-                        onTap: () {}),
+                      text: "Update",
+                      fontcolor: AppColors.black,
+                      backgroundcolor: AppColors.seGreen,
+                      onTap: () {},
+                    ),
                     10.verticalSpace,
                   ],
                 ),
@@ -72,68 +107,100 @@ class EditProfileScreen extends StatelessWidget {
     );
   }
 
-  Column _customTextField(
-      {String? hintText,
-      String? labelText,
-      String? icon,
-      bool? obscureText,
-      bool? readOnly}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          labelText ?? "",
-          style: TextStyle(
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w500,
-            color: readOnly ?? false ? AppColors.black.withOpacity(0.1) : null,
-          ),
-        ),
-        5.verticalSpace,
-        TextFormField(
-          readOnly: readOnly ?? false,
-          obscureText: obscureText ?? false,
-          decoration: InputDecoration(
-            suffixIcon: icon?.isEmpty ?? true
-                ? null
-                : UnconstrainedBox(
-                    child: Image.asset(icon!,
-                        height: 24.h, width: 24.w, color: Colors.black),
-                  ),
-            hintText: hintText ?? "",
-            hintStyle: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w400,
-                color: readOnly ?? false
-                    ? AppColors.black.withOpacity(0.1)
-                    : AppColors.black),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                  color: readOnly ?? false
-                      ? AppColors.black.withOpacity(0.1)
-                      : const Color(0xFFC4C4C4)),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                  color: readOnly ?? false
-                      ? AppColors.black.withOpacity(0.1)
-                      : const Color(0xFFC4C4C4)),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                  color: readOnly ?? false
-                      ? AppColors.black.withOpacity(0.1)
-                      : const Color(0xFFC4C4C4)),
-            ),
-          ),
-        ),
-        14.verticalSpace,
-      ],
-    );
-  }
+  // Column _customTextField({
+  //   TextEditingController? controller,
+  //   final Function()? onTap,
+  //   String? hintText,
+  //   String? labelText,
+  //   String? icon,
+  //   String? obscureIcon,
+  //   bool? obscureText,
+  //   required BuildContext context,
+  //   bool? readOnly,
+  // }) {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Text(
+  //         labelText ?? "",
+  //         style: TextStyle(
+  //           fontSize: 14.sp,
+  //           fontWeight: FontWeight.w500,
+  //           color: readOnly ?? false
+  //               ? Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.6)
+  //               : Theme.of(context).textTheme.bodySmall!.color,
+  //         ),
+  //       ),
+  //       5.verticalSpace,
+  //       TextFormField(
+  //         controller: controller,
+  //         style: TextStyle(
+  //           fontSize: 14.sp,
+  //           fontWeight: FontWeight.w400,
+  //           color: readOnly ?? false
+  //               ? Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.6)
+  //               : Theme.of(context).textTheme.bodySmall!.color,
+  //         ),
+  //         readOnly: readOnly ?? false,
+  //         obscureText: obscureText ?? false,
+  //         decoration: InputDecoration(
+  //           suffixIcon: GestureDetector(
+  //             onTap: onTap,
+  //             child: icon?.isEmpty ?? true
+  //                 ? null
+  //                 : UnconstrainedBox(
+  //                     child: Image.asset(
+  //                       obscure ? obscureIcon! : icon!,
+  //                       height: 24.h,
+  //                       width: 24.w,
+  //                       color: readOnly ?? false
+  //                           ? Theme.of(context)
+  //                               .textTheme
+  //                               .bodySmall!
+  //                               .color!
+  //                               .withOpacity(.6)
+  //                           : Theme.of(context).textTheme.bodySmall!.color,
+  //                     ),
+  //                   ),
+  //           ),
+  //           hintText: hintText ?? "",
+  //           hintStyle: TextStyle(
+  //               fontSize: 14.sp,
+  //               fontWeight: FontWeight.w400,
+  //               color: readOnly ?? false
+  //                   ? Theme.of(context)
+  //                       .textTheme
+  //                       .bodySmall!
+  //                       .color!
+  //                       .withOpacity(.6)
+  //                   : Theme.of(context).textTheme.bodySmall!.color!),
+  //           border: OutlineInputBorder(
+  //             borderRadius: BorderRadius.circular(10),
+  //             borderSide: BorderSide(
+  //                 color: readOnly ?? false
+  //                     ? AppColors.black.withOpacity(0.1)
+  //                     : const Color(0xFFC4C4C4)),
+  //           ),
+  //           enabledBorder: OutlineInputBorder(
+  //             borderRadius: BorderRadius.circular(10),
+  //             borderSide: BorderSide(
+  //                 color: readOnly ?? false
+  //                     ? AppColors.black.withOpacity(0.1)
+  //                     : const Color(0xFFC4C4C4)),
+  //           ),
+  //           focusedBorder: OutlineInputBorder(
+  //             borderRadius: BorderRadius.circular(10),
+  //             borderSide: BorderSide(
+  //                 color: readOnly ?? false
+  //                     ? AppColors.black.withOpacity(0.1)
+  //                     : const Color(0xFFC4C4C4)),
+  //           ),
+  //         ),
+  //       ),
+  //       14.verticalSpace,
+  //     ],
+  //   );
+  // }
 
   SizedBox _profileImageSection(BuildContext context) {
     return SizedBox(

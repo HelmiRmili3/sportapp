@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -30,7 +31,6 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
     AppointmentModel(booked: true, time: '17:30'),
     AppointmentModel(booked: false, time: '18:20'),
   ];
-
   List<Map<String, String>> reviews = [
     {
       "name": "John Doe",
@@ -49,17 +49,95 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
     },
   ];
 
-  void addReview() {
-    if (reviewController.text.isNotEmpty) {
-      setState(() {
-        reviews.add({
-          "name": "New User",
-          "comment": reviewController.text,
-          "rating": "4.0"
-        });
-        reviewController.clear();
-      });
-    }
+  double _rating = 4.0;
+
+  void _showReviewDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Theme.of(context).primaryColor,
+          title: Text(
+            'Add a Review',
+            style:
+                TextStyle(color: Theme.of(context).textTheme.bodySmall!.color),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: reviewController,
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.bodySmall!.color!,
+                ),
+                decoration: InputDecoration(
+                  labelText: 'Your Comment',
+                  labelStyle: TextStyle(
+                    color: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .color!
+                        .withOpacity(.6),
+                  ),
+                ),
+                maxLines: 1,
+              ),
+              const SizedBox(height: 10),
+              // const Text('Rating:'),
+              RatingBar.builder(
+                initialRating: _rating,
+                minRating: 1,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                itemBuilder: (context, _) => Icon(
+                  Icons.star,
+                  color: Theme.of(context).indicatorColor,
+                ),
+                onRatingUpdate: (rating) {
+                  setState(() {
+                    _rating = rating;
+                  });
+                },
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                if (reviewController.text.isNotEmpty) {
+                  setState(() {
+                    reviews.add({
+                      "name": "New User",
+                      "comment": reviewController.text,
+                      "rating": _rating.toString(),
+                    });
+                    reviewController.clear();
+                  });
+                  Navigator.of(context).pop();
+                }
+              },
+              child: Text(
+                'Submit',
+                style: TextStyle(
+                    color: Theme.of(context).textTheme.bodySmall!.color),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                'Cancel',
+                style: TextStyle(
+                    color: Theme.of(context).textTheme.bodySmall!.color),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -484,6 +562,9 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
               Expanded(
                 child: TextField(
                   controller: reviewController,
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodySmall!.color!,
+                  ),
                   decoration: const InputDecoration(
                     hintMaxLines: 3,
                     hintText: "Enter your review",
@@ -497,7 +578,7 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
               IconButton(
                 icon: Icon(Icons.send,
                     color: Theme.of(context).primaryTextTheme.bodySmall!.color),
-                onPressed: addReview,
+                onPressed: _showReviewDialog,
               ),
             ],
           ),
