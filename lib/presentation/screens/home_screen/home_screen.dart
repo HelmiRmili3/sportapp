@@ -14,6 +14,7 @@ import 'package:sportapp/presentation/screens/home_screen/widgets/city_model.dar
 import '../../../core/routes/route_names.dart';
 import '../../../data/models/room_molel.dart';
 import '../../../generated/l10n.dart';
+import 'widgets/custom_places_auto_complete.dart';
 import 'widgets/gyms_list.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -144,11 +145,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         child: TextFormField(
+                          readOnly: true,
                           style: TextStyle(
                               color:
                                   Theme.of(context).textTheme.bodySmall!.color),
                           onTap: () async {
-                            _showPlacesAutocomplete(context);
+                            // _showPlacesAutocomplete(context);
+                            Navigator.of(context).push(
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) =>
+                                    const LocationAutoComplete(),
+                              ),
+                            );
                           },
                           decoration: InputDecoration(
                             filled: true,
@@ -225,7 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           child: ActionChip(
                             onPressed: () {
-                              // Add your action here
+                              // function call in here
                             },
                             avatar: Container(
                               height: 30,
@@ -408,56 +416,48 @@ class _HomeScreenState extends State<HomeScreen> {
     return markers;
   }
 
-  Future<void> _showPlacesAutocomplete(BuildContext context) async {
-    Prediction? prediction = await PlacesAutocomplete.show(
-      context: context,
-      apiKey: googleApikey,
-      // mode: Mode.overlay, // Can also use Mode.fullscreen
-      types: [],
-      strictbounds: false,
-      components: [],
-      onError: (err) {
-        print(err); // Handle error
-      },
-      decoration: InputDecoration(
-        prefixIcon: Icon(
-          Icons.search,
-          color: Theme.of(context).brightness == Brightness.dark
-              ? Colors.white70 // Search icon color in dark mode
-              : Colors.black54, // Search icon color in light mode
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Theme.of(context).brightness == Brightness.dark
-                ? Colors.deepPurpleAccent // Focused border color in dark mode
-                : Colors.deepPurple, // Focused border color in light mode
-          ),
-          borderRadius: BorderRadius.circular(50.0),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Theme.of(context).brightness == Brightness.dark
-                ? Colors.white24 // Border color in dark mode
-                : Colors.grey, // Border color in light mode
-          ),
-          borderRadius: BorderRadius.circular(50.0),
-        ),
-        hintText: 'Search here...',
-        hintStyle: TextStyle(
-          color: Theme.of(context).brightness == Brightness.dark
-              ? Colors.white54 // Hint text color in dark mode
-              : Colors.black54, // Hint text color in light mode
-        ),
-        filled: true,
-        fillColor: Theme.of(context).brightness == Brightness.dark
-            ? Colors.black45 // Background color in dark mode
-            : Colors.white, // Background color in light mode
-      ),
-    );
+  // Future<void> _showPlacesAutocomplete(BuildContext context) async {
+  //   Prediction? prediction = await PlacesAutocomplete.show(
+  //     context: context,
+  //     apiKey: googleApikey,
+  //     // mode: Mode.overlay, // Can also use Mode.fullscreen
+  //     types: [],
+  //     strictbounds: false,
+  //     components: [],
+  //     onError: (err) {
+  //       print(err); // Handle error
+  //     },
+  //     decoration: InputDecoration(
+  //       focusedBorder: OutlineInputBorder(
+  //         borderSide: BorderSide(
+  //           color: Theme.of(context).brightness == Brightness.dark
+  //               ? Colors.deepPurpleAccent // Focused border color in dark mode
+  //               : Colors.deepPurple, // Focused border color in light mode
+  //         ),
+  //       ),
+  //       enabledBorder: OutlineInputBorder(
+  //         borderSide: BorderSide(
+  //           color: Theme.of(context).brightness == Brightness.dark
+  //               ? Colors.white24 // Border color in dark mode
+  //               : Colors.grey, // Border color in light mode
+  //         ),
+  //       ),
+  //       hintText: 'Search here...',
+  //       hintStyle: TextStyle(
+  //         color: Theme.of(context).brightness == Brightness.dark
+  //             ? Colors.white54 // Hint text color in dark mode
+  //             : Colors.black54, // Hint text color in light mode
+  //       ),
+  //       filled: true,
+  //       fillColor: Theme.of(context).brightness == Brightness.dark
+  //           ? Colors.black45 // Background color in dark mode
+  //           : Colors.white, // Background color in light mode
+  //     ),
+  //   );
 
-    if (prediction != null) {
-      // Handle selected prediction
-      print("Selected: ${prediction.description}");
-    }
-  }
+  //   if (prediction != null) {
+  //     // Handle selected prediction
+  //     print("Selected: ${prediction.description}");
+  //   }
+  // }
 }
