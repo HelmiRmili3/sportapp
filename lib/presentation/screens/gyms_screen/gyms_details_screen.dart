@@ -8,6 +8,7 @@ import 'package:sportapp/generated/l10n.dart';
 import 'package:sportapp/presentation/controllers/home_controller.dart';
 
 import '../../../core/routes/route_names.dart';
+import '../../../data/models/package_model.dart';
 
 class GymDetailScreen extends StatefulWidget {
   const GymDetailScreen({super.key});
@@ -41,71 +42,65 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
     return Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         bottomNavigationBar: Container(
-          height: 150,
-          padding: const EdgeInsets.all(10),
-          child: Container(
-            margin: EdgeInsets.only(top: 10.h),
-            padding: EdgeInsets.only(top: 10.h),
-            decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                borderRadius: BorderRadius.circular(10)),
-            child: Column(
-              children: [
-                Center(
-                  child: Text(
-                    S.of(context).tryItFor7Day,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Theme.of(context).textTheme.bodySmall!.color),
-                  ),
+          height: 120.h,
+          decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.circular(10)),
+          child: Column(
+            children: [
+              5.verticalSpace,
+              Center(
+                child: Text(
+                  S.of(context).tryItFor7Day,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Theme.of(context).textTheme.bodySmall!.color),
                 ),
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  decoration: BoxDecoration(
-                      color: AppColors.seGreen,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 40.h,
-                        width: 35.w,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            shape: BoxShape.rectangle,
-                            color: Theme.of(context).primaryColor),
-                        child: Icon(
-                          Icons.sports_volleyball_rounded,
-                          size: 20,
-                          color: Theme.of(context).textTheme.bodySmall!.color,
-                        ),
+              ),
+              Container(
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                decoration: BoxDecoration(
+                    color: AppColors.seGreen,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Row(
+                  children: [
+                    Container(
+                      height: 40.h,
+                      width: 35.w,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          shape: BoxShape.rectangle,
+                          color: Theme.of(context).primaryColor),
+                      child: Icon(
+                        Icons.sports_volleyball_rounded,
+                        size: 20,
+                        color: Theme.of(context).textTheme.bodySmall!.color,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              S.of(context).oneSubscription,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w500),
-                            ),
-                            Text(
-                              S.of(context).accessTo132RoomToTunisie,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w200),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            S.of(context).oneSubscription,
+                            style: const TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            S.of(context).accessTo132RoomToTunisie,
+                            style: const TextStyle(fontWeight: FontWeight.w200),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
           ),
         ),
         appBar: AppBar(
@@ -118,8 +113,8 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
             },
             child: Container(
               margin: const EdgeInsets.all(10),
-              height: 5,
-              width: 5,
+              height: 5.h,
+              width: 5.w,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
                   color: AppColors.seGreen),
@@ -132,22 +127,20 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
           ),
         ),
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: SingleChildScrollView(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Container(
-                height: 270,
-                width: 350,
+                height: 270.h,
+                width: 350.w,
                 decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(15)),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Image.asset(
-                    'assets/Images/jim.png',
-                    fit: BoxFit.fill,
-                  ),
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Image.asset(
+                  'assets/Images/jim.png',
+                  fit: BoxFit.fill,
                 ),
               ),
               const SizedBox(
@@ -193,9 +186,10 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
               Text(
                 'Location',
                 style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Theme.of(context).textTheme.bodySmall!.color),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).textTheme.bodySmall!.color,
+                ),
               ),
               SizedBox(height: 10.h),
               Center(
@@ -240,9 +234,13 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
                 ),
               ),
               SizedBox(height: 10.h),
-              const Text(
+              Text(
                 'Programs',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).textTheme.bodySmall!.color,
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -436,10 +434,4 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
           ),
         ));
   }
-}
-
-class PackageModel {
-  String name;
-  List<String> pkg;
-  PackageModel({required this.name, required this.pkg});
 }

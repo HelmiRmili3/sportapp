@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sportapp/main.dart';
 import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
 
@@ -63,7 +62,6 @@ class LocationAutoCompleteState extends State<LocationAutoComplete> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      // backgroundColor: const Color.fromARGB(179, 250, 250, 250),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -125,7 +123,7 @@ class LocationAutoCompleteState extends State<LocationAutoComplete> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,7 +143,6 @@ class LocationAutoCompleteState extends State<LocationAutoComplete> {
             ),
             10.verticalSpace,
             Container(
-              margin: const EdgeInsets.only(right: 10),
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               decoration: BoxDecoration(
                   color: AppColors.seGreen,
@@ -157,7 +154,6 @@ class LocationAutoCompleteState extends State<LocationAutoComplete> {
                     // width: 35.w,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        // shape: BoxShape.rectangle,
                         color: AppColors.seGreen),
                     child: Image.asset(
                       'assets/Images/app_logo.png',

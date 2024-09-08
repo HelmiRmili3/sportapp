@@ -49,6 +49,7 @@ class SecurityScreen extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 15.sp,
+                        color: Theme.of(context).textTheme.bodySmall!.color,
                       ),
                     ),
                   ),
@@ -63,8 +64,11 @@ class SecurityScreen extends StatelessWidget {
                 child: Text(
                   "Enter your phone number foraccount security, authentication andpersonalization of news.",
                   textAlign: TextAlign.center,
-                  style:
-                      TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w400),
+                  style: TextStyle(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Theme.of(context).textTheme.bodySmall!.color,
+                  ),
                 ),
               ),
               30.verticalSpace,
@@ -86,9 +90,11 @@ class SecurityScreen extends StatelessWidget {
                   Text(
                     'WhatsApp',
                     style: TextStyle(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.w400,
-                        height: 1.h),
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w400,
+                      height: 1.h,
+                      color: Theme.of(context).textTheme.bodySmall!.color,
+                    ),
                   ),
                 ],
               ),
@@ -113,7 +119,8 @@ class SecurityScreen extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.w400,
-                        height: 1.h),
+                        height: 1.h,
+                        color: Theme.of(context).textTheme.bodySmall!.color),
                   ),
                 ],
               ),
@@ -127,6 +134,9 @@ class SecurityScreen extends StatelessWidget {
                 showArrow: false,
                 flagShape: BoxShape.rectangle,
                 flagSize: 30,
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.bodySmall!.color,
+                ),
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                   border: UnderlineInputBorder(
@@ -146,8 +156,10 @@ class SecurityScreen extends StatelessWidget {
                 child: Text(
                   "You will receive a verification code via WhatsApp or SMS",
                   textAlign: TextAlign.center,
-                  style:
-                      TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w400),
+                  style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w400,
+                      color: Theme.of(context).textTheme.bodySmall!.color),
                 ),
               ),
               40.verticalSpace,

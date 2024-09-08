@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:google_maps_webservice/places.dart';
 
 import 'package:sportapp/core/app_colors.dart';
 import 'package:sportapp/presentation/controllers/home_controller.dart';
@@ -118,8 +116,10 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
           Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 50.0),
+            padding: EdgeInsets.symmetric(
+              horizontal: 15.0.h,
+              vertical: 50.0.w,
+            ),
             child: SizedBox(
               width: 405.w,
               child: Column(
@@ -191,7 +191,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
-
                       SizedBox(width: 10.w),
                       // this is the the part that open the city model
                       GestureDetector(
@@ -236,15 +235,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               // function call in here
                             },
                             avatar: Container(
-                              height: 30,
-                              width: 30,
+                              height: 30.h,
+                              width: 30.w,
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
                               child: SvgPicture.asset(
                                 model[index].image,
-                                height: 20,
-                                width: 20,
+                                height: 20.h,
+                                width: 20.w,
                                 // ignore: deprecated_member_use
                                 color: index == 0
                                     ? Theme.of(context).splashColor
@@ -279,9 +278,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+            padding: EdgeInsets.symmetric(horizontal: 20.h, vertical: 40.w),
             child: Container(
-              margin: const EdgeInsets.only(bottom: 70),
+              margin: EdgeInsets.only(bottom: 70.h),
               width: double.infinity,
               height: 140.h,
               decoration: BoxDecoration(
@@ -297,8 +296,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.h,
                 ),
                 child: Column(
                   children: [
@@ -324,8 +323,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 10),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10.w, vertical: 10.h),
                       decoration: BoxDecoration(
                           color: AppColors.seGreen,
                           borderRadius: BorderRadius.circular(10)),

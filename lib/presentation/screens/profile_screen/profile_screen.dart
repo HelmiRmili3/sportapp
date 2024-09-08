@@ -117,7 +117,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     inactiveTrackColor: Colors.grey,
                   )),
               Text(
-                S.of(context).hi,
+                "${S.of(context).hi} ,",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,

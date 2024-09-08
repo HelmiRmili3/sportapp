@@ -46,6 +46,7 @@ class PaymentScreen extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 15.sp,
+                        color: Theme.of(context).textTheme.bodySmall!.color,
                       ),
                     ),
                   ),
@@ -142,7 +143,11 @@ class PaymentScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(3.r),
                                 border: controller.packages[index].isSelected ??
                                         false
-                                    ? Border.all(color: Colors.black)
+                                    ? Border.all(
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .color!)
                                     : null),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -277,15 +282,17 @@ class PaymentScreen extends StatelessWidget {
                         "You have 2 free entries valid for 7 days, then 30 TND / month",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600,
-                            color: const Color(0xffBDB4B4)),
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w600,
+                          color: const Color(0xffBDB4B4),
+                        ),
                       ),
                     ),
                     20.verticalSpace,
-                    _textWedgits("Daily access for 30 days to 522 room"),
-                    _textWedgits("10 day warranty"),
-                    _textWedgits("interrupt anytime"),
+                    _textWedgitsStaticColor(
+                        "Daily access for 30 days to 522 room"),
+                    _textWedgitsStaticColor("10 day warranty"),
+                    _textWedgitsStaticColor("interrupt anytime"),
                     10.verticalSpace,
                     AuthButton(
                         text: "Do you really want",
@@ -369,9 +376,14 @@ class PaymentScreen extends StatelessWidget {
                 ],
               ),
               20.verticalSpace,
-              Text("Upgrade ?",
-                  style:
-                      TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600)),
+              Text(
+                "Upgrade ?",
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).textTheme.bodySmall!.color,
+                ),
+              ),
               10.verticalSpace,
               Row(
                 children: [
@@ -391,9 +403,11 @@ class PaymentScreen extends StatelessWidget {
                   Text(
                     'Upgrade unlimited access',
                     style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
-                        height: 1.h),
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w400,
+                      height: 1.h,
+                      color: Theme.of(context).textTheme.bodySmall!.color,
+                    ),
                   ),
                 ],
               ),
@@ -418,27 +432,32 @@ class PaymentScreen extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
-                        height: 1.h),
+                        height: 1.h,
+                        color: Theme.of(context).textTheme.bodySmall!.color),
                   ),
                 ],
               ),
               20.verticalSpace,
               Text("Avantage",
-                  style:
-                      TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600)),
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).textTheme.bodySmall!.color,
+                  )),
               20.verticalSpace,
-              _textWedgits("Tout en 1 "),
+              _textWedgits("Tout en 1 ", context),
+              _textWedgits("Vous ne paierez qu'après les 7 jours ou 2 entrées ",
+                  context),
               _textWedgits(
-                  "Vous ne paierez qu'après les 7 jours ou 2 entrées "),
-              _textWedgits(
-                  "L'abonnement améliore votre santé (mentale ,physique et Esprit )"),
-              _textWedgits("Vous pouvez annuler à tout moment "),
+                  "L'abonnement améliore votre santé (mentale ,physique et Esprit )",
+                  context),
+              _textWedgits("Vous pouvez annuler à tout moment ", context),
             ]),
           )),
     );
   }
 
-  Column _textWedgits(String text) {
+  Column _textWedgitsStaticColor(String text) {
     return Column(
       children: [
         Row(
@@ -449,7 +468,36 @@ class PaymentScreen extends StatelessWidget {
             Expanded(
               child: Text(
                 text,
-                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                ),
+              ),
+            )
+          ],
+        ),
+        20.verticalSpace,
+      ],
+    );
+  }
+
+  Column _textWedgits(String text, BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(Icons.check_circle, color: AppColors.seGreen),
+            10.horizontalSpace,
+            Expanded(
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).textTheme.bodySmall!.color,
+                ),
               ),
             )
           ],
