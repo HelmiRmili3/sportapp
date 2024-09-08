@@ -7,6 +7,7 @@ import 'package:sportapp/generated/l10n.dart';
 
 import '../../../core/routes/route_names.dart';
 
+import '../../../utils/validators.dart';
 import 'widgets/button.dart';
 import 'widgets/text_filed.dart';
 
@@ -79,34 +80,18 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 SizedBox(height: 20.h),
                 AuthTextField(
-                  controller: emailController,
-                  hintText: S.of(context).yourEmail,
-                  obsecure: false,
-                  onChanged: (value) => _updateFormState(),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter Email';
-                    }
-                    final RegExp emailRegex =
-                        RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-                    if (!emailRegex.hasMatch(value)) {
-                      return 'Please enter a valid email';
-                    }
-                    return null;
-                  },
-                ),
+                    controller: emailController,
+                    hintText: S.of(context).yourEmail,
+                    obsecure: false,
+                    onChanged: (value) => _updateFormState(),
+                    validator: (value) => Validators.validateEmail(value)),
                 SizedBox(height: 20.h),
                 AuthTextField(
                   controller: passwordController,
                   onChanged: (value) => _updateFormState(),
                   hintText: S.of(context).enterPassword,
                   obsecure: obsecure,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
-                    }
-                    return null;
-                  },
+                  validator: (value) => Validators.validatePassword(value),
                   suffixIcon: InkWell(
                       onTap: () {
                         setState(() {

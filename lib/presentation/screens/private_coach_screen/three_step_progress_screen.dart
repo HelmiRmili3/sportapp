@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/app_colors.dart';
@@ -36,15 +37,15 @@ class ThreeStepProgressScreenState extends State<ThreeStepProgressScreen> {
           },
           child: Container(
             margin: const EdgeInsets.all(10),
-            height: 5,
-            width: 5,
+            height: 5.h,
+            width: 5.w,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
                 color: AppColors.seGreen),
-            child: const Center(
+            child: Center(
                 child: Icon(
               Icons.arrow_back_ios,
-              size: 15,
+              size: 15.sp,
             )),
           ),
         ),
@@ -52,7 +53,7 @@ class ThreeStepProgressScreenState extends State<ThreeStepProgressScreen> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0.h),
             child: CustomProgressBar(currentStep: _currentStep),
           ),
           Expanded(
@@ -61,7 +62,7 @@ class ThreeStepProgressScreenState extends State<ThreeStepProgressScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[

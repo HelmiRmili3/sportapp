@@ -70,14 +70,14 @@ class _PrivateCoachState extends State<PrivateCoach> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: EdgeInsets.all(15.0.w),
               child: SizedBox(
-                width: 405,
+                width: 405.w,
                 child: Row(
                   children: [
                     Container(
-                      width: 270,
-                      margin: const EdgeInsets.only(left: 5),
+                      width: 270.w,
+                      margin: EdgeInsets.only(left: 5.w),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(40.0),
                         boxShadow: [
@@ -97,15 +97,15 @@ class _PrivateCoachState extends State<PrivateCoach> {
                           filled: true,
                           fillColor: Theme.of(context).primaryColor,
                           contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 16.0),
+                              EdgeInsets.symmetric(horizontal: 16.0.h),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(40.0),
                             borderSide: BorderSide.none,
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(40.0),
-                            borderSide: const BorderSide(
-                                color: Colors.white, width: 2.0),
+                            borderSide:
+                                BorderSide(color: Colors.white, width: 2.0.w),
                           ),
                           prefixIcon: Icon(Icons.search,
                               color:
@@ -144,7 +144,7 @@ class _PrivateCoachState extends State<PrivateCoach> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              padding: EdgeInsets.symmetric(horizontal: 10.0.h),
               child: SizedBox(
                 height: 600,
                 child: ListView.builder(
@@ -153,7 +153,7 @@ class _PrivateCoachState extends State<PrivateCoach> {
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      padding: EdgeInsets.symmetric(vertical: 10.w),
                       child: GestureDetector(
                         onTap: () {
                           GoRouter.of(context).push(
@@ -185,8 +185,8 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                   backgroundImage:
                                       AssetImage(model[index].image),
                                 ),
-                                const SizedBox(
-                                  height: 10,
+                                SizedBox(
+                                  height: 10.h,
                                 ),
                                 Text(
                                   model[index].name,
@@ -196,7 +196,7 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                           .bodySmall!
                                           .color,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 18),
+                                      fontSize: 18.sp),
                                   textAlign: TextAlign.center,
                                 ),
                                 Text(
@@ -212,15 +212,16 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                 ),
                                 Container(
                                   width: double.infinity,
-                                  height: 100,
+                                  height: 100.h,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
                                     border: Border.all(
-                                        color: Colors.grey.shade400, width: 2),
+                                        color: Colors.grey.shade400,
+                                        width: 2.w),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 20,
+                                    padding: EdgeInsets.only(
+                                      left: 20.w,
                                     ),
                                     child: Column(
                                       mainAxisAlignment:
@@ -232,11 +233,11 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                               'Tarif',
                                               style: TextStyle(
                                                   color: Colors.grey.shade500,
-                                                  fontSize: 14),
+                                                  fontSize: 14.sp),
                                               textAlign: TextAlign.center,
                                             ),
-                                            const SizedBox(
-                                              width: 15,
+                                            SizedBox(
+                                              width: 15.w,
                                             ),
                                             Text(
                                               model[index].rate,
@@ -251,8 +252,8 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                             ),
                                           ],
                                         ),
-                                        const SizedBox(
-                                          height: 10,
+                                        SizedBox(
+                                          height: 10.h,
                                         ),
                                         Row(
                                           mainAxisAlignment:
@@ -263,12 +264,13 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                             Text(
                                               'Ville ',
                                               style: TextStyle(
-                                                  color: Colors.grey.shade500,
-                                                  fontSize: 14),
+                                                color: Colors.grey.shade500,
+                                                fontSize: 14.sp,
+                                              ),
                                               textAlign: TextAlign.center,
                                             ),
-                                            const SizedBox(
-                                              width: 15,
+                                            SizedBox(
+                                              width: 15.w,
                                             ),
                                             Expanded(
                                               child: Text(
@@ -279,7 +281,7 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                                       .bodySmall!
                                                       .color,
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 14,
+                                                  fontSize: 14.sp,
                                                 ),
                                                 textAlign: TextAlign.start,
                                               ),
@@ -290,8 +292,8 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 15,
+                                SizedBox(
+                                  height: 15.h,
                                 ),
                                 ListView.builder(
                                   itemCount: 2,
@@ -299,8 +301,8 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                   physics: const NeverScrollableScrollPhysics(),
                                   itemBuilder: (context, index) {
                                     return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 10.0.h),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -309,7 +311,7 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                             text: TextSpan(
                                               text: 'Dim.\n',
                                               style: TextStyle(
-                                                  fontSize: 20,
+                                                  fontSize: 20.sp,
                                                   color: Colors.red.shade500),
                                               children: <TextSpan>[
                                                 TextSpan(
@@ -325,7 +327,7 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                             ),
                                           ),
                                           SizedBox(
-                                            height: 50,
+                                            height: 50.h,
                                             width: 260.w,
                                             child: ListView.builder(
                                               shrinkWrap: true,
@@ -333,10 +335,10 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                               scrollDirection: Axis.horizontal,
                                               itemBuilder: (context, index) {
                                                 return Container(
-                                                  margin: const EdgeInsets
-                                                      .symmetric(horizontal: 5),
-                                                  height: 45,
-                                                  width: 70,
+                                                  margin: EdgeInsets.symmetric(
+                                                      horizontal: 5.w),
+                                                  height: 45.h,
+                                                  width: 70.w,
                                                   decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(

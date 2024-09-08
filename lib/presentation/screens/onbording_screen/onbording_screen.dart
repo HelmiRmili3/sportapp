@@ -59,7 +59,6 @@ class _OnBoadingScreebState extends State<OnBoadingScreen> {
         PageView.builder(
           controller: pageController,
           itemCount: onBoadingData.length,
-          // physics: NeverScrollableScrollPhysics(),
           onPageChanged: (index) {
             setState(() {
               _currentPage = index;
@@ -99,9 +98,7 @@ class _OnBoadingScreebState extends State<OnBoadingScreen> {
                               color: AppColors.white,
                             ),
                           ),
-                          SizedBox(
-                              height: 10
-                                  .h), // Add some space between the two text widgets
+                          SizedBox(height: 10.h),
                           Text(
                             onBoadingData[index]['description'],
                             textAlign: TextAlign.center,
@@ -164,7 +161,7 @@ class _OnBoadingScreebState extends State<OnBoadingScreen> {
               S.of(context).iWantToTryForFree,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 15,
+                fontSize: 15.sp,
                 fontFamily: 'ClashDisplay',
                 color: AppColors.white,
               ),

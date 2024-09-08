@@ -307,7 +307,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Text(
                           S.of(context).listOfGymsSausse,
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context).textTheme.bodySmall!.color,
                           ),
@@ -348,20 +348,21 @@ class _HomeScreenState extends State<HomeScreen> {
                               context.push(AppRouteConstants.subscription);
                             },
                             child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 6.0),
+                              padding: EdgeInsets.symmetric(horizontal: 6.0.w),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     S.of(context).oneSubscription,
                                     style: const TextStyle(
-                                        fontWeight: FontWeight.w500),
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                   Text(
                                     S.of(context).accessTo132RoomToTunisie,
                                     style: const TextStyle(
-                                        fontWeight: FontWeight.w200),
+                                      fontWeight: FontWeight.w200,
+                                    ),
                                   )
                                 ],
                               ),
@@ -369,9 +370,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           InkWell(
                             onTap: () {},
-                            child: const Icon(
+                            child: Icon(
                               Icons.close,
-                              size: 15,
+                              size: 15.sp,
                             ),
                           )
                         ],
@@ -414,49 +415,4 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     return markers;
   }
-
-  // Future<void> _showPlacesAutocomplete(BuildContext context) async {
-  //   Prediction? prediction = await PlacesAutocomplete.show(
-  //     context: context,
-  //     apiKey: googleApikey,
-  //     // mode: Mode.overlay, // Can also use Mode.fullscreen
-  //     types: [],
-  //     strictbounds: false,
-  //     components: [],
-  //     onError: (err) {
-  //       print(err); // Handle error
-  //     },
-  //     decoration: InputDecoration(
-  //       focusedBorder: OutlineInputBorder(
-  //         borderSide: BorderSide(
-  //           color: Theme.of(context).brightness == Brightness.dark
-  //               ? Colors.deepPurpleAccent // Focused border color in dark mode
-  //               : Colors.deepPurple, // Focused border color in light mode
-  //         ),
-  //       ),
-  //       enabledBorder: OutlineInputBorder(
-  //         borderSide: BorderSide(
-  //           color: Theme.of(context).brightness == Brightness.dark
-  //               ? Colors.white24 // Border color in dark mode
-  //               : Colors.grey, // Border color in light mode
-  //         ),
-  //       ),
-  //       hintText: 'Search here...',
-  //       hintStyle: TextStyle(
-  //         color: Theme.of(context).brightness == Brightness.dark
-  //             ? Colors.white54 // Hint text color in dark mode
-  //             : Colors.black54, // Hint text color in light mode
-  //       ),
-  //       filled: true,
-  //       fillColor: Theme.of(context).brightness == Brightness.dark
-  //           ? Colors.black45 // Background color in dark mode
-  //           : Colors.white, // Background color in light mode
-  //     ),
-  //   );
-
-  //   if (prediction != null) {
-  //     // Handle selected prediction
-  //     print("Selected: ${prediction.description}");
-  //   }
-  // }
 }

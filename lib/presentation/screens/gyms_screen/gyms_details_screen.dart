@@ -6,9 +6,11 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sportapp/core/app_colors.dart';
 import 'package:sportapp/generated/l10n.dart';
 import 'package:sportapp/presentation/controllers/home_controller.dart';
+import 'package:sportapp/presentation/screens/gyms_screen/widgets/costom_text_widget.dart';
 
 import '../../../core/routes/route_names.dart';
 import '../../../data/models/package_model.dart';
+import 'widgets/costom_title_widget.dart';
 
 class GymDetailScreen extends StatefulWidget {
   const GymDetailScreen({super.key});
@@ -183,14 +185,7 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
                     fontWeight: FontWeight.w300),
               ),
               SizedBox(height: 10.h),
-              Text(
-                'Location',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Theme.of(context).textTheme.bodySmall!.color,
-                ),
-              ),
+              CostomTitleWidget(title: 'Location'),
               SizedBox(height: 10.h),
               Center(
                 child: Container(
@@ -234,149 +229,38 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
                 ),
               ),
               SizedBox(height: 10.h),
-              Text(
-                'Programs',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Theme.of(context).textTheme.bodySmall!.color,
-                ),
-              ),
+              CostomTitleWidget(title: "Programs"),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Monday',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                            color:
-                                Theme.of(context).textTheme.bodySmall!.color),
-                      ),
-                      Text(
-                        'Tuesday',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                            color:
-                                Theme.of(context).textTheme.bodySmall!.color),
-                      ),
-                      Text(
-                        'Wednesday',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                            color:
-                                Theme.of(context).textTheme.bodySmall!.color),
-                      ),
-                      Text(
-                        'Thursday',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                            color:
-                                Theme.of(context).textTheme.bodySmall!.color),
-                      ),
-                      Text(
-                        'Friday',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                            color:
-                                Theme.of(context).textTheme.bodySmall!.color),
-                      ),
-                      Text(
-                        'Saturday',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                            color:
-                                Theme.of(context).textTheme.bodySmall!.color),
-                      ),
-                      Text(
-                        'Sunday',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                            color:
-                                Theme.of(context).textTheme.bodySmall!.color),
-                      ),
+                      CostomTextWidget(day: 'Monday'),
+                      CostomTextWidget(day: 'Tuesday'),
+                      CostomTextWidget(day: 'Wednesday'),
+                      CostomTextWidget(day: 'Thursday'),
+                      CostomTextWidget(day: 'Friday'),
+                      CostomTextWidget(day: 'Saturday'),
+                      CostomTextWidget(day: 'Sunday'),
                     ],
                   ),
                   SizedBox(height: 10.h),
                   Column(
                     children: [
-                      Text(
-                        '8:00am to 12:00pm',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                            color:
-                                Theme.of(context).textTheme.bodySmall!.color),
-                      ),
-                      Text(
-                        '8:00am to 12:00pm',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                            color:
-                                Theme.of(context).textTheme.bodySmall!.color),
-                      ),
-                      Text(
-                        '8:00am to 12:00pm',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                            color:
-                                Theme.of(context).textTheme.bodySmall!.color),
-                      ),
-                      Text(
-                        '8:00am to 12:00pm',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                            color:
-                                Theme.of(context).textTheme.bodySmall!.color),
-                      ),
-                      Text(
-                        '8:00am to 12:00pm',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                            color:
-                                Theme.of(context).textTheme.bodySmall!.color),
-                      ),
-                      Text(
-                        '8:00am to 12:00pm',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                            color:
-                                Theme.of(context).textTheme.bodySmall!.color),
-                      ),
-                      Text(
-                        'off',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                            color:
-                                Theme.of(context).textTheme.bodySmall!.color),
-                      ),
+                      CostomTextWidget(day: '8:00am to 12:00pm'),
+                      CostomTextWidget(day: '8:00am to 12:00pm'),
+                      CostomTextWidget(day: '8:00am to 12:00pm'),
+                      CostomTextWidget(day: '8:00am to 12:00pm'),
+                      CostomTextWidget(day: '8:00am to 12:00pm'),
+                      CostomTextWidget(day: '8:00am to 12:00pm'),
+                      CostomTextWidget(day: 'Off'),
                     ],
                   ),
                 ],
               ),
               SizedBox(height: 10.h),
-              Text(
-                'Plans',
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Theme.of(context).textTheme.bodySmall!.color),
-              ),
+              CostomTitleWidget(title: "Plans"),
               SizedBox(
                 height: 200,
                 child: ListView.builder(

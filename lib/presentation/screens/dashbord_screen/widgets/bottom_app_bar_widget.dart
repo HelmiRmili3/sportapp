@@ -1,5 +1,6 @@
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/app_colors.dart';
 
@@ -21,7 +22,7 @@ BottomBarItem buildBottomBarItem({
         label,
         style: TextStyle(
           color: Theme.of(context).indicatorColor,
-          fontSize: 10,
+          fontSize: 10.sp,
         ),
       ));
 }

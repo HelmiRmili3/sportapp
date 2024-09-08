@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportapp/core/app_colors.dart';
 import 'package:sportapp/generated/l10n.dart';
+import 'package:sportapp/utils/validators.dart';
 
 import '../../../core/routes/route_names.dart';
 
@@ -23,9 +24,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final _formKey = GlobalKey<FormState>();
 
   void _updateFormState() {
-    // Step 3
     setState(() {
-      _isValid = _formKey.currentState?.validate() ?? false; // Step 5
+      _isValid = _formKey.currentState?.validate() ?? false;
     });
   }
 
@@ -33,7 +33,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   void initState() {
     super.initState();
     password.addListener(_updateFormState); // Step 4
-    confirmPassword.addListener(_updateFormState); // Step 4
+    confirmPassword.addListener(_updateFormState);
   }
 
   @override
@@ -50,30 +50,31 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           },
           child: Container(
             margin: const EdgeInsets.all(10),
-            height: 5,
-            width: 5,
+            height: 5.h,
+            width: 5.w,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
                 color: AppColors.seGreen),
-            child: const Center(
-                child: Icon(
-              Icons.arrow_back_ios,
-              size: 15,
-            )),
+            child: Center(
+              child: Icon(
+                Icons.arrow_back_ios,
+                size: 15.sp,
+              ),
+            ),
           ),
         ),
         title: Text(
           S.of(context).updatePassword,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 18,
+            fontSize: 18.sp,
             fontFamily: 'ClashDisplay',
             color: Theme.of(context).textTheme.bodySmall!.color,
           ),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0.h),
         child: Form(
           key: _formKey,
           child: SingleChildScrollView(
@@ -86,8 +87,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   S.of(context).addYourNewPasswordHere,
                   style: TextStyle(
                     fontWeight: FontWeight.w300,
-                    fontSize: 16,
-                    // fontFamily: 'ClashDisplay',
+                    fontSize: 16.sp,
                     color: AppColors.black,
                   ),
                 ),
@@ -96,25 +96,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   hintText: S.of(context).newPassword,
                   obsecure: false,
                   onChanged: (value) => _updateFormState(),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Password cannot be empty';
-                    }
-
-                    // Minimum length requirement (adjust as needed)
-                    if (value.length < 8) {
-                      return 'Password must be at least 8 characters long';
-                    }
-
-                    bool hasUppercase = value.contains(RegExp(r'[A-Z]'));
-                    bool hasLowercase = value.contains(RegExp(r'[a-z]'));
-                    bool hasNumber = value.contains(RegExp(r'[0-9]'));
-
-                    if (!hasUppercase || !hasLowercase || !hasNumber) {
-                      return 'Password must contain uppercase, lowercase, numbers, and special characters';
-                    }
-                    return null;
-                  },
+                  validator: (value) => Validators.validatePassword(value),
                 ),
                 SizedBox(height: 50.h),
                 AuthTextField(
@@ -122,12 +104,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   hintText: S.of(context).confirmNewPassword,
                   obsecure: false,
                   onChanged: (value) => _updateFormState(),
-                  validator: (value) {
-                    if (password.text != confirmPassword.text) {
-                      return 'Passwords don\'t match'; // Concise and direct message
-                    }
-                    return null;
-                  },
+                  validator: (value) => Validators.validatePassword(value),
                 ),
                 SizedBox(height: 50.h),
                 AuthButton(

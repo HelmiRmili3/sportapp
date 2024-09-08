@@ -31,9 +31,9 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
             context.pop();
           },
           child: Container(
-            margin: const EdgeInsets.all(10),
-            height: 5,
-            width: 5,
+            margin: EdgeInsets.all(10.h),
+            height: 5.h,
+            width: 5.w,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
               color: AppColors.seGreen,
@@ -49,7 +49,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
           '${S.of(context).paymentMethod} ',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 18,
+            fontSize: 18.sp,
             fontFamily: 'ClashDisplay',
             color: Theme.of(context).textTheme.bodySmall!.color,
           ),
@@ -109,13 +109,13 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                   padding: EdgeInsets.only(
                       bottom: MediaQuery.of(context).viewInsets.bottom),
                   child: Container(
-                    height: 685,
-                    width: 395,
+                    height: 685.h,
+                    width: 395.w,
                     color: Theme.of(context).primaryColor,
                     child: SingleChildScrollView(
                       controller: scrollController,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        padding: EdgeInsets.symmetric(horizontal: 15.h),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -130,7 +130,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 13),
+                            SizedBox(height: 13.h),
                             Text(
                               'Numéro de la commande No11623-1543813,',
                               style: TextStyle(
@@ -139,9 +139,9 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                       .bodySmall!
                                       .color,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 16),
+                                  fontSize: 16.sp),
                             ),
-                            const SizedBox(height: 10),
+                            SizedBox(height: 10.h),
                             RichText(
                               text: TextSpan(
                                 text: 'Il reste jusqu à la fin de la session ',
@@ -164,7 +164,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                 ],
                               ),
                             ),
-                            const SizedBox(height: 20),
+                            SizedBox(height: 20.h),
                             TextField(
                               style: TextStyle(
                                   color: Theme.of(context)
@@ -207,15 +207,15 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                             .textTheme
                                             .bodySmall!
                                             .color),
-                                    decoration: const InputDecoration(
-                                      contentPadding: EdgeInsets.all(5),
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.all(5.h),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: Colors.grey, width: 1.5),
+                                            color: Colors.grey, width: 1.5.w),
                                       ),
                                       border: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: Colors.grey, width: 1.5),
+                                            color: Colors.grey, width: 1.5.w),
                                       ),
                                     ),
                                     value: _selectedValue1,
@@ -246,7 +246,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                     }).toList(),
                                   ),
                                 ),
-                                const SizedBox(width: 10),
+                                SizedBox(width: 10.w),
                                 Expanded(
                                   child: DropdownButtonFormField<String>(
                                     dropdownColor:
@@ -256,15 +256,15 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                             .textTheme
                                             .bodySmall!
                                             .color),
-                                    decoration: const InputDecoration(
-                                      contentPadding: EdgeInsets.all(5),
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.all(5.h),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: Colors.grey, width: 1.5),
+                                            color: Colors.grey, width: 1.5.w),
                                       ),
                                       border: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: Colors.grey, width: 1.5),
+                                            color: Colors.grey, width: 1.5.w),
                                       ),
                                     ),
                                     value: _selectedValue2,
@@ -290,7 +290,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 10),
+                            SizedBox(height: 10.h),
                             TextField(
                               style: TextStyle(
                                   color: Theme.of(context)
@@ -298,25 +298,25 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                       .bodySmall!
                                       .color),
                               decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.only(
-                                    left: 10, top: 5, bottom: 5),
+                                contentPadding: EdgeInsets.only(
+                                    left: 10.w, top: 5.h, bottom: 5.h),
                                 hintText: 'Code de sûreté',
                                 hintStyle: TextStyle(
                                     color: Theme.of(context)
                                         .textTheme
                                         .bodySmall!
                                         .color),
-                                focusedBorder: const OutlineInputBorder(
+                                focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                      color: Colors.grey, width: 1.5),
+                                      color: Colors.grey, width: 1.5.w),
                                 ),
-                                border: const OutlineInputBorder(
+                                border: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                      color: Colors.grey, width: 1.5),
+                                      color: Colors.grey, width: 1.5.w),
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 10),
+                            SizedBox(height: 10.h),
                             TextField(
                               style: TextStyle(
                                   color: Theme.of(context)
@@ -324,25 +324,25 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                       .bodySmall!
                                       .color),
                               decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.only(
-                                    left: 10, top: 5, bottom: 5),
+                                contentPadding: EdgeInsets.only(
+                                    left: 10.w, top: 5.h, bottom: 5.h),
                                 hintText: 'Le nom du détenteur',
                                 hintStyle: TextStyle(
                                     color: Theme.of(context)
                                         .textTheme
                                         .bodySmall!
                                         .color),
-                                focusedBorder: const OutlineInputBorder(
+                                focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                      color: Colors.grey, width: 1.5),
+                                      color: Colors.grey, width: 1.5.w),
                                 ),
-                                border: const OutlineInputBorder(
+                                border: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                      color: Colors.grey, width: 1.5),
+                                      color: Colors.grey, width: 1.5.w),
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 10),
+                            SizedBox(height: 10.h),
                             const Center(
                               child: Text(
                                 '...................................................',
@@ -372,29 +372,29 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 10),
+                            SizedBox(height: 10.h),
                             TextField(
                               style: TextStyle(
                                   color: Theme.of(context)
                                       .textTheme
                                       .bodySmall!
                                       .color),
-                              decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.all(5),
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.all(5.w),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                      color: Colors.grey, width: 1.5),
+                                      color: Colors.grey, width: 1.5.w),
                                 ),
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                      color: Colors.grey, width: 1.5),
+                                      color: Colors.grey, width: 1.5.w),
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 30),
+                            SizedBox(height: 30.h),
                             Container(
-                              height: 60,
-                              width: 350,
+                              height: 60.h,
+                              width: 350.w,
                               color: Colors.deepPurpleAccent.shade700,
                               child: const Center(
                                   child: Text(
@@ -404,8 +404,8 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                     fontWeight: FontWeight.bold),
                               )),
                             ),
-                            const SizedBox(
-                              height: 10,
+                            SizedBox(
+                              height: 10.h,
                             ),
                             Row(
                               children: [
@@ -416,8 +416,8 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                       .bodySmall!
                                       .color,
                                 ),
-                                const SizedBox(
-                                  width: 10,
+                                SizedBox(
+                                  width: 10.w,
                                 ),
                                 Text(
                                   'Paiement sécurisé',

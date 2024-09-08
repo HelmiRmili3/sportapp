@@ -92,7 +92,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             horizontal: 20.w, vertical: 2.h),
                         decoration: BoxDecoration(
                             border: Border.all(
-                                width: 1.w, color: const Color(0xFFED1F1F))),
+                                width: 1.w, color: const Color(0xFFED1F1F),),),
                         child: Center(
                             child: Text(
                           "Not subscribed !",
@@ -120,7 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 "${S.of(context).hi} ,",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     color: Theme.of(context).textTheme.bodySmall!.color),
               ),
               Row(
@@ -191,26 +191,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Center(
                       child: Text(
                         S.of(context).tryItFor7Day,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color:
+                                Theme.of(context).textTheme.bodySmall!.color),
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 10),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 10),
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 10.h, vertical: 10.w),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10.h, vertical: 10.w),
                       decoration: BoxDecoration(
                           color: AppColors.seGreen,
                           borderRadius: BorderRadius.circular(10)),
                       child: Row(
                         children: [
                           Container(
-                            // height: 40.h,
-                            // width: 35.w,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                // shape: BoxShape.rectangle,
                                 color: AppColors.seGreen),
                             child: Image.asset(
                               'assets/Images/app_logo.png',

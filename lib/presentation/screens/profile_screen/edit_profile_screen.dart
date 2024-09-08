@@ -35,12 +35,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               Navigator.of(context).pop();
             },
           ),
-          2.verticalSpace,
+          10.verticalSpace,
           Text(
             "Change Picture",
             style: TextStyle(
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
+              color: Theme.of(context).textTheme.bodySmall!.color,
             ),
           ),
           20.verticalSpace,

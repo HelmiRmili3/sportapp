@@ -1,5 +1,6 @@
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../core/app_colors.dart';
@@ -69,19 +70,19 @@ class DashboardScreen extends StatelessWidget {
           textOverflow: TextOverflow.visible,
           maxLine: 1,
           shadowElevation: 5,
-          kBottomRadius: 20.0,
+          kBottomRadius: 20.0.h,
           notchColor: AppColors.seGreen,
           removeMargins: false,
           bottomBarWidth: 500,
           showShadow: false,
           durationInMilliSeconds: 300,
-          itemLabelStyle: const TextStyle(fontSize: 10),
+          itemLabelStyle: TextStyle(fontSize: 10.sp),
           elevation: 1,
           bottomBarItems: bottomBarItems,
           onTap: (index) {
             controller.changeIndex(index);
           },
-          kIconSize: 24.0,
+          kIconSize: 24.0.sp,
         );
       }),
     );

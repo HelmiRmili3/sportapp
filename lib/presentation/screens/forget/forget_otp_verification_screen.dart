@@ -26,17 +26,15 @@ class _ForgetOtpVerificationScreenState
   bool _isValid = false;
   final _formKey = GlobalKey<FormState>();
   void _updateFormState() {
-    debugPrint('on competed function called'); // Step 3
+    debugPrint('on competed function called');
     setState(() {
-      _isValid = _formKey.currentState?.validate() ?? false; // Step 5
+      _isValid = _formKey.currentState?.validate() ?? false;
     });
   }
 
   @override
   void initState() {
     super.initState();
-
-    // phoneController.addListener(_updateFormState); // Step 4
     startTimer();
   }
 
@@ -83,10 +81,10 @@ class _ForgetOtpVerificationScreenState
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
                 color: AppColors.seGreen),
-            child: const Center(
+            child: Center(
                 child: Icon(
               Icons.arrow_back_ios,
-              size: 15,
+              size: 15.sp,
             )),
           ),
         ),
@@ -94,7 +92,7 @@ class _ForgetOtpVerificationScreenState
           S.of(context).forgetYourPassword,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 18,
+            fontSize: 18.sp,
             fontFamily: 'ClashDisplay',
             color: Theme.of(context).textTheme.bodySmall!.color,
           ),
@@ -129,12 +127,13 @@ class _ForgetOtpVerificationScreenState
                       AndroidSmsAutofillMethod.smsUserConsentApi,
                   listenForMultipleSmsOnAndroid: true,
                   defaultPinTheme: PinTheme(
-                    width: 56,
-                    height: 56,
+                    width: 56.h,
+                    height: 56.w,
                     textStyle: TextStyle(
-                        fontSize: 20,
-                        color: Theme.of(context).textTheme.bodySmall!.color,
-                        fontWeight: FontWeight.w600),
+                      fontSize: 20.sp,
+                      color: Theme.of(context).textTheme.bodySmall!.color,
+                      fontWeight: FontWeight.w600,
+                    ),
                     decoration: BoxDecoration(
                         color: Colors.grey.withOpacity(0.3),
                         border: Border(
@@ -145,12 +144,11 @@ class _ForgetOtpVerificationScreenState
                           ),
                         )),
                   ),
-                  separatorBuilder: (index) => const SizedBox(width: 8),
+                  separatorBuilder: (index) => SizedBox(width: 8.w),
                   validator: (value) {
                     if (value == null) {
                       return 'Opt';
                     }
-
                     return null;
                   },
                   hapticFeedbackType: HapticFeedbackType.lightImpact,
