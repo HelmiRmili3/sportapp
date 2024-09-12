@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:sportapp/core/app_colors.dart';
 
-class StepOne extends StatelessWidget {
+class StepOne extends StatefulWidget {
   const StepOne({super.key});
+
+  @override
+  _StepOneState createState() => _StepOneState();
+}
+
+class _StepOneState extends State<StepOne> {
+  String _selectedOption = 'myself'; // default selected option
 
   @override
   Widget build(BuildContext context) {
@@ -34,34 +42,74 @@ class StepOne extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      _selectedOption = 'myself';
+                    });
+                  },
                   style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(Colors.grey[200]),
+                    backgroundColor: WidgetStateProperty.all(
+                        _selectedOption == 'myself'
+                            ? AppColors.seGreen
+                            : Colors.grey[200]),
                     shape: WidgetStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
                   ),
-                  child: const Text(
-                    'For Myself',
-                    style: TextStyle(color: Colors.black),
+                  child: Row(
+                    children: [
+                      Radio<String>(
+                        value: 'myself',
+                        groupValue: _selectedOption,
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedOption = value!;
+                          });
+                        },
+                      ),
+                      const Text(
+                        'Myself',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(width: 16),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      _selectedOption = 'others';
+                    });
+                  },
                   style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(Colors.grey[200]),
+                    backgroundColor: WidgetStateProperty.all(
+                        _selectedOption == 'others'
+                            ? AppColors.seGreen
+                            : Colors.grey[200]),
                     shape: WidgetStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
                   ),
-                  child: const Text(
-                    'For Others',
-                    style: TextStyle(color: Colors.black),
+                  child: Row(
+                    children: [
+                      Radio<String>(
+                        value: 'others',
+                        groupValue: _selectedOption,
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedOption = value!;
+                          });
+                        },
+                      ),
+                      const Text(
+                        'Others',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
                   ),
                 ),
               ],

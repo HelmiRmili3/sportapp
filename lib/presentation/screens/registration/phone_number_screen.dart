@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 import 'package:sportapp/core/app_colors.dart';
@@ -26,12 +27,6 @@ class _ValidateAccountState extends State<ValidateAccount> {
     });
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // phoneController.addListener(_updateFormState); // Step 4
-  // }
-
   TextEditingController phoneController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -48,8 +43,9 @@ class _ValidateAccountState extends State<ValidateAccount> {
             height: 5,
             width: 5,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: AppColors.seGreen),
+              borderRadius: BorderRadius.circular(50),
+              color: AppColors.seGreen,
+            ),
             child: const Center(
                 child: Icon(
               Icons.arrow_back_ios,
@@ -87,8 +83,9 @@ class _ValidateAccountState extends State<ValidateAccount> {
                 ),
                 IntlPhoneField(
                   controller: phoneController,
-                  showCountryFlag: false, showDropdownIcon: false,
-
+                  showCountryFlag: false,
+                  showDropdownIcon: false,
+                  initialCountryCode: 'TN',
                   onChanged: (value) {
                     _updateFormState();
                   },
@@ -98,8 +95,60 @@ class _ValidateAccountState extends State<ValidateAccount> {
                     }
                     return null;
                   },
-                  // initialValue: '+923176558363', // Set the complete phone number including the country code
-                  // controller: phoneController,
+                  pickerDialogStyle: PickerDialogStyle(
+                    searchFieldCursorColor: Colors.black,
+                    backgroundColor: Colors.white,
+                    countryCodeStyle: const TextStyle(
+                      color: Colors.black,
+                    ),
+                    countryNameStyle: const TextStyle(
+                      color: Colors.black,
+                    ),
+                    searchFieldInputDecoration: const InputDecoration(
+                      labelStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                      hintStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                      fillColor: Colors.transparent,
+                      filled: true,
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.black,
+                        ),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.black,
+                        ),
+                      ),
+                      errorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.red,
+                        ),
+                      ),
+                      focusedErrorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.red,
+                        ),
+                      ),
+                      counterStyle: TextStyle(
+                        color: Colors.white,
+                      ),
+                      helperStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                      errorStyle: TextStyle(
+                        color: Colors.red,
+                      ),
+                      suffixIconColor: Colors.black,
+                      prefixIconColor: Colors.black,
+                      hintText: 'Search Country',
+                      hintMaxLines: 1,
+                      isDense: true,
+                    ),
+                  ),
                   style: TextStyle(
                     color: Theme.of(context).textTheme.bodySmall!.color,
                   ),
@@ -119,12 +168,12 @@ class _ValidateAccountState extends State<ValidateAccount> {
                     ),
                   ),
                   showCursor: true,
-                  initialCountryCode: 'US',
                   disableLengthCheck: false,
                   dropdownDecoration:
-                      BoxDecoration(color: Theme.of(context).primaryColor),
+                      const BoxDecoration(color: Colors.transparent),
                   dropdownTextStyle: TextStyle(
-                      color: Theme.of(context).textTheme.bodySmall!.color),
+                    color: Theme.of(context).textTheme.bodySmall!.color,
+                  ),
                   invalidNumberMessage: S.of(context).validPhoneNumber,
                   dropdownIconPosition: IconPosition.trailing,
                 ),
@@ -161,7 +210,6 @@ class _ValidateAccountState extends State<ValidateAccount> {
                   style: TextStyle(
                     fontWeight: FontWeight.w300,
                     fontSize: 16,
-                    // fontFamily: 'ClashDisplay',
                     color: Theme.of(context).textTheme.bodySmall!.color,
                   ),
                 ),

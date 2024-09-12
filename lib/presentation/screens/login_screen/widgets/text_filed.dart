@@ -8,14 +8,14 @@ class AuthTextField extends StatelessWidget {
   bool obsecure;
   Widget? suffixIcon;
   String? Function(String?)? validator;
-  void Function(String)? onChanged;
+  // void Function(String)? onChanged;
   void Function()? ontap;
   TextEditingController? controller;
   AuthTextField({
     super.key,
     required this.controller,
     this.ontap,
-    required this.onChanged,
+    // required this.onChanged,
     required this.hintText,
     required this.validator,
     required this.obsecure,
@@ -27,7 +27,7 @@ class AuthTextField extends StatelessWidget {
     return TextFormField(
       style: TextStyle(color: Theme.of(context).textTheme.bodySmall!.color),
       validator: validator,
-      onChanged: onChanged,
+      // onChanged: onChanged,
       onTap: ontap,
       controller: controller,
       decoration: InputDecoration(

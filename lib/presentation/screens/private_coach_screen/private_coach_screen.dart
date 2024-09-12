@@ -121,7 +121,7 @@ class _PrivateCoachState extends State<PrivateCoach> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 5),
+                    const SizedBox(width: 20),
                     Container(
                       padding: const EdgeInsets.all(10),
                       height: 50.h,

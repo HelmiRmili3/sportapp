@@ -44,15 +44,24 @@ class _HomeScreenState extends State<HomeScreen> {
     'Nice',
     // ... Add more cities
   ];
-  String _searchText = '';
+  final String _searchText = '';
 
   void _openCityBottomSheet(BuildContext context) {
     showModalBottomSheet(
+      useSafeArea: true,
+      enableDrag: true,
       context: context,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return const CityBottomSheet();
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: const SingleChildScrollView(
+            child: CityBottomSheet(),
+          ),
+        );
       },
     );
   }
@@ -60,6 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void _openGymListBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      useSafeArea: true,
+      enableDrag: true,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
@@ -67,8 +78,15 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       builder: (BuildContext context) {
-        return GymListBottomSheet(
-          model: model,
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: SingleChildScrollView(
+            child: GymListBottomSheet(
+              model: model,
+            ),
+          ),
         );
       },
     );
@@ -114,6 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 longitude: latLng.longitude.toString(),
               );
             },
+            zoomControlsEnabled: false,
           ),
           Padding(
             padding: EdgeInsets.symmetric(

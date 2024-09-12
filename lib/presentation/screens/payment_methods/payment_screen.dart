@@ -8,7 +8,7 @@ import 'package:sportapp/presentation/controllers/payment_controller.dart';
 import '../../../core/routes/route_names.dart';
 import '../login_screen/widgets/button.dart';
 
-class PaymentScreen extends StatelessWidget {
+class PaymentScreen extends GetView<PaymentController> {
   const PaymentScreen({super.key});
 
   @override
@@ -16,7 +16,11 @@ class PaymentScreen extends StatelessWidget {
     PaymentController controller = Get.put(PaymentController());
     return Scaffold(
       body: Padding(
-          padding: EdgeInsets.only(top: 40.0.h, right: 24.w, left: 24.w),
+          padding: EdgeInsets.only(
+            top: 40.0.h,
+            right: 24.w,
+            left: 24.w,
+          ),
           child: SingleChildScrollView(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -31,7 +35,9 @@ class PaymentScreen extends StatelessWidget {
                       height: 35,
                       width: 35,
                       decoration: BoxDecoration(
-                          shape: BoxShape.circle, color: AppColors.seGreen),
+                        shape: BoxShape.circle,
+                        color: AppColors.seGreen,
+                      ),
                       child: const Center(
                           child: Icon(
                         Icons.arrow_back_ios,
@@ -100,147 +106,177 @@ class PaymentScreen extends StatelessWidget {
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
                     itemCount: controller.packages.length,
-                    itemBuilder: (context, index) => GestureDetector(
-                      onTap: () {
-                        controller.selectPackage(index);
-                      },
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            child: controller.packages[index].savePercent == ''
-                                ? SizedBox(
-                                    height: 20.h,
-                                  )
-                                : CustomPaint(
-                                    size: Size(
-                                        105.w, (105.w * 0.2073170731707317)),
-                                    painter: RPSCustomPainter(),
-                                    child: SizedBox(
-                                      width: 95.w,
-                                      height: 20.sp,
-                                      child: Center(
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(bottom: 5),
-                                          child: Text(
-                                            controller.packages[index]
-                                                    .savePercent ??
-                                                "",
-                                            style: TextStyle(
-                                                fontSize: 8.sp,
-                                                fontWeight: FontWeight.w500),
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          controller.selectPackage(index);
+                        },
+                        child: Obx(
+                          () => Column(
+                            // Use Obx here to update each item individually
+                            children: [
+                              SizedBox(
+                                child: controller.packages[index].savePercent ==
+                                        ''
+                                    ? SizedBox(
+                                        height: 20.h,
+                                      )
+                                    : CustomPaint(
+                                        size: Size(
+                                          105.w,
+                                          (105.w * 0.2073170731707317),
+                                        ),
+                                        painter: RPSCustomPainter(),
+                                        child: SizedBox(
+                                          width: 95.w,
+                                          height: 20.sp,
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 5),
+                                              child: Text(
+                                                controller.packages[index]
+                                                        .savePercent ??
+                                                    "",
+                                                style: TextStyle(
+                                                  fontSize: 8.sp,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                          ),
-                          Container(
-                            width: 105.w,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 8.w, vertical: 5.h),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(3.r),
-                                border: controller.packages[index].isSelected ??
-                                        false
-                                    ? Border.all(
-                                        color: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall!
-                                            .color!)
-                                    : null),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      controller.packages[index].name ?? "",
-                                      style: TextStyle(
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w600,
-                                        color: controller.packages[index]
-                                                    .isSelected ??
-                                                false
-                                            ? Colors.black
-                                            : Colors.grey,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 20.w,
-                                    ),
-                                    Icon(
+                              ),
+                              Container(
+                                width: 105.w,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 8.w, vertical: 5.h),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(3.r),
+                                  border:
                                       controller.packages[index].isSelected ??
                                               false
-                                          ? Icons.radio_button_checked
-                                          : Icons.radio_button_off,
-                                      color: controller
-                                                  .packages[index].isSelected ??
-                                              false
-                                          ? AppColors.seGreen
-                                          : Colors.grey,
-                                      size: 15.sp,
-                                    ),
-                                  ],
+                                          ? Border.all(
+                                              color: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall!
+                                                  .color!)
+                                          : null,
                                 ),
-                                10.verticalSpace,
-                                RichText(
-                                  text: TextSpan(children: [
-                                    TextSpan(
-                                        text:
-                                            controller.packages[index].price ??
-                                                "",
-                                        style: TextStyle(
-                                            fontSize: 16.sp,
-                                            fontWeight: FontWeight.w700,
-                                            color: controller.packages[index]
-                                                        .isSelected ??
-                                                    false
-                                                ? Colors.black
-                                                : Colors.grey,
-                                            height: 1.sp)),
-                                    TextSpan(
-                                        text: "TND",
-                                        style: TextStyle(
-                                            fontSize: 8.sp,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          controller.packages[index].name ?? "",
+                                          style: TextStyle(
+                                            fontSize: 10.sp,
                                             fontWeight: FontWeight.w600,
                                             color: controller.packages[index]
                                                         .isSelected ??
                                                     false
-                                                ? Colors.black
+                                                ? Theme.of(context)
+                                                    .textTheme
+                                                    .bodySmall!
+                                                    .color
                                                 : Colors.grey,
-                                            height: 1.sp)),
-                                    TextSpan(
-                                        text: "/month",
-                                        style: TextStyle(
-                                            fontSize: 7.sp,
-                                            fontWeight: FontWeight.w500,
-                                            color: controller.packages[index]
-                                                        .isSelected ??
-                                                    false
-                                                ? Colors.black
-                                                : Colors.grey,
-                                            height: 1.sp)),
-                                  ]),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 20.w,
+                                        ),
+                                        Icon(
+                                          controller.packages[index]
+                                                      .isSelected ??
+                                                  false
+                                              ? Icons.radio_button_checked
+                                              : Icons.radio_button_off,
+                                          color: controller.packages[index]
+                                                      .isSelected ??
+                                                  false
+                                              ? AppColors.seGreen
+                                              : Colors.grey,
+                                          size: 15.sp,
+                                        ),
+                                      ],
+                                    ),
+                                    10.verticalSpace,
+                                    RichText(
+                                      text: TextSpan(children: [
+                                        TextSpan(
+                                            text: controller
+                                                    .packages[index].price ??
+                                                "",
+                                            style: TextStyle(
+                                                fontSize: 16.sp,
+                                                fontWeight: FontWeight.w700,
+                                                color: controller
+                                                            .packages[index]
+                                                            .isSelected ??
+                                                        false
+                                                    ? Theme.of(context)
+                                                        .textTheme
+                                                        .bodySmall!
+                                                        .color
+                                                    : Colors.grey,
+                                                height: 1.sp)),
+                                        TextSpan(
+                                            text: "TND",
+                                            style: TextStyle(
+                                                fontSize: 8.sp,
+                                                fontWeight: FontWeight.w600,
+                                                color: controller
+                                                            .packages[index]
+                                                            .isSelected ??
+                                                        false
+                                                    ? Theme.of(context)
+                                                        .textTheme
+                                                        .bodySmall!
+                                                        .color
+                                                    : Colors.grey,
+                                                height: 1.sp)),
+                                        TextSpan(
+                                          text: "/month",
+                                          style: TextStyle(
+                                              fontSize: 7.sp,
+                                              fontWeight: FontWeight.w500,
+                                              color: controller.packages[index]
+                                                          .isSelected ??
+                                                      false
+                                                  ? Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .color
+                                                  : Colors.grey,
+                                              height: 1.sp),
+                                        ),
+                                      ]),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    },
                     separatorBuilder: (context, index) => 12.horizontalSpace,
                   ),
                 ),
               ),
               20.verticalSpace,
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20.w,
+                  vertical: 20.h,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.r),
-                  color: Colors.white,
+                  color: Theme.of(context).primaryColor,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.3),
@@ -261,7 +297,8 @@ class PaymentScreen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 60.sp,
                               fontWeight: FontWeight.w800,
-                              color: Colors.black,
+                              color:
+                                  Theme.of(context).textTheme.bodySmall!.color,
                             ),
                           ),
                           TextSpan(
@@ -269,7 +306,8 @@ class PaymentScreen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 30.sp,
                               fontWeight: FontWeight.w800,
-                              color: Colors.black,
+                              color:
+                                  Theme.of(context).textTheme.bodySmall!.color,
                             ),
                           ),
                         ],
@@ -289,18 +327,19 @@ class PaymentScreen extends StatelessWidget {
                       ),
                     ),
                     20.verticalSpace,
-                    _textWedgitsStaticColor(
-                        "Daily access for 30 days to 522 room"),
-                    _textWedgitsStaticColor("10 day warranty"),
-                    _textWedgitsStaticColor("interrupt anytime"),
+                    _textWedgits(
+                        "Daily access for 30 days to 522 room", context),
+                    _textWedgits("10 day warranty", context),
+                    _textWedgits("interrupt anytime", context),
                     10.verticalSpace,
                     AuthButton(
-                        text: "Do you really want",
-                        fontcolor: Colors.white,
-                        backgroundcolor: const Color(0xFFFF6B62),
-                        onTap: () {
-                          context.push(AppRouteConstants.securityScreenmob);
-                        }),
+                      text: "Do you really want",
+                      fontcolor: Colors.white,
+                      backgroundcolor: const Color(0xFFFF6B62),
+                      onTap: () {
+                        context.push(AppRouteConstants.securityScreenmob);
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -312,32 +351,32 @@ class PaymentScreen extends StatelessWidget {
                       onTap: () {
                         controller.changeButtonState(true);
                       },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 10.w),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(20.r),
-                              topLeft: Radius.circular(20.r)),
-                          border: Border.all(
-                            color: controller.isleftButtonActive
-                                ? AppColors.seGreen
-                                : const Color(0xFFDEDEDE),
-                            width: 1.0,
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Unilimited",
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w600,
-                              color: controller.isleftButtonActive
-                                  ? AppColors.seGreen
-                                  : const Color(0xFFDEDEDE),
+                      child: Obx(() => Container(
+                            padding: EdgeInsets.symmetric(vertical: 10.w),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(20.r),
+                                  topLeft: Radius.circular(20.r)),
+                              border: Border.all(
+                                color: controller.isleftButtonActive
+                                    ? AppColors.seGreen
+                                    : const Color(0xFFDEDEDE),
+                                width: 1.0,
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
+                            child: Center(
+                              child: Text(
+                                "Unilimited",
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                  color: controller.isleftButtonActive
+                                      ? AppColors.seGreen
+                                      : const Color(0xFFDEDEDE),
+                                ),
+                              ),
+                            ),
+                          )),
                     ),
                   ),
                   20.horizontalSpace,
@@ -346,28 +385,30 @@ class PaymentScreen extends StatelessWidget {
                     onTap: () {
                       controller.changeButtonState(false);
                     },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 10.w),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(20.r),
-                            topRight: Radius.circular(20.r)),
-                        border: Border.all(
-                          color: controller.isleftButtonActive
-                              ? const Color(0xFFDEDEDE)
-                              : AppColors.seGreen,
-                          width: 1.0,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "8 entriers",
-                          style: TextStyle(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600,
+                    child: Obx(
+                      () => Container(
+                        padding: EdgeInsets.symmetric(vertical: 10.w),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(20.r),
+                              topRight: Radius.circular(20.r)),
+                          border: Border.all(
                             color: controller.isleftButtonActive
                                 ? const Color(0xFFDEDEDE)
                                 : AppColors.seGreen,
+                            width: 1.0,
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "8 entriers",
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w600,
+                              color: controller.isleftButtonActive
+                                  ? const Color(0xFFDEDEDE)
+                                  : AppColors.seGreen,
+                            ),
                           ),
                         ),
                       ),
@@ -385,58 +426,61 @@ class PaymentScreen extends StatelessWidget {
                 ),
               ),
               10.verticalSpace,
-              Row(
-                children: [
-                  SizedBox(
-                    height: 30.h,
-                    child: Radio<String>(
-                      value: 'Upgrade unlimited access',
-                      fillColor: WidgetStateProperty.all(AppColors.seGreen),
-                      activeColor: AppColors.seGreen,
-                      groupValue: controller.verificationMethod,
-                      onChanged: (String? value) {
-                        controller.changeVerificationMethod(value!);
-                      },
-                    ),
-                  ),
-                  5.horizontalSpace,
-                  Text(
-                    'Upgrade unlimited access',
-                    style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w400,
-                      height: 1.h,
-                      color: Theme.of(context).textTheme.bodySmall!.color,
-                    ),
-                  ),
-                ],
-              ),
+              Obx(() => Row(
+                    children: [
+                      SizedBox(
+                        height: 30.h,
+                        child: Radio<String>(
+                          value: 'Upgrade unlimited access',
+                          fillColor: WidgetStateProperty.all(AppColors.seGreen),
+                          activeColor: AppColors.seGreen,
+                          groupValue: controller
+                              .verificationMethod, // Reactive groupValue
+                          onChanged: (String? value) {
+                            controller.changeVerificationMethod(value!);
+                          },
+                        ),
+                      ),
+                      5.horizontalSpace,
+                      Text(
+                        'Upgrade unlimited access',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          height: 1.h,
+                          color: Theme.of(context).textTheme.bodySmall!.color,
+                        ),
+                      ),
+                    ],
+                  )),
               5.verticalSpace,
-              Row(
-                children: [
-                  SizedBox(
-                    height: 30.h,
-                    child: Radio<String>(
-                      value: 'Upgrade more +50 sports center',
-                      fillColor: WidgetStateProperty.all(AppColors.seGreen),
-                      activeColor: AppColors.seGreen,
-                      groupValue: controller.verificationMethod,
-                      onChanged: (String? value) {
-                        controller.changeVerificationMethod(value!);
-                      },
-                    ),
-                  ),
-                  5.horizontalSpace,
-                  Text(
-                    'Upgrade more +50 sports center',
-                    style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
-                        height: 1.h,
-                        color: Theme.of(context).textTheme.bodySmall!.color),
-                  ),
-                ],
-              ),
+              Obx(() => Row(
+                    children: [
+                      SizedBox(
+                        height: 30.h,
+                        child: Radio<String>(
+                          value: 'Upgrade more +50 sports center',
+                          fillColor: WidgetStateProperty.all(AppColors.seGreen),
+                          activeColor: AppColors.seGreen,
+                          groupValue: controller
+                              .verificationMethod, // Reactive groupValue
+                          onChanged: (String? value) {
+                            controller.changeVerificationMethod(value!);
+                          },
+                        ),
+                      ),
+                      5.horizontalSpace,
+                      Text(
+                        'Upgrade more +50 sports center',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          height: 1.h,
+                          color: Theme.of(context).textTheme.bodySmall!.color,
+                        ),
+                      ),
+                    ],
+                  )),
               20.verticalSpace,
               Text("Avantage",
                   style: TextStyle(
@@ -512,30 +556,62 @@ class RPSCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Path path_0 = Path();
-    path_0.moveTo(size.width * 0.07601622, 0);
-    path_0.cubicTo(size.width * 0.03403366, 0, 0, size.height * 0.1641624, 0,
-        size.height * 0.3666665);
+    path_0.moveTo(
+      size.width * 0.07601622,
+      0,
+    );
     path_0.cubicTo(
-        0,
-        size.height * 0.5691712,
-        size.width * 0.03403354,
-        size.height * 0.7333353,
-        size.width * 0.07601622,
-        size.height * 0.7333353);
-    path_0.lineTo(size.width * 0.8388134, size.height * 0.7333353);
-    path_0.lineTo(size.width * 0.8707317, size.height);
-    path_0.lineTo(size.width * 0.9026500, size.height * 0.7333353);
-    path_0.lineTo(size.width * 0.9191061, size.height * 0.7333353);
+      size.width * 0.03403366,
+      0,
+      0,
+      size.height * 0.1641624,
+      0,
+      size.height * 0.3666665,
+    );
     path_0.cubicTo(
-        size.width * 0.9610878,
-        size.height * 0.7333353,
-        size.width * 0.9951220,
-        size.height * 0.5691712,
-        size.width * 0.9951220,
-        size.height * 0.3666665);
-    path_0.cubicTo(size.width * 0.9951220, size.height * 0.1641624,
-        size.width * 0.9610878, 0, size.width * 0.9191061, 0);
-    path_0.lineTo(size.width * 0.07601622, 0);
+      0,
+      size.height * 0.5691712,
+      size.width * 0.03403354,
+      size.height * 0.7333353,
+      size.width * 0.07601622,
+      size.height * 0.7333353,
+    );
+    path_0.lineTo(
+      size.width * 0.8388134,
+      size.height * 0.7333353,
+    );
+    path_0.lineTo(
+      size.width * 0.8707317,
+      size.height,
+    );
+    path_0.lineTo(
+      size.width * 0.9026500,
+      size.height * 0.7333353,
+    );
+    path_0.lineTo(
+      size.width * 0.9191061,
+      size.height * 0.7333353,
+    );
+    path_0.cubicTo(
+      size.width * 0.9610878,
+      size.height * 0.7333353,
+      size.width * 0.9951220,
+      size.height * 0.5691712,
+      size.width * 0.9951220,
+      size.height * 0.3666665,
+    );
+    path_0.cubicTo(
+      size.width * 0.9951220,
+      size.height * 0.1641624,
+      size.width * 0.9610878,
+      0,
+      size.width * 0.9191061,
+      0,
+    );
+    path_0.lineTo(
+      size.width * 0.07601622,
+      0,
+    );
     path_0.close();
 
     Paint paint0Fill = Paint()..style = PaintingStyle.fill;

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageController extends GetxController {
-  final Rx<Locale> _locale = const Locale('en', 'US').obs;
+  final Rx<Locale> _locale = const Locale('fr', 'FR').obs;
 
   Locale get locale => _locale.value;
 
@@ -15,8 +15,8 @@ class LanguageController extends GetxController {
 
   Future<void> _loadLocale() async {
     final prefs = await SharedPreferences.getInstance();
-    final languageCode = prefs.getString('language_code') ?? 'en';
-    final countryCode = prefs.getString('country_code') ?? 'US';
+    final languageCode = prefs.getString('language_code') ?? 'fr';
+    final countryCode = prefs.getString('country_code') ?? 'FR';
     _locale.value = Locale(languageCode, countryCode);
   }
 

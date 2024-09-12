@@ -69,18 +69,20 @@ class _SubscriptionPackagesScreenState
     ];
     return Scaffold(
       body: Container(
-          width: double.infinity,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(
-                    'assets/Images/subscription.png',
-                  ),
-                  fit: BoxFit.cover)),
-          child: Column(children: [
+        width: double.infinity,
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage(
+            'assets/Images/subscription.png',
+          ),
+          fit: BoxFit.cover,
+        )),
+        child: Column(
+          children: [
             40.verticalSpace,
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
+              padding: EdgeInsets.symmetric(
+                horizontal: 20.w,
               ),
               child: Row(
                 children: [
@@ -89,21 +91,21 @@ class _SubscriptionPackagesScreenState
                       context.pop();
                     },
                     child: Container(
-                      margin: const EdgeInsets.all(10),
-                      height: 35,
-                      width: 35,
+                      margin: EdgeInsets.all(10.w),
+                      height: 35.h,
+                      width: 35.w,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
+                          borderRadius: BorderRadius.circular(50.r),
                           color: AppColors.seGreen),
-                      child: const Center(
+                      child: Center(
                           child: Icon(
                         Icons.arrow_back_ios,
-                        size: 15,
+                        size: 15.sp,
                       )),
                     ),
                   ),
-                  const SizedBox(
-                    width: 50,
+                  SizedBox(
+                    width: 50.w,
                   ),
                   Text(
                     S.of(context).subscription,
@@ -126,7 +128,7 @@ class _SubscriptionPackagesScreenState
                 itemCount: packages.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.r),
                       color: AppColors.black.withOpacity(.8),
@@ -144,7 +146,7 @@ class _SubscriptionPackagesScreenState
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.r),
                             border: Border.all(
-                                color: const Color(0xFF4F403D), width: 1),
+                                color: const Color(0xFF4F403D), width: 1.w),
                           ),
                           child: Center(
                               child: Text(
@@ -152,28 +154,30 @@ class _SubscriptionPackagesScreenState
                             // S.of(context)
                             //     .our_most_popular_subscription,
                             style: TextStyle(
-                                fontSize: 10.sp,
-                                fontWeight: FontWeight.w800,
-                                color: const Color(0xFFCBCBCB)),
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w800,
+                              color: const Color(0xFFCBCBCB),
+                            ),
                           )),
                         ),
                         10.verticalSpace,
                         Container(
                           height: 50.h,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(30.r),
                             color: packages[index].color,
                           ),
                           child: Center(
                               child: Text(
                             packages[index].name ?? "",
                             style: TextStyle(
-                                fontFamily: 'ClashDisplay',
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w500),
+                              fontFamily: 'ClashDisplay',
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
                           )),
                         ),
-                        20.verticalSpace,
+                        15.verticalSpace,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -184,39 +188,44 @@ class _SubscriptionPackagesScreenState
                                 // "160 ",
                                 style: TextStyle(
                                     color: AppColors.white,
-                                    fontSize: 24,
+                                    fontSize: 24.sp,
                                     fontWeight: FontWeight.w900),
                               ),
                               TextSpan(
                                 text: " TND ",
                                 style: TextStyle(
-                                    color: AppColors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w900),
+                                  color: AppColors.white,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w900,
+                                ),
                               ),
                               TextSpan(
                                 text: "/Mois",
                                 style: TextStyle(
-                                    color: AppColors.white,
-                                    fontSize: 8,
-                                    fontWeight: FontWeight.w900),
+                                  color: AppColors.white,
+                                  fontSize: 8.sp,
+                                  fontWeight: FontWeight.w900,
+                                ),
                               ),
                             ])),
                             Container(
                               padding: EdgeInsets.symmetric(
-                                  vertical: 5.h, horizontal: 8.w),
+                                vertical: 5.h,
+                                horizontal: 8.w,
+                              ),
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
+                                  borderRadius: BorderRadius.circular(30.r),
                                   color:
                                       const Color(0xFF52CB5E).withOpacity(0.1)),
                               child: Center(
                                   child: Text(
                                 "save 200 TND per year",
                                 style: TextStyle(
-                                    fontFamily: 'ClashDisplay',
-                                    fontSize: 6.sp,
-                                    color: AppColors.green,
-                                    fontWeight: FontWeight.w500),
+                                  fontFamily: 'ClashDisplay',
+                                  fontSize: 6.sp,
+                                  color: AppColors.green,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               )),
                             ),
                           ],
@@ -257,9 +266,10 @@ class _SubscriptionPackagesScreenState
                       // S.of(context)
                       //     .gift_discount_when_you_invite_friend_your_next_month,
                       style: TextStyle(
-                          color: AppColors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400),
+                        color: AppColors.white,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
                   5.horizontalSpace,
@@ -276,8 +286,8 @@ class _SubscriptionPackagesScreenState
             ),
             40.verticalSpace,
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
+              padding: EdgeInsets.symmetric(
+                horizontal: 20.w,
               ),
               child: AuthButton(
                   text: S.of(context).payNow,
@@ -288,7 +298,9 @@ class _SubscriptionPackagesScreenState
                   }),
             ),
             40.verticalSpace
-          ])),
+          ],
+        ),
+      ),
     );
   }
 

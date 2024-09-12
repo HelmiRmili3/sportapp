@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sportapp/core/app_colors.dart';
 
 class StepTwo extends StatefulWidget {
   const StepTwo({super.key});
@@ -9,6 +10,7 @@ class StepTwo extends StatefulWidget {
 
 class StepTwoState extends State<StepTwo> {
   DateTime? _selectedDate;
+  String _selectedGender = 'male'; // default selected gender
   final TextEditingController _weightController = TextEditingController();
   final TextEditingController _heightController = TextEditingController();
 
@@ -58,38 +60,76 @@ class StepTwoState extends State<StepTwo> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        _selectedGender = 'male';
+                      });
+                    },
                     style: ButtonStyle(
-                      backgroundColor:
-                          WidgetStateProperty.all(Colors.grey[200]),
+                      backgroundColor: WidgetStateProperty.all(
+                        _selectedGender == 'male'
+                            ? AppColors.seGreen
+                            : Colors.grey[200],
+                      ),
                       shape: WidgetStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
                     ),
-                    child: const Text(
-                      'Male',
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
+                    child: Row(
+                      children: [
+                        Radio<String>(
+                          value: 'male',
+                          groupValue: _selectedGender,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedGender = value!;
+                            });
+                          },
+                        ),
+                        const Text(
+                          'Male',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(width: 16),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        _selectedGender = 'female';
+                      });
+                    },
                     style: ButtonStyle(
-                      backgroundColor:
-                          WidgetStateProperty.all(Colors.grey[200]),
+                      backgroundColor: WidgetStateProperty.all(
+                        _selectedGender == 'female'
+                            ? AppColors.seGreen
+                            : Colors.grey[200],
+                      ),
                       shape: WidgetStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
                     ),
-                    child: const Text(
-                      'Female',
-                      style: TextStyle(color: Colors.black),
+                    child: Row(
+                      children: [
+                        Radio<String>(
+                          value: 'female',
+                          groupValue: _selectedGender,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedGender = value!;
+                            });
+                          },
+                        ),
+                        const Text(
+                          'Female',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -121,9 +161,10 @@ class StepTwoState extends State<StepTwo> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // Weight input
                   Container(
-                    width: 120, // Adjusted width to accommodate label
-                    height: 40, // Set height to 40
+                    width: 120,
+                    height: 40,
                     decoration: BoxDecoration(
                       color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(8),
@@ -137,8 +178,7 @@ class StepTwoState extends State<StepTwo> {
                             child: TextField(
                               controller: _weightController,
                               decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.all(
-                                    8.0), // Added padding inside the input
+                                contentPadding: EdgeInsets.all(8.0),
                                 border: InputBorder.none,
                               ),
                               keyboardType: TextInputType.number,
@@ -157,6 +197,7 @@ class StepTwoState extends State<StepTwo> {
                     ),
                   ),
                   const SizedBox(width: 16),
+                  // Height input
                   Container(
                     width: 120,
                     height: 40,
@@ -173,8 +214,7 @@ class StepTwoState extends State<StepTwo> {
                             child: TextField(
                               controller: _heightController,
                               decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.all(
-                                    8.0), // Added padding inside the input
+                                contentPadding: EdgeInsets.all(8.0),
                                 border: InputBorder.none,
                               ),
                               keyboardType: TextInputType.number,

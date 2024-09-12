@@ -1,4 +1,4 @@
-package com.example.sportapp
+package com.makland.gympass
 
 import io.flutter.embedding.android.FlutterActivity
 

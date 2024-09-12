@@ -86,9 +86,9 @@ class _ChooseCityScreenState extends State<ChooseCityScreen> {
                 AuthTextField(
                   controller: _countryController,
                   ontap: _openCityBottomSheet,
-                  hintText: S.of(context).enterYourName,
+                  hintText: S.of(context).chooseCity,
                   obsecure: false,
-                  onChanged: (_) => _updateFormState(),
+                  // onChanged: (_) => _updateFormState(),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please choose or write country';

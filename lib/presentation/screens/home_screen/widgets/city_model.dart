@@ -1,63 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/app_colors.dart';
-import '../../../../generated/l10n.dart';
-
-// void _openCityBottomSheet(BuildContext context) {
-//     showModalBottomSheet(
-//       context: context,
-//       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-//       isScrollControlled: true,
-//       builder: (BuildContext context) {
-//         return StatefulBuilder(
-//           builder: (context, setState) => Padding(
-//             padding: EdgeInsets.only(
-//                 bottom: MediaQuery.of(context).viewInsets.bottom),
-//             child:
-//           ),
-//         );
-//       },
-//     );
-//   }
 
 class CityBottomSheet extends StatefulWidget {
   const CityBottomSheet({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _CityBottomSheetState createState() => _CityBottomSheetState();
 }
 
 class _CityBottomSheetState extends State<CityBottomSheet> {
   String _searchText = '';
-  final List<String> allCities = [
-    'New York',
-    'Los Angeles',
-    'Chicago',
-    'Houston',
-    'Phoenix'
-  ]; // Example city list
-  List<String> filteredCities = [];
+  final List<String> categories = [
+    'Fitness',
+    'Yoga',
+    'Psychologues',
+    'Nutritionniste',
+    'Cardi',
+  ];
+  List<String> filtered = [];
 
   @override
   Widget build(BuildContext context) {
-    // Filter cities based on search text
-    filteredCities = allCities
-        .where((city) => city.toLowerCase().contains(_searchText.toLowerCase()))
+    filtered = categories
+        .where((categorie) =>
+            categorie.toLowerCase().contains(_searchText.toLowerCase()))
         .toList();
 
     return SingleChildScrollView(
       child: Column(
         children: [
           const SizedBox(height: 10),
-          // Search field with OutlineBorde
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
                 Text(
-                  S.of(context).chooseCity,
+                  "Search a category",
                   style: TextStyle(
-                      color: Theme.of(context).textTheme.bodySmall!.color),
+                    fontSize: 18.sp,
+                    color: Theme.of(context).textTheme.bodySmall!.color,
+                  ),
                 ),
                 const Spacer(),
                 InkWell(
@@ -89,7 +74,7 @@ class _CityBottomSheetState extends State<CityBottomSheet> {
               style: TextStyle(
                   color: Theme.of(context).textTheme.bodySmall!.color),
               decoration: InputDecoration(
-                hintText: 'Search City',
+                hintText: 'Search ',
                 hintStyle: TextStyle(
                     color: Theme.of(context).textTheme.bodySmall!.color),
                 prefixIcon: Icon(
@@ -112,11 +97,10 @@ class _CityBottomSheetState extends State<CityBottomSheet> {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount:
-                _searchText.isEmpty ? allCities.length : filteredCities.length,
+                _searchText.isEmpty ? categories.length : filtered.length,
             itemBuilder: (context, index) {
-              final city = _searchText.isEmpty
-                  ? allCities[index]
-                  : filteredCities[index];
+              final city =
+                  _searchText.isEmpty ? categories[index] : filtered[index];
               return ListTile(
                 title: Text(
                   city,

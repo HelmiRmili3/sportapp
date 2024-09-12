@@ -20,24 +20,11 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool obsecure = true;
-  bool _isValid = false;
   final _formKey = GlobalKey<FormState>();
-  void _updateFormState() {
-    // Step 3
-    setState(() {
-      _isValid = _formKey.currentState?.validate() ?? false;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    emailController.addListener(_updateFormState);
-    passwordController.addListener(_updateFormState);
-  }
 
   TextEditingController passwordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,27 +67,27 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 SizedBox(height: 20.h),
                 AuthTextField(
-                    controller: emailController,
-                    hintText: S.of(context).yourEmail,
-                    obsecure: false,
-                    onChanged: (value) => _updateFormState(),
-                    validator: (value) => Validators.validateEmail(value)),
+                  controller: emailController,
+                  hintText: S.of(context).yourEmail,
+                  obsecure: false,
+                  validator: (value) => Validators.validateEmail(value),
+                ),
                 SizedBox(height: 20.h),
                 AuthTextField(
                   controller: passwordController,
-                  onChanged: (value) => _updateFormState(),
                   hintText: S.of(context).enterPassword,
                   obsecure: obsecure,
                   validator: (value) => Validators.validatePassword(value),
                   suffixIcon: InkWell(
-                      onTap: () {
-                        setState(() {
-                          obsecure = !obsecure;
-                        });
-                      },
-                      child: Icon(!obsecure
-                          ? Icons.visibility_outlined
-                          : Icons.visibility_off_outlined)),
+                    onTap: () {
+                      setState(() {
+                        obsecure = !obsecure;
+                      });
+                    },
+                    child: Icon(!obsecure
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined),
+                  ),
                 ),
                 SizedBox(height: 20.h),
                 InkWell(
@@ -118,25 +105,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 30.h),
                 AuthButton(
-                  fontcolor: _isValid
-                      ? AppColors.black
-                      : AppColors.black.withOpacity(.4),
+                  fontcolor: AppColors.black,
                   text: S.of(context).logIn,
-                  onTap: _isValid
-                      ? () {
-                          if (_formKey.currentState!.validate()) {
-                            FocusScope.of(context).unfocus();
-
-                            GoRouter.of(context).push(
-                              AppRouteConstants.dashboardScreen,
-                              extra: 0,
-                            );
-                          }
-                        }
-                      : () {},
-                  backgroundcolor: _isValid
-                      ? AppColors.seGreen
-                      : AppColors.seGreen.withOpacity(.3),
+                  onTap: () {
+                    if (_formKey.currentState!.validate()) {
+                      GoRouter.of(context).push(
+                        AppRouteConstants.dashboardScreen,
+                        extra: 0,
+                      );
+                    } else {
+                      setState(() {});
+                    }
+                  },
+                  backgroundcolor: AppColors.seGreen,
                 ),
                 SizedBox(height: 30.h),
                 Center(
@@ -153,13 +134,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Theme.of(context).textTheme.bodySmall!.color),
                         ),
                         TextSpan(
-                            text: " ${S.of(context).createAnAccount}",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall!
-                                    .color))
+                          text: " ${S.of(context).createAnAccount}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).textTheme.bodySmall!.color,
+                          ),
+                        ),
                       ]),
                     ),
                   ),
@@ -185,12 +165,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 50.h),
                 AuthButton(
-                    fontcolor: Theme.of(context).primaryColor,
-                    text: S.of(context).continueWithPhone,
-                    onTap: () {
-                      GoRouter.of(context).push(AppRouteConstants.registration);
-                    },
-                    backgroundcolor: Theme.of(context).cardColor),
+                  fontcolor: Theme.of(context).primaryColor,
+                  text: S.of(context).continueWithPhone,
+                  onTap: () {
+                    GoRouter.of(context).push(AppRouteConstants.registration);
+                  },
+                  backgroundcolor: Theme.of(context).cardColor,
+                ),
                 SizedBox(height: 50.h),
                 GestureDetector(
                   onTap: () {
@@ -203,7 +184,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontWeight: FontWeight.w300,
                         fontSize: 16,
                         decoration: TextDecoration.underline,
-                        // fontFamily: 'ClashDisplay',
                         color: Theme.of(context).textTheme.bodySmall!.color,
                       ),
                     ),
@@ -225,7 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.bold,
                           color: AppColors.seGreen,
                         ),
-                      )
+                      ),
                     ]),
                   ),
                 ),

@@ -87,7 +87,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   controller: emailController,
                   hintText: S.of(context).enterYourName,
                   obsecure: false,
-                  onChanged: (value) => _updateFormState(),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter name';
@@ -96,18 +95,46 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   },
                 ),
                 SizedBox(height: 20.h),
-                AuthTextField(
+                TextFormField(
+                  style: TextStyle(
+                      color: Theme.of(context).textTheme.bodySmall!.color),
                   controller: referralCodeController,
-                  hintText: "Referral code",
-                  obsecure: false,
-                  onChanged: (value) => _updateFormState(),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Referral code';
-                    }
-                    return null;
-                  },
+                  decoration: InputDecoration(
+                    hintText: "Referral code",
+                    hintStyle: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 14,
+                      color: Theme.of(context).textTheme.bodySmall!.color,
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: AppColors.seGreen,
+                      ),
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Theme.of(context).highlightColor),
+                    ),
+                    errorBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red),
+                    ),
+                    focusedErrorBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.red,
+                      ),
+                    ),
+                    contentPadding: const EdgeInsets.only(bottom: 10),
+                  ),
+                  cursorColor: AppColors.seGreen,
+                  obscureText: obsecure,
                 ),
+                // AuthTextField(
+                //   controller: referralCodeController,
+                //   hintText: "Referral code",
+                //   obsecure: false,
+                //   // onChanged: (value) => _updateFormState(),
+
+                // ),
                 SizedBox(height: 50.h),
                 AuthButton(
                   fontcolor: _isValid

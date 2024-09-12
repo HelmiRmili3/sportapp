@@ -119,7 +119,7 @@ class _OnBoadingScreebState extends State<OnBoadingScreen> {
         ),
         Positioned(
           top: 690.h,
-          left: 100.w,
+          left: 120.w,
           child: SmoothPageIndicator(
             controller: pageController,
             count: onBoadingData.length,
@@ -147,23 +147,27 @@ class _OnBoadingScreebState extends State<OnBoadingScreen> {
             width: 350.w,
             backgroundColor: AppColors.black,
             toggleColor: AppColors.seGreen,
-            action: (controller) async {
-              if (_currentPage < onBoadingData.length - 1) {
-                pageController.nextPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
-              } else {
-                continueMethod();
-              }
+            action: (_) {
+              GoRouter.of(context).pushNamed(AppRouteConstants.login);
+              // if (_currentPage < onBoadingData.length - 1) {
+              //   pageController.nextPage(
+              //     duration: const Duration(milliseconds: 300),
+              //     curve: Curves.easeInOut,
+              //   );
+              // } else {
+              //   continueMethod();
+              // }
             },
-            child: Text(
-              S.of(context).iWantToTryForFree,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 15.sp,
-                fontFamily: 'ClashDisplay',
-                color: AppColors.white,
+            child: Padding(
+              padding: EdgeInsets.only(left: 16.0.w),
+              child: Text(
+                S.of(context).iWantToTryForFree,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14.sp,
+                  fontFamily: 'ClashDisplay',
+                  color: AppColors.white,
+                ),
               ),
             ),
           ),
@@ -175,37 +179,11 @@ class _OnBoadingScreebState extends State<OnBoadingScreen> {
             onTap: () {
               GoRouter.of(context).pushNamed(AppRouteConstants.login);
             },
-            child: Text(S.of(context).iAmAlreadyAMember),
+            child: Text(
+              S.of(context).iAmAlreadyAMember,
+            ),
           ),
         ),
-        // Center(
-        //     child: Column(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   crossAxisAlignment: CrossAxisAlignment.center,
-        //   children: [
-        //     Text(S.of(context).greeting,
-        //         style: TextStyle(
-        //           fontSize: 20,
-        //           fontWeight: FontWeight.bold,
-        //           color: AppColors.seGreen,
-        //         )),
-        //     ElevatedButton(
-        //       onPressed: () {
-        //         languageController.changeLanguage('ar', 'SA');
-        //       },
-        //       child: const Text("Arabic"),
-        //     ),
-        //     const SizedBox(
-        //       height: 10,
-        //     ),
-        //     ElevatedButton(
-        //       onPressed: () {
-        //         languageController.changeLanguage('en', 'US');
-        //       },
-        //       child: const Text("english"),
-        //     ),
-        //   ],
-        // )),
       ]),
     );
   }

@@ -104,7 +104,7 @@ class _GymsScreenState extends State<GymsScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 5),
+                    SizedBox(width: 20.w),
                     Container(
                       padding: const EdgeInsets.all(10),
                       height: 50.h,

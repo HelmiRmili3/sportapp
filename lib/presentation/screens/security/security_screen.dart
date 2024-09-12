@@ -72,65 +72,66 @@ class SecurityScreen extends StatelessWidget {
                 ),
               ),
               30.verticalSpace,
-              Row(
-                children: [
-                  SizedBox(
-                    height: 10,
-                    child: Radio<String>(
-                      value: 'whatsApp',
-                      fillColor: WidgetStateProperty.all(AppColors.seGreen),
-                      activeColor: AppColors.seGreen,
-                      groupValue: controller.verificationMethod,
-                      onChanged: (String? value) {
-                        controller.changeVerificationMethod(value!);
-                      },
-                    ),
-                  ),
-                  10.horizontalSpace,
-                  Text(
-                    'WhatsApp',
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w400,
-                      height: 1.h,
-                      color: Theme.of(context).textTheme.bodySmall!.color,
-                    ),
-                  ),
-                ],
-              ),
+              Obx(() => Row(
+                    children: [
+                      SizedBox(
+                        height: 10,
+                        child: Radio<String>(
+                          value: 'whatsApp',
+                          fillColor: WidgetStateProperty.all(AppColors.seGreen),
+                          activeColor: AppColors.seGreen,
+                          groupValue: controller.verificationMethod,
+                          onChanged: (String? value) {
+                            controller.changeVerificationMethod(value!);
+                          },
+                        ),
+                      ),
+                      10.horizontalSpace,
+                      Text(
+                        'WhatsApp',
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w400,
+                          height: 1.h,
+                          color: Theme.of(context).textTheme.bodySmall!.color,
+                        ),
+                      ),
+                    ],
+                  )),
               15.verticalSpace,
-              Row(
-                children: [
-                  SizedBox(
-                    height: 10,
-                    child: Radio<String>(
-                      value: 'sms',
-                      fillColor: WidgetStateProperty.all(AppColors.seGreen),
-                      activeColor: AppColors.seGreen,
-                      groupValue: controller.verificationMethod,
-                      onChanged: (String? value) {
-                        controller.changeVerificationMethod(value!);
-                      },
-                    ),
-                  ),
-                  10.horizontalSpace,
-                  Text(
-                    'SMS',
-                    style: TextStyle(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.w400,
-                        height: 1.h,
-                        color: Theme.of(context).textTheme.bodySmall!.color),
-                  ),
-                ],
-              ),
+              Obx(() => Row(
+                    children: [
+                      SizedBox(
+                        height: 10,
+                        child: Radio<String>(
+                          value: 'sms',
+                          fillColor: WidgetStateProperty.all(AppColors.seGreen),
+                          activeColor: AppColors.seGreen,
+                          groupValue: controller.verificationMethod,
+                          onChanged: (String? value) {
+                            controller.changeVerificationMethod(value!);
+                          },
+                        ),
+                      ),
+                      10.horizontalSpace,
+                      Text(
+                        'SMS',
+                        style: TextStyle(
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w400,
+                            height: 1.h,
+                            color:
+                                Theme.of(context).textTheme.bodySmall!.color),
+                      ),
+                    ],
+                  )),
               40.verticalSpace,
               PhoneInput(
                 key: const Key('phone-field'),
                 controller: null,
                 initialValue: null,
                 shouldFormat: true,
-                defaultCountry: IsoCode.RO,
+                defaultCountry: IsoCode.TN,
                 showArrow: false,
                 flagShape: BoxShape.rectangle,
                 flagSize: 30,
@@ -157,9 +158,10 @@ class SecurityScreen extends StatelessWidget {
                   "You will receive a verification code via WhatsApp or SMS",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w400,
-                      color: Theme.of(context).textTheme.bodySmall!.color),
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Theme.of(context).textTheme.bodySmall!.color,
+                  ),
                 ),
               ),
               40.verticalSpace,

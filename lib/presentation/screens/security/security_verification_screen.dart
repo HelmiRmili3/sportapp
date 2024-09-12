@@ -27,10 +27,12 @@ class SecurityVerificationScreen extends StatelessWidget {
                     GoRouter.of(context).pop();
                   },
                   child: Container(
-                    height: 35,
-                    width: 35,
+                    height: 35.h,
+                    width: 35.w,
                     decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: AppColors.seGreen),
+                      shape: BoxShape.circle,
+                      color: AppColors.seGreen,
+                    ),
                     child: const Center(
                         child: Icon(
                       Icons.arrow_back_ios,
@@ -45,6 +47,7 @@ class SecurityVerificationScreen extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 15.sp,
+                      color: Theme.of(context).textTheme.bodySmall!.color,
                     ),
                   ),
                 ),
@@ -58,7 +61,11 @@ class SecurityVerificationScreen extends StatelessWidget {
               child: Text(
                 "Enter the received code",
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w400),
+                style: TextStyle(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w400,
+                  color: Theme.of(context).textTheme.bodySmall!.color,
+                ),
               ),
             ),
             SizedBox(height: 50.h),
@@ -104,13 +111,14 @@ class SecurityVerificationScreen extends StatelessWidget {
             ),
             30.verticalSpace,
             AuthButton(
-                text: "Verify",
-                fontcolor: Colors.white,
-                backgroundcolor: AppColors.seGreen,
-                onTap: () {
-                  GoRouter.of(context)
-                      .push(AppRouteConstants.paymentMethodScreen);
-                })
+              text: "Verify",
+              fontcolor: Colors.white,
+              backgroundcolor: AppColors.seGreen,
+              onTap: () {
+                GoRouter.of(context)
+                    .push(AppRouteConstants.paymentMethodScreen);
+              },
+            )
           ],
         ),
       ),

@@ -70,12 +70,13 @@ class _RegistractionDoneScreenState extends State<RegistractionDoneScreen> {
                   textAlign: TextAlign.center,
                   text: TextSpan(children: [
                     TextSpan(
-                        text: S.of(context).notificationReceivedOfWhichEtc,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 16,
-                            color:
-                                Theme.of(context).textTheme.bodySmall!.color)),
+                      text: S.of(context).notificationReceivedOfWhichEtc,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w300,
+                        fontSize: 16,
+                        color: Theme.of(context).textTheme.bodySmall!.color,
+                      ),
+                    ),
                   ])),
               SizedBox(height: 80.h),
               AuthButton(
@@ -83,7 +84,8 @@ class _RegistractionDoneScreenState extends State<RegistractionDoneScreen> {
                   fontcolor: AppColors.black,
                   backgroundcolor: AppColors.seGreen,
                   onTap: () {
-                    context.push(AppRouteConstants.login);
+                    GoRouter.of(context)
+                        .push(AppRouteConstants.dashboardScreen);
                   }),
               SizedBox(height: 20.h),
               GestureDetector(
@@ -92,17 +94,18 @@ class _RegistractionDoneScreenState extends State<RegistractionDoneScreen> {
                   height: 70.h,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                      color: Theme.of(context).cardColor,
-                      border:
-                          Border.all(color: AppColors.black.withOpacity(.2)),
-                      borderRadius: BorderRadius.circular(30)),
+                    color: Theme.of(context).cardColor,
+                    border: Border.all(color: AppColors.black.withOpacity(.2)),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
                   child: Center(
                       child: Text(
                     textAlign: TextAlign.center,
                     S.of(context).iHadAWrongPhoneNumber,
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColor),
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor,
+                    ),
                   )),
                 ),
               )

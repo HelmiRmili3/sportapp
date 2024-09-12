@@ -18,7 +18,6 @@ class OtpVerificationScreen extends StatefulWidget {
     super.key,
     required this.number,
   });
-
   @override
   State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();
 }
@@ -28,9 +27,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   bool _isValid = false;
   final _formKey = GlobalKey<FormState>();
   void _updateFormState() {
-    debugPrint('on competed function called'); // Step 3
+    debugPrint('on competed function called');
     setState(() {
-      _isValid = _formKey.currentState?.validate() ?? false; // Step 5
+      _isValid = _formKey.currentState?.validate() ?? false;
     });
   }
 
@@ -54,7 +53,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   }
 
   late Timer _timer;
-  int _start = 45; // Timer duration in seconds
+  int _start = 45;
   void startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       if (_start == 0) {
@@ -89,10 +88,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 borderRadius: BorderRadius.circular(50),
                 color: AppColors.seGreen),
             child: const Center(
-                child: Icon(
-              Icons.arrow_back_ios,
-              size: 15,
-            )),
+              child: Icon(
+                Icons.arrow_back_ios,
+                size: 15,
+              ),
+            ),
           ),
         ),
         title: Text(
@@ -116,35 +116,38 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               children: [
                 SizedBox(height: 20.h),
                 RichText(
-                    text: TextSpan(children: [
-                  TextSpan(
-                    text: S.of(context).sixDigitVerificationMessage,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 16,
-                      // fontFamily: 'ClashDisplay',
-                      color: Theme.of(context).textTheme.bodySmall!.color,
-                    ),
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: S.of(context).sixDigitVerificationMessage,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          fontSize: 16,
+                          // fontFamily: 'ClashDisplay',
+                          color: Theme.of(context).textTheme.bodySmall!.color,
+                        ),
+                      ),
+                      TextSpan(
+                        text: ' $lastFourDigits.',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          // fontFamily: 'ClashDisplay',
+                          color: Theme.of(context).textTheme.bodySmall!.color,
+                        ),
+                      ),
+                      TextSpan(
+                        text: S.of(context).ifYouDontReceivedMessage,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          fontSize: 16,
+                          // fontFamily: 'ClashDisplay',
+                          color: Theme.of(context).textTheme.bodySmall!.color,
+                        ),
+                      ),
+                    ],
                   ),
-                  TextSpan(
-                    text: ' $lastFourDigits.',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                      // fontFamily: 'ClashDisplay',
-                      color: Theme.of(context).textTheme.bodySmall!.color,
-                    ),
-                  ),
-                  TextSpan(
-                    text: S.of(context).ifYouDontReceivedMessage,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 16,
-                      // fontFamily: 'ClashDisplay',
-                      color: Theme.of(context).textTheme.bodySmall!.color,
-                    ),
-                  ),
-                ])),
+                ),
                 SizedBox(height: 50.h),
                 Pinput(
                   controller: phoneController,
@@ -162,7 +165,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                         border: Border(
                       bottom: BorderSide(
                         width: 1.0,
-                        color: Theme.of(context).highlightColor,
+                        color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.3),
                       ),
                     )),
                   ),
@@ -171,7 +174,6 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     if (value == null) {
                       return 'Opt';
                     }
-
                     return null;
                   },
                   hapticFeedbackType: HapticFeedbackType.lightImpact,

@@ -1,60 +1,52 @@
 import 'package:get/get.dart';
+import '../../data/models/packges_model.dart';
 
 class PaymentController extends GetxController {
-  bool isSwitched = false;
-  String verificationMethod = "Upgrade unlimited access";
-  bool isleftButtonActive = true;
-  List<Packages> packages = [
-    Packages(name: 'Monthly', price: '30', isSelected: true, savePercent: ''),
-    Packages(
-        name: 'Quarterly',
-        price: '25',
-        isSelected: false,
-        savePercent: 'Save up to 25%'),
-    Packages(
-        name: 'Yearly',
-        price: '20',
-        isSelected: false,
-        savePercent: 'Save up to 27%'),
-  ];
+  final RxBool _isSwitched = false.obs;
+  final RxString _verificationMethod = 'Upgrade unlimited access'.obs;
+  final RxBool _isleftButtonActive = true.obs;
 
-  changeButtonState(bool value) {
-    isleftButtonActive = value;
-    update();
+  bool get isSwitched => _isSwitched.value;
+  bool get isleftButtonActive => _isleftButtonActive.value;
+  String get verificationMethod => _verificationMethod.value;
+
+  RxList<Packages> packages = <Packages>[
+    Packages(
+      name: 'Monthly',
+      price: '30',
+      isSelected: true,
+      savePercent: '',
+    ),
+    Packages(
+      name: 'Quarterly',
+      price: '25',
+      isSelected: false,
+      savePercent: 'Save up to 25%',
+    ),
+    Packages(
+      name: 'Yearly',
+      price: '20',
+      isSelected: false,
+      savePercent: 'Save up to 27%',
+    ),
+  ].obs;
+
+  void changeButtonState(bool value) {
+    _isleftButtonActive.value = value;
   }
 
   void selectPackage(int index) {
     for (int i = 0; i < packages.length; i++) {
-      if (i == index) {
-        packages[i].isSelected = true;
-      } else {
-        packages[i].isSelected = false;
-      }
+      packages[i].isSelected = i == index;
     }
-    update();
+    packages.refresh();
   }
 
   void switchValue(bool value) {
-    isSwitched = value;
-    update();
+    _isSwitched.value = value;
   }
 
   void changeVerificationMethod(String value) {
-    verificationMethod = value;
-    update();
+    _verificationMethod.value = value;
   }
-}
-
-class Packages {
-  String? name;
-  String? price;
-  bool? isSelected;
-  String? savePercent;
-
-  Packages({
-    this.name,
-    this.price,
-    this.isSelected,
-    this.savePercent,
-  });
 }

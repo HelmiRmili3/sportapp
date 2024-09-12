@@ -1,16 +1,16 @@
 import 'package:get/get.dart';
 
 class SecurityController extends GetxController {
-  bool isSwitched = false;
-  String verificationMethod = "whatsApp";
+  final RxBool _isSwitched = false.obs;
+  final RxString _verificationMethod = "whatsApp".obs;
+  bool get isSwitched => _isSwitched.value;
+  String get verificationMethod => _verificationMethod.value;
 
   void switchValue(bool value) {
-    isSwitched = value;
-    update();
+    _isSwitched.value = value;
   }
 
   void changeVerificationMethod(String value) {
-    verificationMethod = value;
-    update();
+    _verificationMethod.value = value;
   }
 }

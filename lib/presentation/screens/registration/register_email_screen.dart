@@ -84,7 +84,7 @@ class _RegistrationEmailScreenState extends State<RegistrationEmailScreen> {
                   controller: emailController,
                   hintText: S.of(context).yourEmail,
                   obsecure: false,
-                  onChanged: (value) => _updateFormState(),
+                  // onChanged: (value) => _updateFormState(),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter Email';

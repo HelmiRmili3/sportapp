@@ -62,8 +62,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               .push(AppRouteConstants.editProfileScreen);
                         },
                         child: Container(
-                          height: AppSizes.size40,
-                          width: AppSizes.size160 + 5,
+                          height: 40.h,
+                          width: 165.w,
                           decoration: BoxDecoration(
                             color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(10),
@@ -91,8 +91,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         padding: EdgeInsets.symmetric(
                             horizontal: 20.w, vertical: 2.h),
                         decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1.w, color: const Color(0xFFED1F1F),),),
+                          border: Border.all(
+                            width: 1.w,
+                            color: const Color(0xFFED1F1F),
+                          ),
+                        ),
                         child: Center(
                             child: Text(
                           "Not subscribed !",
@@ -119,9 +122,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Text(
                 "${S.of(context).hi} ,",
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.sp,
-                    color: Theme.of(context).textTheme.bodySmall!.color),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.sp,
+                  color: Theme.of(context).textTheme.bodySmall!.color,
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

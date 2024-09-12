@@ -33,6 +33,7 @@ class BonusScreen extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 16.sp,
+                      color: Theme.of(context).textTheme.bodySmall!.color,
                     ),
                   ),
                   30.verticalSpace,
@@ -44,9 +45,11 @@ class BonusScreen extends StatelessWidget {
                       Text(
                         "Y045KG",
                         style: TextStyle(
-                            height: 1.h,
-                            fontSize: 24.sp,
-                            fontWeight: FontWeight.w400),
+                          height: 1.h,
+                          fontSize: 24.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Theme.of(context).textTheme.bodySmall!.color,
+                        ),
                       ),
                       GestureDetector(
                         behavior: HitTestBehavior.opaque,
@@ -67,7 +70,7 @@ class BonusScreen extends StatelessWidget {
                     ],
                   ),
                   Divider(
-                    color: AppColors.black,
+                    color: Theme.of(context).textTheme.bodySmall!.color,
                     thickness: 1,
                   ),
                   90.verticalSpace,
@@ -119,14 +122,16 @@ class BonusScreen extends StatelessWidget {
                         GoRouter.of(context).pop();
                       },
                       child: Container(
-                        height: 35,
-                        width: 35,
+                        height: 35.h,
+                        width: 35.w,
                         decoration: BoxDecoration(
-                            shape: BoxShape.circle, color: AppColors.white),
-                        child: const Center(
+                          shape: BoxShape.circle,
+                          color: AppColors.white,
+                        ),
+                        child: Center(
                             child: Icon(
                           Icons.arrow_back_ios,
-                          size: 15,
+                          size: 15.sp,
                         )),
                       ),
                     ),

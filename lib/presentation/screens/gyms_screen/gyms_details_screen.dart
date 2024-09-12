@@ -10,6 +10,7 @@ import 'package:sportapp/presentation/screens/gyms_screen/widgets/costom_text_wi
 
 import '../../../core/routes/route_names.dart';
 import '../../../data/models/package_model.dart';
+import 'map_screen.dart';
 import 'widgets/costom_title_widget.dart';
 
 class GymDetailScreen extends StatefulWidget {
@@ -24,27 +25,33 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
   GoogleMapController? mapController;
 
   List<PackageModel> model = [
-    PackageModel(name: 'Monthly', pkg: [
-      '450 free Video call minutes',
-      'Chat with Coach',
-      'free Consultation',
-    ]),
-    PackageModel(name: 'Yearly', pkg: [
-      'Free Protien Shake daily',
-      '5000 free Video call minutes',
-      'free Consultation',
-    ]),
+    PackageModel(
+      name: 'Monthly',
+      pkg: [
+        '450 free Video call minutes',
+        'Chat with Coach',
+        'free Consultation',
+      ],
+    ),
+    PackageModel(
+      name: 'Yearly',
+      pkg: [
+        'Free Protien Shake daily',
+        '5000 free Video call minutes',
+        'free Consultation',
+      ],
+    ),
   ];
   @override
   Widget build(BuildContext context) {
     // GlobalKey<FormState> formState = GlobalKey<FormState>();
     // String googleApikey = "YOUR_GOOGLE_API_KEY";
     // CameraPosition? cameraPosition;
-    String startLocationDescription = "Destination Location";
+    // String startLocationDescription = "Destination Location";
     return Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         bottomNavigationBar: Container(
-          height: 120.h,
+          height: 150.h,
           decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(10)),
@@ -56,15 +63,13 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
                   S.of(context).tryItFor7Day,
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       color: Theme.of(context).textTheme.bodySmall!.color),
                 ),
               ),
               Container(
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
                 decoration: BoxDecoration(
                     color: AppColors.seGreen,
                     borderRadius: BorderRadius.circular(10)),
@@ -79,12 +84,12 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
                           color: Theme.of(context).primaryColor),
                       child: Icon(
                         Icons.sports_volleyball_rounded,
-                        size: 20,
+                        size: 20.sp,
                         color: Theme.of(context).textTheme.bodySmall!.color,
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      padding: EdgeInsets.symmetric(horizontal: 8.0.w),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -111,19 +116,22 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
           elevation: 0,
           leading: GestureDetector(
             onTap: () {
-              context.go(AppRouteConstants.dashboardScreen, extra: 4);
+              context.go(
+                AppRouteConstants.dashboardScreen,
+                extra: 4,
+              );
             },
             child: Container(
-              margin: const EdgeInsets.all(10),
+              margin: EdgeInsets.all(10.h),
               height: 5.h,
               width: 5.w,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
                   color: AppColors.seGreen),
-              child: const Center(
+              child: Center(
                   child: Icon(
                 Icons.arrow_back_ios,
-                size: 15,
+                size: 15.sp,
               )),
             ),
           ),
@@ -145,8 +153,8 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
                   fit: BoxFit.fill,
                 ),
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -154,7 +162,7 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
                   Text(
                     S.of(context).nameGyms,
                     style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context).textTheme.bodySmall!.color),
                   ),
@@ -167,10 +175,10 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
                       Text(
                         '233 Km',
                         style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color:
-                                Theme.of(context).textTheme.bodySmall!.color),
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Theme.of(context).textTheme.bodySmall!.color,
+                        ),
                       ),
                     ],
                   ),
@@ -180,7 +188,7 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
               Text(
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries',
                 style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 14.sp,
                     color: Theme.of(context).textTheme.bodySmall!.color,
                     fontWeight: FontWeight.w300),
               ),
@@ -188,43 +196,62 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
               CostomTitleWidget(title: 'Location'),
               SizedBox(height: 10.h),
               Center(
-                child: Container(
-                  height: 150.h,
-                  width: 300.w,
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(30)),
-                  child: GoogleMap(
-                    initialCameraPosition: CameraPosition(
-                      target: LatLng(
-                        homeController.lat,
-                        homeController.long,
-                      ),
-                      zoom: 15,
+                child: GestureDetector(
+                  onTap: () {
+                    // context.go(
+                    //   AppRouteConstants.mapScreen,
+                    //   extra: 4,
+                    // );
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MapScreen(),
+                        ));
+                  },
+                  child: Container(
+                    height: 150.h,
+                    width: 300.w,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        borderRadius: BorderRadius.circular(30)),
+                    child: Container(
+                      child: Image.network(
+                          fit: BoxFit.cover,
+                          'https://media.istockphoto.com/id/1308342065/vector/folded-location-map-with-marker-city-map-with-pin-pointer-gps-navigation-map-with-city.jpg?s=612x612&w=0&k=20&c=E9DP4dIwSdwaveNwcYU2LzBeKuBoKLa7nsTxTWDHObw='),
                     ),
-                    onMapCreated: (controller) {
-                      setState(() {
-                        mapController = controller;
-                      });
-                    },
-                    markers: {
-                      Marker(
-                        markerId: const MarkerId("startLocation"),
-                        position: LatLng(
-                          homeController.lat,
-                          homeController.long,
-                        ),
-                        infoWindow: InfoWindow(
-                          title: startLocationDescription,
-                        ),
-                      ),
-                    },
-                    onTap: (latLng) {
-                      homeController.changeLatAdnLong(
-                        latitude: latLng.latitude.toString(),
-                        longitude: latLng.longitude.toString(),
-                      );
-                    },
+                    //   child: GoogleMap(
+                    //     initialCameraPosition: CameraPosition(
+                    //       target: LatLng(
+                    //         homeController.lat,
+                    //         homeController.long,
+                    //       ),
+                    //       zoom: 15,
+                    //     ),
+                    //     onMapCreated: (controller) {
+                    //       setState(() {
+                    //         mapController = controller;
+                    //       });
+                    //     },
+                    //     markers: {
+                    //       Marker(
+                    //         markerId: const MarkerId("startLocation"),
+                    //         position: LatLng(
+                    //           homeController.lat,
+                    //           homeController.long,
+                    //         ),
+                    //         infoWindow: InfoWindow(
+                    //           title: startLocationDescription,
+                    //         ),
+                    //       ),
+                    //     },
+                    //     onTap: (latLng) {
+                    //       homeController.changeLatAdnLong(
+                    //         latitude: latLng.latitude.toString(),
+                    //         longitude: latLng.longitude.toString(),
+                    //       );
+                    //     },
+                    //   ),
+                    // ),
                   ),
                 ),
               ),
@@ -268,24 +295,27 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
                   itemCount: model.length,
                   itemBuilder: (context, index) {
                     return Container(
-                      margin: const EdgeInsets.all(10),
+                      margin: EdgeInsets.all(10.h),
                       width: 300.w,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: AppColors.seGreen),
                       child: Column(
                         children: [
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10.h),
                           Text(
                             model[index].name,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16.sp),
                           ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10.h),
                           for (var coachName in model[index].pkg)
                             Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 5, right: 5, top: 5),
+                              padding: EdgeInsets.only(
+                                left: 5.w,
+                                right: 5.w,
+                                top: 5.h,
+                              ),
                               child: Row(
                                 children: [
                                   const Icon(Icons.check),
@@ -293,7 +323,7 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
                                 ],
                               ),
                             ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10.h),
                           Container(
                             height: 35.h,
                             decoration: BoxDecoration(
