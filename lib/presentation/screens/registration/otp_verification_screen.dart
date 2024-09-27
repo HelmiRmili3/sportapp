@@ -27,7 +27,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   bool _isValid = false;
   final _formKey = GlobalKey<FormState>();
   void _updateFormState() {
-    debugPrint('on competed function called');
+    // debugPrint('on competed function called');
     setState(() {
       _isValid = _formKey.currentState?.validate() ?? false;
     });
@@ -165,7 +165,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                         border: Border(
                       bottom: BorderSide(
                         width: 1.0,
-                        color: Theme.of(context).textTheme.bodySmall!.color!.withOpacity(.3),
+                        color: Theme.of(context)
+                            .textTheme
+                            .bodySmall!
+                            .color!
+                            .withOpacity(.3),
                       ),
                     )),
                   ),

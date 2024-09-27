@@ -382,7 +382,7 @@ class _BreakScreenState extends State<BreakScreen> {
                                 ])),
                             SizedBox(height: 20.h),
                             AuthButton(
-                                text: 'Je veux 15 % de réduction',
+                                text: 'Je veux 15 % de réduction',
                                 fontcolor: AppColors.black,
                                 backgroundcolor: AppColors.seGreen,
                                 onTap: () {}),

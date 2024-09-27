@@ -21,16 +21,15 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   bool _isValid = false;
   final _formKey = GlobalKey<FormState>();
   void _updateFormState() {
-    // Step 3
     setState(() {
-      _isValid = _formKey.currentState?.validate() ?? false; // Step 5
+      _isValid = _formKey.currentState?.validate() ?? false;
     });
   }
 
   @override
   void initState() {
     super.initState();
-    emailController.addListener(_updateFormState); // Step 4
+    emailController.addListener(_updateFormState);
   }
 
   @override

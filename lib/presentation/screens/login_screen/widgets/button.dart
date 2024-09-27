@@ -25,11 +25,12 @@ class AuthButton extends StatelessWidget {
         decoration: BoxDecoration(
             color: backgroundcolor, borderRadius: BorderRadius.circular(30)),
         child: Center(
-            child: Text(
-          textAlign: TextAlign.center,
-          text,
-          style: TextStyle(fontWeight: FontWeight.bold, color: fontcolor),
-        )),
+          child: Text(
+            textAlign: TextAlign.center,
+            text,
+            style: TextStyle(fontWeight: FontWeight.bold, color: fontcolor),
+          ),
+        ),
       ),
     );
   }

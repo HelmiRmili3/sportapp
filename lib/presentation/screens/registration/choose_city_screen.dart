@@ -242,7 +242,6 @@ class _ChooseCityScreenState extends State<ChooseCityScreen> {
     );
   }
 
-// Function to filter cities based on search text
   List<String> get filteredCities => allCities
       .where((city) => city.toLowerCase().contains(_searchText.toLowerCase()))
       .toList();

@@ -62,7 +62,7 @@ class _AppointmentsState extends State<Appointments> {
                 ),
               ),
             ),
-             SizedBox(height: 20.h),
+            SizedBox(height: 20.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -139,9 +139,6 @@ class _AppointmentsState extends State<Appointments> {
                       Tab(text: 'Past'),
                       Tab(text: 'Upcoming'),
                     ],
-                    // indicator: BoxDecoration(
-                    //   color: Theme.of(context).highlightColor,
-                    // ),
                     labelColor: Theme.of(context).splashColor,
                     unselectedLabelColor: Theme.of(context).cardColor,
                     indicatorSize: TabBarIndicatorSize.values.first,

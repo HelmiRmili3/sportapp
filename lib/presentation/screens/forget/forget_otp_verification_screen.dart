@@ -26,7 +26,7 @@ class _ForgetOtpVerificationScreenState
   bool _isValid = false;
   final _formKey = GlobalKey<FormState>();
   void _updateFormState() {
-    debugPrint('on competed function called');
+    // debugPrint('on competed function called');
     setState(() {
       _isValid = _formKey.currentState?.validate() ?? false;
     });
@@ -138,9 +138,8 @@ class _ForgetOtpVerificationScreenState
                         color: Colors.grey.withOpacity(0.3),
                         border: Border(
                           bottom: BorderSide(
-                            width: 1.0, // Adjust the width of the border line
-                            color: Theme.of(context)
-                                .highlightColor, // Adjust the color of the border line
+                            width: 1.0,
+                            color: Theme.of(context).highlightColor,
                           ),
                         )),
                   ),
@@ -153,11 +152,11 @@ class _ForgetOtpVerificationScreenState
                   },
                   hapticFeedbackType: HapticFeedbackType.lightImpact,
                   onCompleted: (pin) {
-                    debugPrint('onCompleted: $pin');
+                    // debugPrint('onCompleted: $pin');
                     if (pin.length >= 4) _updateFormState();
                   },
                   onChanged: (value) {
-                    debugPrint('onChanged: ${value.length}');
+                    // debugPrint('onChanged: ${value.length}');
                   },
                 ),
                 SizedBox(height: 50.h),

@@ -176,6 +176,12 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
     return AppBar(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       centerTitle: true,
+      title: Text(
+        'Coach Details',
+        style: TextStyle(
+          color: Theme.of(context).textTheme.bodySmall!.color,
+        ),
+      ),
       elevation: 0,
       leading: GestureDetector(
         onTap: () {

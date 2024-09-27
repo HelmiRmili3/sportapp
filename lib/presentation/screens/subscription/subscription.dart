@@ -150,8 +150,6 @@ class _SubscriptionPackagesScreenState
                           child: Center(
                               child: Text(
                             "Our most popular subscription",
-                            // S.of(context)
-                            //     .our_most_popular_subscription,
                             style: TextStyle(
                               fontSize: 10.sp,
                               fontWeight: FontWeight.w800,
@@ -199,7 +197,7 @@ class _SubscriptionPackagesScreenState
                                 ),
                               ),
                               TextSpan(
-                                text: "/Mois",
+                                text: S.of(context).itIsPaidMonthly,
                                 style: TextStyle(
                                   color: AppColors.white,
                                   fontSize: 8.sp,
@@ -218,7 +216,8 @@ class _SubscriptionPackagesScreenState
                                       const Color(0xFF52CB5E).withOpacity(0.1)),
                               child: Center(
                                   child: Text(
-                                "save 200 TND per year",
+                                S.of(context).save200TNDPerYear,
+                                // "save 200 TND per year",
                                 style: TextStyle(
                                   fontFamily: 'ClashDisplay',
                                   fontSize: 6.sp,
@@ -261,7 +260,8 @@ class _SubscriptionPackagesScreenState
                   5.horizontalSpace,
                   Expanded(
                     child: Text(
-                      "Gift discount when you invite friend your next month",
+                      S.of(context).giftDiscountNextMonth,
+                      // "Gift discount when you invite friend your next month",
                       // S.of(context)
                       //     .gift_discount_when_you_invite_friend_your_next_month,
                       style: TextStyle(

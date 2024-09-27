@@ -10,19 +10,20 @@ BottomBarItem buildBottomBarItem({
   required BuildContext context,
 }) {
   return BottomBarItem(
-      inActiveItem: Icon(
-        icon,
-        color: Colors.blueGrey,
+    inActiveItem: Icon(
+      icon,
+      color: Colors.blueGrey,
+    ),
+    activeItem: Icon(
+      icon,
+      color: AppColors.white,
+    ),
+    itemLabelWidget: Text(
+      label,
+      style: TextStyle(
+        color: Theme.of(context).indicatorColor,
+        fontSize: 10.sp,
       ),
-      activeItem: Icon(
-        icon,
-        color: AppColors.white,
-      ),
-      itemLabelWidget: Text(
-        label,
-        style: TextStyle(
-          color: Theme.of(context).indicatorColor,
-          fontSize: 10.sp,
-        ),
-      ));
+    ),
+  );
 }

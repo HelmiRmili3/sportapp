@@ -98,7 +98,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         child: Center(
                             child: Text(
-                          "Not subscribed !",
+                          S.of(context).notSubscribed,
                           style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w300,
@@ -282,18 +282,18 @@ class LanguageDropDown extends StatelessWidget {
           );
         }
       },
-      items: const [
+      items: [
         DropdownMenuItem(
-          value: Locale('fr', 'FR'),
-          child: Text('French'),
+          value: const Locale('fr', 'FR'),
+          child: Text(S.of(context).french),
         ),
         DropdownMenuItem(
-          value: Locale('en', 'US'),
-          child: Text('English'),
+          value: const Locale('en', 'US'),
+          child: Text(S.of(context).english),
         ),
         DropdownMenuItem(
-          value: Locale('ar', 'SA'),
-          child: Text('Arabic'),
+          value: const Locale('ar', 'SA'),
+          child: Text(S.of(context).arabic),
         ),
       ],
     );

@@ -68,39 +68,30 @@ class _GymsScreenState extends State<GymsScreen> {
                                 Theme.of(context).textTheme.bodySmall!.color),
                         decoration: InputDecoration(
                           filled: true,
-                          // Makes the background color visible
                           fillColor: Theme.of(context).primaryColor,
-                          // Set background color to white
                           contentPadding:
                               const EdgeInsets.symmetric(horizontal: 16.0),
-                          // Add padding
                           enabledBorder: OutlineInputBorder(
-                            // Define a border without color
                             borderRadius: BorderRadius.circular(40.0),
-                            // Set rounded corners
                             borderSide: BorderSide.none, // Remove border color
                           ),
                           focusedBorder: OutlineInputBorder(
-                            // Define green border for focus
                             borderRadius: BorderRadius.circular(40.0),
                             borderSide: BorderSide(
                                 color: Theme.of(context).primaryColor,
-                                width: 2.0), // Green border
+                                width: 2.0),
                           ),
                           prefixIcon: Icon(Icons.search,
                               color:
                                   Theme.of(context).textTheme.bodySmall!.color),
-                          // Add prefix icon
                           suffixIcon: Container(
                             padding: const EdgeInsets.all(10),
                             child: SvgPicture.asset(
                               'assets/Images/map.svg',
-                              // ignore: deprecated_member_use
                               color:
                                   Theme.of(context).textTheme.bodySmall!.color,
-                              // semanticsLabel: 'Acme Logo'
                             ),
-                          ), // Add suffix icon
+                          ),
                         ),
                       ),
                     ),
@@ -152,10 +143,7 @@ class _GymsScreenState extends State<GymsScreen> {
                             width: 20,
                             color: index == 0
                                 ? Theme.of(context).splashColor
-                                : Theme.of(context)
-                                    .textTheme
-                                    .bodySmall!
-                                    .color, // Change the color as needed
+                                : Theme.of(context).textTheme.bodySmall!.color,
                           ),
                         ),
                         backgroundColor: Theme.of(context).primaryColor,
@@ -167,10 +155,7 @@ class _GymsScreenState extends State<GymsScreen> {
                         label: Text(
                           model[index].name,
                           style: TextStyle(
-                            color: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .color, // Change the color as needed
+                            color: Theme.of(context).textTheme.bodySmall!.color,
                           ),
                         ),
                       ),

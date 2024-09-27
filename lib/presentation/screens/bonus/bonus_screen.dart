@@ -75,12 +75,13 @@ class BonusScreen extends StatelessWidget {
                   ),
                   90.verticalSpace,
                   AuthButton(
-                      text: "Invite Friends",
-                      fontcolor: AppColors.black,
-                      backgroundcolor: AppColors.seGreen,
-                      onTap: () {
-                        bonusController.inviteFriend();
-                      }),
+                    text: "Invite Friends",
+                    fontcolor: AppColors.black,
+                    backgroundcolor: AppColors.seGreen,
+                    onTap: () {
+                      bonusController.inviteFriend();
+                    },
+                  ),
                   30.verticalSpace,
                 ],
               ),

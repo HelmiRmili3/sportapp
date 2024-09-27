@@ -8,14 +8,12 @@ class AuthTextField extends StatelessWidget {
   bool obsecure;
   Widget? suffixIcon;
   String? Function(String?)? validator;
-  // void Function(String)? onChanged;
   void Function()? ontap;
   TextEditingController? controller;
   AuthTextField({
     super.key,
     required this.controller,
     this.ontap,
-    // required this.onChanged,
     required this.hintText,
     required this.validator,
     required this.obsecure,
@@ -27,35 +25,26 @@ class AuthTextField extends StatelessWidget {
     return TextFormField(
       style: TextStyle(color: Theme.of(context).textTheme.bodySmall!.color),
       validator: validator,
-      // onChanged: onChanged,
       onTap: ontap,
       controller: controller,
       decoration: InputDecoration(
-          // fillColor: Theme.of(context).primaryColor,
-          // filled: true,
           hintText: hintText,
           hintStyle: TextStyle(
             fontWeight: FontWeight.w300,
             fontSize: 14,
-            // fontFamily: 'ClashDisplay',
             color: Theme.of(context).textTheme.bodySmall!.color,
           ),
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-                color: AppColors.seGreen), // Change line color when focused
+            borderSide: BorderSide(color: AppColors.seGreen),
           ),
           enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-                color: Theme.of(context)
-                    .highlightColor), // Change line color when not focused
+            borderSide: BorderSide(color: Theme.of(context).highlightColor),
           ),
           errorBorder: const UnderlineInputBorder(
-            borderSide:
-                BorderSide(color: Colors.red), // Change line color on error
+            borderSide: BorderSide(color: Colors.red),
           ),
           focusedErrorBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(
-                color: Colors.red), // Change line color when focused with error
+            borderSide: BorderSide(color: Colors.red),
           ),
           contentPadding: const EdgeInsets.only(bottom: 10),
           suffixIcon: suffixIcon),

@@ -219,7 +219,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       SizedBox(width: 10.w),
-                      // this is the the part that open the city model
                       GestureDetector(
                         onTap: () {
                           _openCityBottomSheet(context);
@@ -246,7 +245,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   SizedBox(height: 10.h),
-                  // this the part that have list of categorys
                   SizedBox(
                     height: 40.h,
                     child: ListView.builder(

@@ -44,10 +44,6 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    // GlobalKey<FormState> formState = GlobalKey<FormState>();
-    // String googleApikey = "YOUR_GOOGLE_API_KEY";
-    // CameraPosition? cameraPosition;
-    // String startLocationDescription = "Destination Location";
     return Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         bottomNavigationBar: Container(
@@ -114,6 +110,13 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           centerTitle: true,
           elevation: 0,
+          title: Text(
+            "Gym Details",
+            style: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).textTheme.bodySmall!.color),
+          ),
           leading: GestureDetector(
             onTap: () {
               context.go(

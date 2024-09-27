@@ -499,7 +499,7 @@ class PaymentScreen extends GetView<PaymentController> {
                   )),
               20.verticalSpace,
               _textWedgits(
-                "Tout en 1 ",
+                "Tout en 1 ",
                 context,
               ),
               _textWedgits(
@@ -511,7 +511,7 @@ class PaymentScreen extends GetView<PaymentController> {
                 context,
               ),
               _textWedgits(
-                "Vous pouvez annuler à tout moment ",
+                "Vous pouvez annuler à tout moment",
                 context,
               ),
             ]),

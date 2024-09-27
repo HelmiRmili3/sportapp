@@ -26,7 +26,7 @@ class PaymentScreen extends StatelessWidget {
               _buildExpansionTile(
                   'Puis-je annuler mon paiement ?',
                   '',
-                  'Notre politique de confidentialité régit également l\'utilisation du site (« www.App.tn ») ; veuillez lire attentivement la politique de confidentialité pour obtenir des informations importantes sur nos pratiques de confidentialité;',
+                  'Notre politique de confidentialité régit également l\'utilisation du site (« www.App.tn ») ; veuillez lire attentivement la politique de confidentialité pour obtenir des informations importantes sur nos pratiques de confidentialité',
                   context),
               const SizedBox(
                 height: 10,

@@ -81,7 +81,8 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                 icon: "assets/Images/donate-coin.png",
                 title: 'Pay in cash',
                 ontap: () {
-                  GoRouter.of(context).push('/payments');
+                  // GoRouter.of(context).push('/payments');
+                  _cashPaymentSheet();
                 },
               ),
             ],
@@ -441,6 +442,192 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
               },
             );
           },
+        );
+      },
+    );
+  }
+
+  void _cashPaymentSheet() {
+    showModalBottomSheet(
+      backgroundColor: Theme.of(context).primaryColor,
+      isScrollControlled: true,
+      context: context,
+      builder: (context) {
+        return Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: DraggableScrollableSheet(
+            // expand: false,
+            initialChildSize: 0.85,
+            minChildSize: 0.8,
+            maxChildSize: .9,
+
+            builder: (context, scrollController) {
+              return Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20.r),
+                      topRight: Radius.circular(20.r)),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  child: SingleChildScrollView(
+                    controller: scrollController,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 20.h, bottom: 10.h),
+                            child: Text(
+                              'Cash Payment',
+                              style: TextStyle(
+                                fontSize: 24.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .color,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10.h),
+                        TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Full Name',
+                            labelStyle: TextStyle(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .color),
+                            hintText: 'Enter your name',
+                            hintStyle: TextStyle(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .color),
+                            filled: true,
+                            fillColor: Theme.of(context).primaryColor,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20.h),
+                        TextField(
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            labelText: 'Phone Number',
+                            labelStyle: TextStyle(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .color),
+                            hintText: 'Enter your phone number',
+                            hintStyle: TextStyle(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .color),
+                            filled: true,
+                            fillColor: Theme.of(context).primaryColor,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20.h),
+
+                        // Address Field
+                        TextField(
+                          maxLines: 2,
+                          decoration: InputDecoration(
+                            labelText: 'Address',
+                            labelStyle: TextStyle(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .color),
+                            hintText: 'Enter your address',
+                            hintStyle: TextStyle(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .color),
+                            filled: true,
+                            fillColor: Theme.of(context).primaryColor,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20.h),
+
+                        // Total Amount
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10.h),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Total Amount',
+                                style: TextStyle(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall!
+                                      .color,
+                                ),
+                              ),
+                              Text(
+                                '\$120.00',
+                                style: TextStyle(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.seGreen,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 30.h),
+                        Center(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.seGreen,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 100.w,
+                                vertical: 15.h,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.r),
+                              ),
+                            ),
+                            onPressed: () {},
+                            child: Text(
+                              'Confirm Payment',
+                              style: TextStyle(
+                                fontSize: 18.sp,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .color,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20.h),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
         );
       },
     );

@@ -37,8 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
-        centerTitle: false,
-        // leading: BackButton(color: AppColors.seGreen),
+        centerTitle: true,
         title: Text(
           S.of(context).logIn,
           style: TextStyle(
@@ -106,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     if (connectivityController.isOfflineValue) {
                       showOfflineDialog(context);
                     } else if (_formKey.currentState!.validate()) {
-                      GoRouter.of(context).push(
+                      GoRouter.of(context).pushReplacementNamed(
                         AppRouteConstants.dashboardScreen,
                         extra: 0,
                       );

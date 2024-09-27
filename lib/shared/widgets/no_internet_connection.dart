@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../generated/l10n.dart';
+
 void showOfflineDialog(BuildContext context) {
   showDialog(
     context: context,
@@ -21,9 +23,9 @@ void showOfflineDialog(BuildContext context) {
               color: Colors.redAccent,
             ),
             const SizedBox(height: 20),
-            const Text(
-              'No Internet Connection',
-              style: TextStyle(
+            Text(
+              S.of(context).noInternetConnection,
+              style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
                 color: Colors.black87,
@@ -31,9 +33,9 @@ void showOfflineDialog(BuildContext context) {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 10),
-            const Text(
-              'Please check your connection and try again.',
-              style: TextStyle(
+            Text(
+              S.of(context).pleaseCheckYourConnection,
+              style: const TextStyle(
                 fontSize: 16,
                 color: Colors.black54,
               ),
@@ -52,9 +54,9 @@ void showOfflineDialog(BuildContext context) {
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
-              child: const Text(
-                'OK',
-                style: TextStyle(fontSize: 16, color: Colors.white),
+              child: Text(
+                S.of(context).ok,
+                style: const TextStyle(fontSize: 16, color: Colors.white),
               ),
             ),
           ],
