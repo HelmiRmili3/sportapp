@@ -300,10 +300,10 @@ class S {
     );
   }
 
-  /// `Your Email`
+  /// `Your email`
   String get yourEmail {
     return Intl.message(
-      'Your Email',
+      'Your email',
       name: 'yourEmail',
       desc: '',
       args: [],

@@ -15,4 +15,11 @@ class ApiService {
       url: AppUrls.users,
     );
   }
+  // GET USER DATA
+
+  // POST USER DATA
+
+  Future<Response> postUserData({var params}) {
+    return apiClient.post(url: AppUrls.users, params: params);
+  }
 }

@@ -24,7 +24,6 @@ class _SubscriptionPackagesScreenState
   var textValue = 'Switch is OFF';
 
   bool isDarkMode = false;
-  // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {

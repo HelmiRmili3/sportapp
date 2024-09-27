@@ -21,6 +21,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   bool obsecure = true;
   bool _isValid = false;
   final _formKey = GlobalKey<FormState>();
+
   void _updateFormState() {
     setState(() {
       _isValid = _formKey.currentState?.validate() ?? false;
@@ -54,13 +55,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             height: 5,
             width: 5,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: AppColors.seGreen),
+              borderRadius: BorderRadius.circular(50),
+              color: AppColors.seGreen,
+            ),
             child: const Center(
-                child: Icon(
-              Icons.arrow_back_ios,
-              size: 15,
-            )),
+              child: Icon(
+                Icons.arrow_back_ios,
+                size: 15,
+              ),
+            ),
           ),
         ),
         title: Text(
@@ -128,13 +131,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   cursorColor: AppColors.seGreen,
                   obscureText: obsecure,
                 ),
-                // AuthTextField(
-                //   controller: referralCodeController,
-                //   hintText: "Referral code",
-                //   obsecure: false,
-                //   // onChanged: (value) => _updateFormState(),
-
-                // ),
                 SizedBox(height: 50.h),
                 AuthButton(
                   fontcolor: _isValid

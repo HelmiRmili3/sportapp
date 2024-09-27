@@ -126,12 +126,12 @@ class _OnBoadingScreebState extends State<OnBoadingScreen> {
             effect: CustomizableEffect(
               dotDecoration: DotDecoration(
                 color: AppColors.black.withOpacity(.3),
-                width: 30,
+                width: 30.w,
                 borderRadius: BorderRadius.circular(10),
               ),
               activeDotDecoration: DotDecoration(
                 color: AppColors.seGreen,
-                width: 30,
+                width: 30.w,
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
@@ -148,15 +148,8 @@ class _OnBoadingScreebState extends State<OnBoadingScreen> {
             backgroundColor: AppColors.black,
             toggleColor: AppColors.seGreen,
             action: (_) {
-              GoRouter.of(context).pushNamed(AppRouteConstants.login);
-              // if (_currentPage < onBoadingData.length - 1) {
-              //   pageController.nextPage(
-              //     duration: const Duration(milliseconds: 300),
-              //     curve: Curves.easeInOut,
-              //   );
-              // } else {
-              //   continueMethod();
-              // }
+              GoRouter.of(context)
+                  .pushReplacementNamed(AppRouteConstants.login);
             },
             child: Padding(
               padding: EdgeInsets.only(left: 16.0.w),

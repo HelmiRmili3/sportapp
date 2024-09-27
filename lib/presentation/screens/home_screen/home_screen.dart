@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -92,6 +93,11 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  void _setMapStyle() async {
+    String style = await rootBundle.loadString('assets/map_style.json');
+    mapController?.setMapStyle(style);
+  }
+
   List<String> get filteredCities => allCities
       .where((city) => city.toLowerCase().contains(_searchText.toLowerCase()))
       .toList();
@@ -115,6 +121,8 @@ class _HomeScreenState extends State<HomeScreen> {
             onMapCreated: (controller) {
               setState(() {
                 mapController = controller;
+                _setMapStyle();
+
                 var firstLocation = homeController.pageViewModel.first;
                 var latLng = LatLng(
                   double.parse(firstLocation.lat.toString()),

@@ -57,6 +57,7 @@ dependencies:
   google_api_headers: any
   google_maps_webservice: any
   flutter_rating_bar: ^4.0.1
+  connectivity_plus: ^6.0.5
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -82,6 +83,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/Images/
+    - assets/map_style.json
   #   - images/a_dot_ham.jpeg
 
   fonts:

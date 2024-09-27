@@ -113,7 +113,6 @@ class PaymentScreen extends GetView<PaymentController> {
                         },
                         child: Obx(
                           () => Column(
-                            // Use Obx here to update each item individually
                             children: [
                               SizedBox(
                                 child: controller.packages[index].savePercent ==
@@ -208,51 +207,54 @@ class PaymentScreen extends GetView<PaymentController> {
                                     RichText(
                                       text: TextSpan(children: [
                                         TextSpan(
-                                            text: controller
-                                                    .packages[index].price ??
-                                                "",
-                                            style: TextStyle(
-                                                fontSize: 16.sp,
-                                                fontWeight: FontWeight.w700,
-                                                color: controller
-                                                            .packages[index]
-                                                            .isSelected ??
-                                                        false
-                                                    ? Theme.of(context)
-                                                        .textTheme
-                                                        .bodySmall!
-                                                        .color
-                                                    : Colors.grey,
-                                                height: 1.sp)),
+                                          text: controller
+                                                  .packages[index].price ??
+                                              "",
+                                          style: TextStyle(
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.w700,
+                                            color: controller.packages[index]
+                                                        .isSelected ??
+                                                    false
+                                                ? Theme.of(context)
+                                                    .textTheme
+                                                    .bodySmall!
+                                                    .color
+                                                : Colors.grey,
+                                            height: 1.sp,
+                                          ),
+                                        ),
                                         TextSpan(
-                                            text: "TND",
-                                            style: TextStyle(
-                                                fontSize: 8.sp,
-                                                fontWeight: FontWeight.w600,
-                                                color: controller
-                                                            .packages[index]
-                                                            .isSelected ??
-                                                        false
-                                                    ? Theme.of(context)
-                                                        .textTheme
-                                                        .bodySmall!
-                                                        .color
-                                                    : Colors.grey,
-                                                height: 1.sp)),
+                                          text: "TND",
+                                          style: TextStyle(
+                                            fontSize: 8.sp,
+                                            fontWeight: FontWeight.w600,
+                                            color: controller.packages[index]
+                                                        .isSelected ??
+                                                    false
+                                                ? Theme.of(context)
+                                                    .textTheme
+                                                    .bodySmall!
+                                                    .color
+                                                : Colors.grey,
+                                            height: 1.sp,
+                                          ),
+                                        ),
                                         TextSpan(
                                           text: "/month",
                                           style: TextStyle(
-                                              fontSize: 7.sp,
-                                              fontWeight: FontWeight.w500,
-                                              color: controller.packages[index]
-                                                          .isSelected ??
-                                                      false
-                                                  ? Theme.of(context)
-                                                      .textTheme
-                                                      .bodySmall!
-                                                      .color
-                                                  : Colors.grey,
-                                              height: 1.sp),
+                                            fontSize: 7.sp,
+                                            fontWeight: FontWeight.w500,
+                                            color: controller.packages[index]
+                                                        .isSelected ??
+                                                    false
+                                                ? Theme.of(context)
+                                                    .textTheme
+                                                    .bodySmall!
+                                                    .color
+                                                : Colors.grey,
+                                            height: 1.sp,
+                                          ),
                                         ),
                                       ]),
                                     ),
@@ -328,16 +330,25 @@ class PaymentScreen extends GetView<PaymentController> {
                     ),
                     20.verticalSpace,
                     _textWedgits(
-                        "Daily access for 30 days to 522 room", context),
-                    _textWedgits("10 day warranty", context),
-                    _textWedgits("interrupt anytime", context),
+                      "Daily access for 30 days to 522 room",
+                      context,
+                    ),
+                    _textWedgits(
+                      "10 day warranty",
+                      context,
+                    ),
+                    _textWedgits(
+                      "interrupt anytime",
+                      context,
+                    ),
                     10.verticalSpace,
                     AuthButton(
                       text: "Do you really want",
                       fontcolor: Colors.white,
                       backgroundcolor: const Color(0xFFFF6B62),
                       onTap: () {
-                        context.push(AppRouteConstants.securityScreenmob);
+                        GoRouter.of(context)
+                            .push(AppRouteConstants.securityScreenmob);
                       },
                     ),
                   ],
@@ -434,8 +445,7 @@ class PaymentScreen extends GetView<PaymentController> {
                           value: 'Upgrade unlimited access',
                           fillColor: WidgetStateProperty.all(AppColors.seGreen),
                           activeColor: AppColors.seGreen,
-                          groupValue: controller
-                              .verificationMethod, // Reactive groupValue
+                          groupValue: controller.verificationMethod,
                           onChanged: (String? value) {
                             controller.changeVerificationMethod(value!);
                           },
@@ -462,8 +472,7 @@ class PaymentScreen extends GetView<PaymentController> {
                           value: 'Upgrade more +50 sports center',
                           fillColor: WidgetStateProperty.all(AppColors.seGreen),
                           activeColor: AppColors.seGreen,
-                          groupValue: controller
-                              .verificationMethod, // Reactive groupValue
+                          groupValue: controller.verificationMethod,
                           onChanged: (String? value) {
                             controller.changeVerificationMethod(value!);
                           },
@@ -489,40 +498,24 @@ class PaymentScreen extends GetView<PaymentController> {
                     color: Theme.of(context).textTheme.bodySmall!.color,
                   )),
               20.verticalSpace,
-              _textWedgits("Tout en 1 ", context),
-              _textWedgits("Vous ne paierez qu'après les 7 jours ou 2 entrées ",
-                  context),
               _textWedgits(
-                  "L'abonnement améliore votre santé (mentale ,physique et Esprit )",
-                  context),
-              _textWedgits("Vous pouvez annuler à tout moment ", context),
+                "Tout en 1 ",
+                context,
+              ),
+              _textWedgits(
+                "Vous ne paierez qu'après les 7 jours ou 2 entrées ",
+                context,
+              ),
+              _textWedgits(
+                "L'abonnement améliore votre santé (mentale ,physique et Esprit )",
+                context,
+              ),
+              _textWedgits(
+                "Vous pouvez annuler à tout moment ",
+                context,
+              ),
             ]),
           )),
-    );
-  }
-
-  Column _textWedgitsStaticColor(String text) {
-    return Column(
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(Icons.check_circle, color: AppColors.seGreen),
-            10.horizontalSpace,
-            Expanded(
-              child: Text(
-                text,
-                style: TextStyle(
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                ),
-              ),
-            )
-          ],
-        ),
-        20.verticalSpace,
-      ],
     );
   }
 

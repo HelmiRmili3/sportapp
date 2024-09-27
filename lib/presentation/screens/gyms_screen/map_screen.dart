@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -19,6 +20,11 @@ class _MapScreenState extends State<MapScreen> {
   HomeController homeController = Get.find();
   GoogleMapController? mapController;
   String startLocationDescription = "Destination Location";
+
+  void _setMapStyle() async {
+    String style = await rootBundle.loadString('assets/map_style.json');
+    mapController?.setMapStyle(style);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +74,19 @@ class _MapScreenState extends State<MapScreen> {
         ),
         onMapCreated: (controller) {
           setState(() {
-            mapController = controller;
+            setState(() {
+              mapController = controller;
+              _setMapStyle();
+
+              var firstLocation = homeController.pageViewModel.first;
+              var latLng = LatLng(
+                double.parse(firstLocation.lat.toString()),
+                double.parse(firstLocation.long.toString()),
+              );
+              mapController?.animateCamera(
+                CameraUpdate.newLatLngZoom(latLng, 10),
+              );
+            });
           });
         },
         markers: {

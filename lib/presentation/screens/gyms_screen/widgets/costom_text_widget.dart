@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CostomTextWidget extends StatelessWidget {
-  String day;
-  CostomTextWidget({
+  final String day;
+  const CostomTextWidget({
     required this.day,
     super.key,
   });
@@ -12,9 +12,10 @@ class CostomTextWidget extends StatelessWidget {
     return Text(
       day,
       style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w300,
-          color: Theme.of(context).textTheme.bodySmall!.color),
+        fontSize: 16,
+        fontWeight: FontWeight.w300,
+        color: Theme.of(context).textTheme.bodySmall!.color,
+      ),
     );
   }
 }

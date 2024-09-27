@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CostomTitleWidget extends StatelessWidget {
-  String title;
-  CostomTitleWidget({
+  final String title;
+  const CostomTitleWidget({
     super.key,
     required this.title,
   });

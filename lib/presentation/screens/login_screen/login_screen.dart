@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:sportapp/core/app_colors.dart';
 import 'package:sportapp/generated/l10n.dart';
+import 'package:sportapp/presentation/controllers/connectivity_controller.dart';
 
 import '../../../core/routes/route_names.dart';
-
+import '../../../shared/widgets/no_internet_connection.dart';
 import '../../../utils/validators.dart';
 import 'widgets/button.dart';
 import 'widgets/text_filed.dart';
@@ -22,32 +24,23 @@ class _LoginScreenState extends State<LoginScreen> {
   bool obsecure = true;
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
+  final ConnectivityController connectivityController =
+      Get.put(ConnectivityController());
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         centerTitle: false,
-        leading: Container(
-          margin: const EdgeInsets.all(10),
-          height: 5,
-          width: 5,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              color: AppColors.seGreen),
-          child: const Center(
-              child: Icon(
-            Icons.arrow_back_ios,
-            size: 15,
-          )),
-        ),
+        // leading: BackButton(color: AppColors.seGreen),
         title: Text(
-          S.of(context).logout,
+          S.of(context).logIn,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18,
@@ -84,9 +77,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         obsecure = !obsecure;
                       });
                     },
-                    child: Icon(!obsecure
-                        ? Icons.visibility_outlined
-                        : Icons.visibility_off_outlined),
+                    child: Icon(
+                      !obsecure
+                          ? Icons.visibility_outlined
+                          : Icons.visibility_off_outlined,
+                    ),
                   ),
                 ),
                 SizedBox(height: 20.h),
@@ -108,7 +103,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   fontcolor: AppColors.black,
                   text: S.of(context).logIn,
                   onTap: () {
-                    if (_formKey.currentState!.validate()) {
+                    if (connectivityController.isOfflineValue) {
+                      showOfflineDialog(context);
+                    } else if (_formKey.currentState!.validate()) {
                       GoRouter.of(context).push(
                         AppRouteConstants.dashboardScreen,
                         extra: 0,
@@ -126,21 +123,25 @@ class _LoginScreenState extends State<LoginScreen> {
                       GoRouter.of(context).push(AppRouteConstants.registration);
                     },
                     child: RichText(
-                      text: TextSpan(children: [
-                        TextSpan(
-                          text: S.of(context).areYouNew,
-                          style: TextStyle(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: S.of(context).areYouNew,
+                            style: TextStyle(
                               color:
-                                  Theme.of(context).textTheme.bodySmall!.color),
-                        ),
-                        TextSpan(
-                          text: " ${S.of(context).createAnAccount}",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).textTheme.bodySmall!.color,
+                                  Theme.of(context).textTheme.bodySmall!.color,
+                            ),
                           ),
-                        ),
-                      ]),
+                          TextSpan(
+                            text: " ${S.of(context).createAnAccount}",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).textTheme.bodySmall!.color,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

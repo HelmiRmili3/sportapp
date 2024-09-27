@@ -193,7 +193,7 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
                     fontWeight: FontWeight.w300),
               ),
               SizedBox(height: 10.h),
-              CostomTitleWidget(title: 'Location'),
+              const CostomTitleWidget(title: 'Location'),
               SizedBox(height: 10.h),
               Center(
                 child: GestureDetector(
@@ -205,7 +205,7 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MapScreen(),
+                          builder: (context) => const MapScreen(),
                         ));
                   },
                   child: Container(
@@ -256,11 +256,11 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
                 ),
               ),
               SizedBox(height: 10.h),
-              CostomTitleWidget(title: "Programs"),
+              const CostomTitleWidget(title: "Programs"),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Column(
+                  const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CostomTextWidget(day: 'Monday'),
@@ -273,7 +273,7 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
                     ],
                   ),
                   SizedBox(height: 10.h),
-                  Column(
+                  const Column(
                     children: [
                       CostomTextWidget(day: '8:00am to 12:00pm'),
                       CostomTextWidget(day: '8:00am to 12:00pm'),
@@ -287,7 +287,7 @@ class _GymDetailScreenState extends State<GymDetailScreen> {
                 ],
               ),
               SizedBox(height: 10.h),
-              CostomTitleWidget(title: "Plans"),
+              const CostomTitleWidget(title: "Plans"),
               SizedBox(
                 height: 200,
                 child: ListView.builder(

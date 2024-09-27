@@ -69,12 +69,12 @@ class ProfileContainer extends StatelessWidget {
 }
 
 class ProfileContainerUpdated extends StatelessWidget {
-  String title;
-  String icon;
-  void Function()? ontap;
-  Color? color;
+  final String title;
+  final String icon;
+  final void Function()? ontap;
+  final Color? color;
 
-  ProfileContainerUpdated(
+  const ProfileContainerUpdated(
       {super.key,
       this.color,
       required this.ontap,

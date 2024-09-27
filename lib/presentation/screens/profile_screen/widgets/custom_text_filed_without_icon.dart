@@ -18,10 +18,10 @@ class CustomTextFieldWithoutIcon extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CustomTextFieldState createState() => _CustomTextFieldState();
+  CustomTextFieldState createState() => CustomTextFieldState();
 }
 
-class _CustomTextFieldState extends State<CustomTextFieldWithoutIcon> {
+class CustomTextFieldState extends State<CustomTextFieldWithoutIcon> {
   @override
   Widget build(BuildContext context) {
     final textColor = widget.readOnly

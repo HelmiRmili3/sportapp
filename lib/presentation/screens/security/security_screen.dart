@@ -17,7 +17,7 @@ class SecurityScreen extends StatelessWidget {
     SecurityController controller = Get.put(SecurityController());
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(top: 40.0.h, right: 24.w, left: 24.w),
+        padding: EdgeInsets.only(top: 40.0.h, right: 24.w, left: 24.w,),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,11 +141,14 @@ class SecurityScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                   border: UnderlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.black)),
+                    borderSide: BorderSide(color: AppColors.black),
+                  ),
                   focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.black)),
+                    borderSide: BorderSide(color: AppColors.black),
+                  ),
                   enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.black)),
+                    borderSide: BorderSide(color: AppColors.black),
+                  ),
                   enabled: true,
                 ),
                 countrySelectorNavigator:
@@ -166,13 +169,14 @@ class SecurityScreen extends StatelessWidget {
               ),
               40.verticalSpace,
               AuthButton(
-                  text: "Send Code",
-                  fontcolor: AppColors.white,
-                  backgroundcolor: AppColors.seGreen,
-                  onTap: () {
-                    GoRouter.of(context)
-                        .push(AppRouteConstants.securityVerification);
-                  })
+                text: "Send Code",
+                fontcolor: AppColors.white,
+                backgroundcolor: AppColors.seGreen,
+                onTap: () {
+                  GoRouter.of(context)
+                      .push(AppRouteConstants.securityVerification);
+                },
+              )
             ],
           ),
         ),

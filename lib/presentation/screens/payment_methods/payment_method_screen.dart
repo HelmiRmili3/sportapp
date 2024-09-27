@@ -46,7 +46,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
           ),
         ),
         title: Text(
-          '${S.of(context).paymentMethod} ',
+          S.of(context).paymentMethod,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18.sp,
@@ -80,7 +80,9 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
               ProfileContainerUpdated(
                 icon: "assets/Images/donate-coin.png",
                 title: 'Pay in cash',
-                ontap: () {},
+                ontap: () {
+                  GoRouter.of(context).push('/payments');
+                },
               ),
             ],
           ),

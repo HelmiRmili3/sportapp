@@ -4,26 +4,7 @@ import '../../services/api_service.dart';
 
 class HomeController extends GetxController {
   ApiService apiService = ApiService();
-  // GoogleMapController? mapController;
-  // String searchText = '';
-  // String googleApikey = "YOUR_GOOGLE_API_KEY";
 
-  // String startLocationDescription = "Destination Location";
-  // List<String> allCities = [
-  //   'Paris',
-  //   'Marseille',
-  //   'Lyon',
-  //   'Toulouse',
-  //   'Bordeaux',
-  //   'Nice',
-  //   // ... Add more cities
-  // ];
-
-  // List<String> get filteredCities => allCities
-  //     .where((city) => city.toLowerCase().contains(searchText.toLowerCase()))
-  //     .toList();
-
-  // // Observable variables
   RxBool isSliderone = false.obs;
 
   RxList<PageViewModel> pageViewModel = [
@@ -32,14 +13,6 @@ class HomeController extends GetxController {
     PageViewModel(lat: "36.7975", long: " 10.1658"), //TUNIS
     PageViewModel(lat: "33.8814", long: "10.0983"), // GABES
   ].obs;
-
-  // List<RoomModel> model = [
-  //   RoomModel(image: 'assets/Images/pro.svg', name: 'Pro'),
-  //   RoomModel(image: 'assets/Images/apptitide.svg', name: 'Aptitude'),
-  //   RoomModel(image: 'assets/Images/cardio.svg', name: 'Cardio'),
-  //   RoomModel(image: 'assets/Images/aerobique.svg', name: 'Aérobique'),
-  // ];
-  // Use RxDouble for reactive latitude and longitude
   RxDouble _lat = 35.821430.obs;
   RxDouble _long = 10.634422.obs;
 

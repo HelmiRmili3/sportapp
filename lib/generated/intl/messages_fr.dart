@@ -262,7 +262,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Vous recevrez un code de vérification par SMS"),
         "yourCurrentSubRemainUntil": MessageLookupByLibrary.simpleMessage(
             "Votre abonnement actuel restera valide jusqu\'au 14/04/2024"),
-        "yourEmail": MessageLookupByLibrary.simpleMessage("Votre Email"),
+        "yourEmail": MessageLookupByLibrary.simpleMessage("Votre email"),
         "yourSubscription":
             MessageLookupByLibrary.simpleMessage("Votre abonnement")
       };

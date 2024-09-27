@@ -5,10 +5,10 @@ class StepOne extends StatefulWidget {
   const StepOne({super.key});
 
   @override
-  _StepOneState createState() => _StepOneState();
+  StepOneState createState() => StepOneState();
 }
 
-class _StepOneState extends State<StepOne> {
+class StepOneState extends State<StepOne> {
   String _selectedOption = 'myself'; // default selected option
 
   @override

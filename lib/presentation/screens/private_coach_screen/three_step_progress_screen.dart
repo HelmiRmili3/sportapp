@@ -85,7 +85,7 @@ class ThreeStepProgressScreenState extends State<ThreeStepProgressScreen> {
                         _currentStep += 1;
                       });
                     } else {
-                      GoRouter.of(context).pushNamed('/payment2');
+                      GoRouter.of(context).pushNamed('/appointmentsScreen');
                     }
                   },
                   style: ElevatedButton.styleFrom(

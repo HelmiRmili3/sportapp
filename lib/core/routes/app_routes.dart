@@ -813,25 +813,25 @@ class AppRouter {
             );
           },
         ),
-        // GoRoute(
-        //   name: AppRouteConstants.payments,
-        //   path: AppRouteConstants.payments,
-        //   pageBuilder: (context, state) {
-        //     saveLocalData(screenName: state.name!);
-        //     return CustomTransitionPage(
-        //       child: const PaymentMethod(),
-        //       transitionDuration: const Duration(seconds: 0),
-        //       transitionsBuilder:
-        //           (context, animation, secondaryAnimation, child) {
-        //         return FadeTransition(
-        //           opacity: CurveTween(curve: Curves.easeInOutCirc)
-        //               .animate(animation),
-        //           child: child,
-        //         );
-        //       },
-        //     );
-        //   },
-        // ),
+        GoRoute(
+          name: AppRouteConstants.payments,
+          path: AppRouteConstants.payments,
+          pageBuilder: (context, state) {
+            saveLocalData(screenName: state.name!);
+            return CustomTransitionPage(
+              child: const PaymentMethodScreen(),
+              transitionDuration: const Duration(seconds: 0),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
       ],
     );
   }
