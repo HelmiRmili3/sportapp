@@ -41,7 +41,7 @@ class _ContactScreenState extends State<ContactScreen> {
           ),
         ),
         title: Text(
-          'Contact',
+          S.of(context).contact,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18,

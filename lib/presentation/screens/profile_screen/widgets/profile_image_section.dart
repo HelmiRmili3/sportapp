@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/app_colors.dart';
 import '../../../../core/app_sizes.dart';
+import '../../../../generated/l10n.dart';
 
 class ProfileImageSection extends StatelessWidget {
   final VoidCallback onBackPressed;
@@ -54,7 +55,7 @@ class ProfileImageSection extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 6.0),
                     child: Text(
-                      'Edit Profile',
+                      S.of(context).editProfile,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 15.sp,

@@ -168,7 +168,8 @@ class _SettingScreenState extends State<SettingScreen> {
                                 Text(
                                   S.of(context).accessTo132RoomToTunisie,
                                   style: const TextStyle(
-                                      fontWeight: FontWeight.w200),
+                                    fontWeight: FontWeight.w200,
+                                  ),
                                 )
                               ],
                             ),

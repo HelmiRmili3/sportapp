@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
+import '../../../generated/l10n.dart';
 import 'access_autorise.dart';
 import 'access_refuse.dart';
 import 'check_in_deja_fait.dart';
@@ -77,8 +78,8 @@ class _QrCodeScannerScreenState extends State<QrCodeScannerScreen> {
                 children: [
                   SizedBox(height: 20.h),
                   Text(
-                    "Do you want to the gym",
-                    // S.of(context).do_you_want_t_go_to_gym,
+                    S.of(context).doYouWantGym,
+                    // "Do you want to the gym",
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -87,7 +88,7 @@ class _QrCodeScannerScreenState extends State<QrCodeScannerScreen> {
                   ),
                   SizedBox(height: 10.h),
                   Text(
-                    "to register",
+                    S.of(context).toRegister,
                     // S.of(context).to_register,
                     style: TextStyle(
                         color: Colors.white,
@@ -96,7 +97,7 @@ class _QrCodeScannerScreenState extends State<QrCodeScannerScreen> {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    "Complete the authentication",
+                    S.of(context).completeAuth,
                     // S.of(context).complete_the_authentication,
                     style: TextStyle(
                         color: Colors.white,
@@ -123,7 +124,7 @@ class _QrCodeScannerScreenState extends State<QrCodeScannerScreen> {
                     height: 20.sp,
                   ),
                   Text(
-                    "After authentication scan qr code etc",
+                    S.of(context).afterAuthQR,
                     // S.of(context).after_authentication_scan_qr_code_at_etc,
                     style: TextStyle(
                         color: Colors.white,
@@ -132,7 +133,7 @@ class _QrCodeScannerScreenState extends State<QrCodeScannerScreen> {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
-                    height: 100.h,
+                    height: 50.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -156,7 +157,7 @@ class _QrCodeScannerScreenState extends State<QrCodeScannerScreen> {
                               );
                             },
                             child: Text(
-                              "See the rooms",
+                              S.of(context).seeRooms,
                               // S.of(context).see_the_rooms,
                               style: TextStyle(
                                   color: Colors.white,
@@ -175,7 +176,7 @@ class _QrCodeScannerScreenState extends State<QrCodeScannerScreen> {
                             size: 24.sp,
                           ),
                           Text(
-                            "lantern",
+                            S.of(context).lantern,
                             // S.of(context).lantern,
                             style: TextStyle(
                                 color: Colors.white,

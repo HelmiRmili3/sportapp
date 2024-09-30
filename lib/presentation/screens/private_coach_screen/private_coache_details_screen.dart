@@ -7,6 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../core/app_colors.dart';
 import '../../../data/models/appointment_model.dart';
 import '../../../data/models/coach_model.dart';
+import '../../../generated/l10n.dart';
 import 'three_step_progress_screen.dart';
 
 class CoachDetailScreen extends StatefulWidget {
@@ -58,6 +59,7 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
         return AlertDialog(
           backgroundColor: Theme.of(context).primaryColor,
           title: Text(
+            // S.of(context).a,
             'Add a Review',
             style:
                 TextStyle(color: Theme.of(context).textTheme.bodySmall!.color),
@@ -119,7 +121,8 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
                 }
               },
               child: Text(
-                'Submit',
+                S.of(context).submit,
+                // 'Submit',
                 style: TextStyle(
                     color: Theme.of(context).textTheme.bodySmall!.color),
               ),
@@ -129,6 +132,7 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
                 Navigator.of(context).pop();
               },
               child: Text(
+                // S.of(context).ca,
                 'Cancel',
                 style: TextStyle(
                     color: Theme.of(context).textTheme.bodySmall!.color),
@@ -177,7 +181,8 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       centerTitle: true,
       title: Text(
-        'Coach Details',
+        S.of(context).coachDetails,
+        // 'Coach Details',
         style: TextStyle(
           color: Theme.of(context).textTheme.bodySmall!.color,
         ),
@@ -225,7 +230,8 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
           ),
           const SizedBox(height: 5),
           Text(
-            "Coach",
+            S.of(context).coach,
+            // "Coach",
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
@@ -281,9 +287,9 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 10),
-                _buildDetailRow('Tarif', widget.modelData.rate),
+                _buildDetailRow(S.of(context).rate, widget.modelData.rate),
                 const SizedBox(height: 10),
-                _buildDetailRow('Ville', widget.modelData.city),
+                _buildDetailRow(S.of(context).city, widget.modelData.city),
                 const SizedBox(height: 10),
               ],
             ),
@@ -359,7 +365,7 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Availability',
+            S.of(context).availability,
             style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -450,7 +456,7 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Avis',
+          S.of(context).reviews,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
@@ -463,10 +469,8 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
-            // Parse the rating as a double
             double rating =
                 double.tryParse(reviews[index]['rating'] ?? '0') ?? 0;
-
             return Card(
               color: Theme.of(context).primaryColor,
               elevation: 2,
@@ -571,12 +575,12 @@ class _CoachDetailScreenState extends State<CoachDetailScreen> {
                   style: TextStyle(
                     color: Theme.of(context).textTheme.bodySmall!.color!,
                   ),
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintMaxLines: 3,
-                    hintText: "Enter your review",
+                    hintText: S.of(context).enterReview, //"Enter your review"
                     border: InputBorder.none,
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 15),
                   ),
                 ),
               ),

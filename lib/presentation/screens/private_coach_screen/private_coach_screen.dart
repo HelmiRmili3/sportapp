@@ -8,6 +8,7 @@ import 'package:sportapp/core/app_colors.dart';
 import '../../../core/routes/route_names.dart';
 import '../../../data/models/appointment_model.dart';
 import '../../../data/models/coach_model.dart';
+import '../../../generated/l10n.dart';
 
 class PrivateCoach extends StatefulWidget {
   const PrivateCoach({super.key});
@@ -62,7 +63,7 @@ class _PrivateCoachState extends State<PrivateCoach> {
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, top: 55),
               child: Text(
-                'Liste des entraîneurs',
+                S.of(context).listOfCoaches,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -262,7 +263,7 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'Ville ',
+                                              S.of(context).city,
                                               style: TextStyle(
                                                 color: Colors.grey.shade500,
                                                 fontSize: 14.sp,

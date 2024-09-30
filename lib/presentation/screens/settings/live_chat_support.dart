@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportapp/core/app_colors.dart';
 
+import '../../../generated/l10n.dart';
 import 'widgets/message_bubble.dart';
 
 class LiveSupportChat extends StatefulWidget {
@@ -87,7 +88,7 @@ class LiveSupportChatState extends State<LiveSupportChat> {
                           hintStyle: TextStyle(
                               color: Theme.of(context).highlightColor),
                           hintText: 'Type your message...',
-                          border: InputBorder.none, // Remove TextField border
+                          border: InputBorder.none,
                         ),
                       ),
                     ),

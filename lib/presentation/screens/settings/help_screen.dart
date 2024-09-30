@@ -86,7 +86,7 @@ class _HelpScreenState extends State<HelpScreen> {
               ),
               ProfileContainer(
                 icon: Icons.send_outlined,
-                title: 'Contact',
+                title: S.of(context).contact,
                 ontap: () {
                   context.push(AppRouteConstants.contactScreen);
                 },

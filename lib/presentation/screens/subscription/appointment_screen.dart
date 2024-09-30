@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sportapp/core/app_colors.dart';
 
+import '../../../generated/l10n.dart';
+
 class Appointments extends StatefulWidget {
   const Appointments({super.key});
 
@@ -207,15 +209,19 @@ class _AppointmentsState extends State<Appointments> {
                                     height: 65,
                                     width: 65,
                                     decoration: BoxDecoration(
-                                        color: Theme.of(context).splashColor,
-                                        borderRadius: const BorderRadius.only(
-                                            topRight: Radius.circular(20),
-                                            bottomLeft: Radius.circular(20))),
-                                    child: const Center(
+                                      color: Theme.of(context).splashColor,
+                                      borderRadius: const BorderRadius.only(
+                                        topRight: Radius.circular(20),
+                                        bottomLeft: Radius.circular(20),
+                                      ),
+                                    ),
+                                    child: Center(
                                         child: Text(
-                                      'Ask in 10 min',
+                                      S.of(context).askIn10Min,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(color: Colors.white),
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                      ),
                                     )),
                                   )
                                 ],

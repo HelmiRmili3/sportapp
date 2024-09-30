@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sportapp/core/app_colors.dart';
 
+import '../../../generated/l10n.dart';
 import '../login_screen/widgets/button.dart';
 import 'widgets/custom_text_field_select_date.dart';
 import 'widgets/custom_text_filed.dart';
@@ -37,7 +38,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
           10.verticalSpace,
           Text(
-            "Change Picture",
+            S.of(context).changePicture,
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
@@ -54,8 +56,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   children: [
                     CustomTextFieldWithoutIcon(
                       controller: nameController,
-                      hintText: "username",
-                      labelText: "Username",
+                      hintText: S.of(context).username,
+                      labelText: S.of(context).username,
                       readOnly: false,
                     ),
                     const CustomTextFieldWithoutIcon(
@@ -63,22 +65,22 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       labelText: "Email I'D",
                       readOnly: true,
                     ),
-                    const CustomTextFieldWithoutIcon(
+                    CustomTextFieldWithoutIcon(
                       hintText: "+143423453532",
-                      labelText: "Phone Number",
+                      labelText: S.of(context).phoneNumber,
                       readOnly: true,
                     ),
                     CustomTextFieldSelectDate(
                       controller: dateController,
                       hintText: "JJ/MM/AA",
-                      labelText: "Date de Naissance",
+                      labelText: S.of(context).dateOfBirth,
                       icon: "assets/Images/calender_icon.png",
                       readOnly: false,
                     ),
                     CustomTextField(
                       controller: passwordController,
-                      hintText: "password",
-                      labelText: "Password",
+                      hintText: S.of(context).password,
+                      labelText: S.of(context).password,
                       icon: "assets/Images/open_eye_icon.png",
                       obscureIcon: "assets/Images/open_eye_icon.png",
                       obscureText: false,
@@ -86,8 +88,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                     CustomTextField(
                       controller: passwordConfirmationController,
-                      hintText: "password",
-                      labelText: "Confime Password",
+                      hintText: S.of(context).password,
+                      labelText: S.of(context).confirmPassword,
                       icon: "assets/Images/open_eye_icon.png",
                       obscureIcon: "assets/Images/open_eye_icon.png",
                       obscureText: false,
@@ -95,7 +97,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                     15.verticalSpace,
                     AuthButton(
-                      text: "Update",
+                      text: S.of(context).update,
                       fontcolor: AppColors.black,
                       backgroundcolor: AppColors.seGreen,
                       onTap: () {},

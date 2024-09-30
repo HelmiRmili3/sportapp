@@ -54,11 +54,10 @@ class _GymsScreenState extends State<GymsScreen> {
                         borderRadius: BorderRadius.circular(40.0),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.5), // Shadow color
-                            spreadRadius: 2, // Spread radius
-                            blurRadius: 8, // Blur radius
-                            offset:
-                                const Offset(0, 3), // Offset position of shadow
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 8,
+                            offset: const Offset(0, 3),
                           ),
                         ],
                       ),

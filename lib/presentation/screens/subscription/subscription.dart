@@ -149,7 +149,7 @@ class _SubscriptionPackagesScreenState
                           ),
                           child: Center(
                               child: Text(
-                            "Our most popular subscription",
+                            S.of(context).ourMostPopularSubscription,
                             style: TextStyle(
                               fontSize: 10.sp,
                               fontWeight: FontWeight.w800,
@@ -216,7 +216,7 @@ class _SubscriptionPackagesScreenState
                                       const Color(0xFF52CB5E).withOpacity(0.1)),
                               child: Center(
                                   child: Text(
-                                S.of(context).save200TNDPerYear,
+                                S.of(context).savePerYear,
                                 // "save 200 TND per year",
                                 style: TextStyle(
                                   fontFamily: 'ClashDisplay',
@@ -260,10 +260,8 @@ class _SubscriptionPackagesScreenState
                   5.horizontalSpace,
                   Expanded(
                     child: Text(
-                      S.of(context).giftDiscountNextMonth,
+                      S.of(context).inviteDiscount,
                       // "Gift discount when you invite friend your next month",
-                      // S.of(context)
-                      //     .gift_discount_when_you_invite_friend_your_next_month,
                       style: TextStyle(
                         color: AppColors.white,
                         fontSize: 14.sp,

@@ -19,23 +19,17 @@ class PaymentScreen extends StatelessWidget {
           child: Column(
             children: [
               _buildExpansionTile(
-                  'Comment puis-je payer mon abonnement ?', '', '', context),
+                  S.of(context).howToPaySubscription, '', '', context),
+              const SizedBox(
+                height: 10,
+              ),
+              _buildExpansionTile(S.of(context).cancelPayment, '',
+                  S.of(context).privacyPolicy, context),
               const SizedBox(
                 height: 10,
               ),
               _buildExpansionTile(
-                  'Puis-je annuler mon paiement ?',
-                  '',
-                  'Notre politique de confidentialité régit également l\'utilisation du site (« www.App.tn ») ; veuillez lire attentivement la politique de confidentialité pour obtenir des informations importantes sur nos pratiques de confidentialité',
-                  context),
-              const SizedBox(
-                height: 10,
-              ),
-              _buildExpansionTile(
-                  'Comment puis-je mettre à jour mes informations de paiement ?',
-                  '',
-                  '',
-                  context),
+                  S.of(context).updatePaymentInfo, '', '', context),
               ProfileContainer(
                 icon: Icons.info_outline,
                 title: S.of(context).reportAProblem,
@@ -48,7 +42,7 @@ class PaymentScreen extends StatelessWidget {
               ),
               ProfileContainer(
                 icon: Icons.send_outlined,
-                title: 'Contact',
+                title: S.of(context).contact,
                 ontap: () {
                   // context.go(AppRouteConstants.login);
                 },

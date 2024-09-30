@@ -90,7 +90,7 @@ class _SorryScreenState extends State<SorryScreen> {
               ),
               ProfileContainer(
                 icon: Icons.send_outlined,
-                title: 'Contact',
+                title: S.of(context).contact,
                 ontap: () {
                   context.go(AppRouteConstants.contactScreen);
                 },

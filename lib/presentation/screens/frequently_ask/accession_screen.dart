@@ -57,7 +57,7 @@ class AccessionScreen extends StatelessWidget {
               ),
               ProfileContainer(
                 icon: Icons.send_outlined,
-                title: 'Contact',
+                title: S.of(context).contact,
                 ontap: () {
                   context.go(AppRouteConstants.contactScreen);
                 },

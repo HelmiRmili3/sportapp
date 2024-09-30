@@ -284,16 +284,16 @@ class LanguageDropDown extends StatelessWidget {
       },
       items: [
         DropdownMenuItem(
-          value: const Locale('fr', 'FR'),
-          child: Text(S.of(context).french),
-        ),
-        DropdownMenuItem(
           value: const Locale('en', 'US'),
           child: Text(S.of(context).english),
         ),
         DropdownMenuItem(
           value: const Locale('ar', 'SA'),
           child: Text(S.of(context).arabic),
+        ),
+        DropdownMenuItem(
+          value: const Locale('fr', 'FR'),
+          child: Text(S.of(context).french),
         ),
       ],
     );

@@ -141,7 +141,7 @@ class _YourSubscriptionState extends State<YourSubscription> {
                 SizedBox(height: 50.h),
                 ProfileContainer(
                   icon: Icons.app_shortcut_outlined,
-                  title: 'My Appointments',
+                  title: S.of(context).myAppointments,
                   ontap: () {
                     GoRouter.of(context)
                         .push(AppRouteConstants.appointmentsScreen);
@@ -172,7 +172,7 @@ class _YourSubscriptionState extends State<YourSubscription> {
                 ),
                 ProfileContainer(
                   icon: Icons.send_rounded,
-                  title: 'Contact',
+                  title: S.of(context).contact,
                   ontap: () {
                     GoRouter.of(context).push(AppRouteConstants.contactScreen);
                   },

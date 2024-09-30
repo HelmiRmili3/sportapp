@@ -34,7 +34,7 @@ void showOfflineDialog(BuildContext context) {
             ),
             const SizedBox(height: 10),
             Text(
-              S.of(context).pleaseCheckYourConnection,
+              S.of(context).checkConnection,
               style: const TextStyle(
                 fontSize: 16,
                 color: Colors.black54,

@@ -50,7 +50,7 @@ class TechniqalScreen extends StatelessWidget {
               ),
               ProfileContainer(
                 icon: Icons.send_outlined,
-                title: 'Contact',
+                title: S.of(context).contact,
                 ontap: () {
                   context.push(AppRouteConstants.contactScreen);
                 },
@@ -130,9 +130,10 @@ class TechniqalScreen extends StatelessWidget {
             child: Text(
               body ?? '',
               style: TextStyle(
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w100,
-                  color: Theme.of(context).textTheme.bodySmall!.color),
+                fontSize: 14.0,
+                fontWeight: FontWeight.w100,
+                color: Theme.of(context).textTheme.bodySmall!.color,
+              ),
             ),
           ),
         ],
