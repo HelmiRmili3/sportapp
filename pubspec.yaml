@@ -58,10 +58,16 @@ dependencies:
   google_maps_webservice: any
   flutter_rating_bar: ^4.0.1
   connectivity_plus: ^6.0.5
+
+  pdf: ^3.11.1
+  printing: ^5.13.3
+  http: ^0.13.6
+  dartz: ^0.10.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  intl_utils: ^2.6.0 
+  intl_utils: ^2.6.0
   flutter_launcher_icons: ^0.13.1
   flutter_lints: ^2.0.0
   launcher_name: ^1.0.2

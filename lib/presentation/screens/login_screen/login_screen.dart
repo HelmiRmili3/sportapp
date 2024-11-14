@@ -10,24 +10,18 @@ import 'package:sportapp/presentation/controllers/connectivity_controller.dart';
 import '../../../core/routes/route_names.dart';
 import '../../../shared/widgets/no_internet_connection.dart';
 import '../../../utils/validators.dart';
+import '../../controllers/login_contoller.dart';
 import 'widgets/button.dart';
 import 'widgets/text_filed.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+// ignore: must_be_immutable
+class LoginScreen extends GetView<LoginContoller> {
+  LoginScreen({super.key});
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
   bool obsecure = true;
-  final _formKey = GlobalKey<FormState>();
 
   final ConnectivityController connectivityController =
       Get.put(ConnectivityController());
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: _formKey,
+          key: controller.formKey,
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -59,25 +53,21 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 SizedBox(height: 20.h),
                 AuthTextField(
-                  controller: emailController,
+                  controller: controller.emailController,
                   hintText: S.of(context).yourEmail,
                   obsecure: false,
                   validator: (value) => Validators.validateEmail(value),
                 ),
                 SizedBox(height: 20.h),
                 AuthTextField(
-                  controller: passwordController,
+                  controller: controller.passwordController,
                   hintText: S.of(context).enterPassword,
                   obsecure: obsecure,
                   validator: (value) => Validators.validatePassword(value),
                   suffixIcon: InkWell(
-                    onTap: () {
-                      setState(() {
-                        obsecure = !obsecure;
-                      });
-                    },
+                    onTap: () => controller.toggleObsecure,
                     child: Icon(
-                      !obsecure
+                      controller.isObsecure.value
                           ? Icons.visibility_outlined
                           : Icons.visibility_off_outlined,
                     ),
@@ -104,13 +94,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   onTap: () {
                     if (connectivityController.isOfflineValue) {
                       showOfflineDialog(context);
-                    } else if (_formKey.currentState!.validate()) {
-                      GoRouter.of(context).pushReplacementNamed(
-                        AppRouteConstants.dashboardScreen,
-                        extra: 0,
-                      );
                     } else {
-                      setState(() {});
+                      controller.login(context);
                     }
                   },
                   backgroundcolor: AppColors.seGreen,

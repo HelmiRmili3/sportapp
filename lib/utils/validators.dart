@@ -16,19 +16,19 @@ class Validators {
     if (value == null || value.isEmpty) {
       return 'Password cannot be empty';
     }
-    if (value.length < 8) {
-      return 'Password must be at least 8 characters long';
-    }
+    // if (value.length < 8) {
+    //   return 'Password must be at least 8 characters long';
+    // }
 
-    bool hasUppercase = value.contains(RegExp(r'[A-Z]'));
-    bool hasLowercase = value.contains(RegExp(r'[a-z]'));
-    bool hasNumber = value.contains(RegExp(r'[0-9]'));
-    bool hasSpecialCharacter =
-        value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+    // bool hasUppercase = value.contains(RegExp(r'[A-Z]'));
+    // bool hasLowercase = value.contains(RegExp(r'[a-z]'));
+    // bool hasNumber = value.contains(RegExp(r'[0-9]'));
+    // bool hasSpecialCharacter =
+    //     value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
 
-    if (!hasUppercase || !hasLowercase || !hasNumber || !hasSpecialCharacter) {
-      return 'Password must contain uppercase, lowercase, numbers, and special characters';
-    }
+    // if (!hasUppercase || !hasLowercase || !hasNumber || !hasSpecialCharacter) {
+    //   return 'Password must contain uppercase, lowercase, numbers, and special characters';
+    // }
     return null;
   }
 

@@ -7,6 +7,9 @@ import 'package:sportapp/core/app_sizes.dart';
 
 import '../../../generated/l10n.dart';
 import '../profile_screen/widgets/profile_container.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
 
 class PaymentMethodScreen extends StatefulWidget {
   const PaymentMethodScreen({super.key});
@@ -17,6 +20,70 @@ class PaymentMethodScreen extends StatefulWidget {
 
 class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
   bool _isChecked = false;
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+
+  void clearTextFields() {
+    _nameController.clear();
+    _phoneController.clear();
+    _addressController.clear();
+  }
+
+  Future<void> _generateGymReceiptPdf() async {
+    final pdf = pw.Document();
+    const receiptPageFormat =
+        PdfPageFormat(80 * PdfPageFormat.mm, 100 * PdfPageFormat.mm);
+
+    pdf.addPage(
+      pw.Page(
+        pageFormat: receiptPageFormat,
+        build: (pw.Context context) => pw.Padding(
+          padding: const pw.EdgeInsets.all(20),
+          child: pw.Center(
+            child: pw.Column(
+              mainAxisAlignment: pw.MainAxisAlignment.start,
+              crossAxisAlignment: pw.CrossAxisAlignment.start,
+              children: [
+                pw.Text('Lemakland',
+                    style: pw.TextStyle(
+                        fontSize: 18, fontWeight: pw.FontWeight.bold)),
+                pw.SizedBox(height: 10),
+                pw.Text(
+                    'Date: ${DateTime.now().toLocal().toString().split(' ')[0]}',
+                    style: const pw.TextStyle(fontSize: 10)),
+                pw.Divider(),
+                pw.Text('Name: ${_nameController.text}',
+                    style: const pw.TextStyle(fontSize: 12)),
+                pw.Text('Phone: ${_phoneController.text}',
+                    style: const pw.TextStyle(fontSize: 12)),
+                pw.Text('Address: ${_addressController.text}',
+                    style: const pw.TextStyle(fontSize: 12)),
+                pw.SizedBox(height: 10),
+                pw.Divider(),
+                pw.Text('Service/Package: 3 Months ',
+                    style: const pw.TextStyle(fontSize: 12)),
+                pw.SizedBox(height: 20),
+                pw.Text('Total: 300 DT',
+                    style: pw.TextStyle(
+                        fontSize: 16, fontWeight: pw.FontWeight.bold)),
+                pw.SizedBox(height: 10),
+                pw.Divider(),
+                pw.Text('Thank you for your payment!',
+                    style: const pw.TextStyle(fontSize: 12)),
+                pw.Text('We hope to see you again soon!',
+                    style: const pw.TextStyle(fontSize: 12)),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+
+    await Printing.layoutPdf(
+        onLayout: (PdfPageFormat format) async => pdf.save());
+    clearTextFields();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -482,7 +549,8 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                           child: Padding(
                             padding: EdgeInsets.only(top: 20.h, bottom: 10.h),
                             child: Text(
-                              'Cash Payment',
+                              S.of(context).cashPayment,
+                              // 'Cash Payment',
                               style: TextStyle(
                                 fontSize: 24.sp,
                                 fontWeight: FontWeight.bold,
@@ -496,14 +564,18 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                         ),
                         SizedBox(height: 10.h),
                         TextField(
+                          controller: _nameController,
+                          style: TextStyle(
+                            color: Theme.of(context).textTheme.bodySmall!.color,
+                          ),
                           decoration: InputDecoration(
-                            labelText: 'Full Name',
+                            labelText: S.of(context).fullName,
                             labelStyle: TextStyle(
                                 color: Theme.of(context)
                                     .textTheme
                                     .bodySmall!
                                     .color),
-                            hintText: 'Enter your name',
+                            hintText: S.of(context).enterYourName,
                             hintStyle: TextStyle(
                                 color: Theme.of(context)
                                     .textTheme
@@ -518,15 +590,19 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                         ),
                         SizedBox(height: 20.h),
                         TextField(
+                          controller: _phoneController,
+                          style: TextStyle(
+                            color: Theme.of(context).textTheme.bodySmall!.color,
+                          ),
                           keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
-                            labelText: 'Phone Number',
+                            labelText: S.of(context).phoneNumber,
                             labelStyle: TextStyle(
                                 color: Theme.of(context)
                                     .textTheme
                                     .bodySmall!
                                     .color),
-                            hintText: 'Enter your phone number',
+                            hintText: S.of(context).enterPhoneNumber,
                             hintStyle: TextStyle(
                                 color: Theme.of(context)
                                     .textTheme
@@ -543,15 +619,19 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
 
                         // Address Field
                         TextField(
+                          controller: _addressController,
                           maxLines: 2,
+                          style: TextStyle(
+                            color: Theme.of(context).textTheme.bodySmall!.color,
+                          ),
                           decoration: InputDecoration(
-                            labelText: 'Address',
+                            labelText: S.of(context).address,
                             labelStyle: TextStyle(
                                 color: Theme.of(context)
                                     .textTheme
                                     .bodySmall!
                                     .color),
-                            hintText: 'Enter your address',
+                            hintText: S.of(context).enterAddress,
                             hintStyle: TextStyle(
                                 color: Theme.of(context)
                                     .textTheme
@@ -573,7 +653,8 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Total Amount',
+                                S.of(context).totalAmount,
+                                // 'Total Amount',
                                 style: TextStyle(
                                   fontSize: 18.sp,
                                   fontWeight: FontWeight.bold,
@@ -584,7 +665,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                 ),
                               ),
                               Text(
-                                '\$120.00',
+                                '\$300.00',
                                 style: TextStyle(
                                   fontSize: 18.sp,
                                   fontWeight: FontWeight.bold,
@@ -607,9 +688,10 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                 borderRadius: BorderRadius.circular(30.r),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: _generateGymReceiptPdf,
                             child: Text(
-                              'Confirm Payment',
+                              S.of(context).confirmPayment,
+                              // 'Confirm Payment',
                               style: TextStyle(
                                 fontSize: 18.sp,
                                 color: Theme.of(context)

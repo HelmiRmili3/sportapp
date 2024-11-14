@@ -179,53 +179,57 @@ class _SubscriptionPackagesScreenState
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             RichText(
-                                text: TextSpan(children: [
-                              TextSpan(
-                                text: packages[index].price ?? "",
-                                // "160 ",
-                                style: TextStyle(
-                                    color: AppColors.white,
-                                    fontSize: 24.sp,
-                                    fontWeight: FontWeight.w900),
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: packages[index].price ?? "",
+                                    style: TextStyle(
+                                      color: AppColors.white,
+                                      fontSize: 20.sp,
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: "TND ",
+                                    style: TextStyle(
+                                      color: AppColors.white,
+                                      fontSize: 16.sp,
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: S.of(context).itIsPaidMonthly,
+                                    style: TextStyle(
+                                      color: AppColors.white,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              TextSpan(
-                                text: " TND ",
-                                style: TextStyle(
-                                  color: AppColors.white,
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
-                              TextSpan(
-                                text: S.of(context).itIsPaidMonthly,
-                                style: TextStyle(
-                                  color: AppColors.white,
-                                  fontSize: 8.sp,
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
-                            ])),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                vertical: 5.h,
-                                horizontal: 8.w,
-                              ),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30.r),
-                                  color:
-                                      const Color(0xFF52CB5E).withOpacity(0.1)),
-                              child: Center(
-                                  child: Text(
-                                S.of(context).savePerYear,
-                                // "save 200 TND per year",
-                                style: TextStyle(
-                                  fontFamily: 'ClashDisplay',
-                                  fontSize: 6.sp,
-                                  color: AppColors.green,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              )),
                             ),
+                            // Container(
+                            //   padding: EdgeInsets.symmetric(
+                            //     vertical: 5.h,
+                            //     // horizontal: 8.w,
+                            //   ),
+                            //   decoration: BoxDecoration(
+                            //     borderRadius: BorderRadius.circular(30.r),
+                            //     color:
+                            //         const Color(0xFF52CB5E).withOpacity(0.1),
+                            //   ),
+                            //   child: Center(
+                            //       child: Text(
+                            //     S.of(context).savePerYear,
+                            //     // "save 200 TND per year",
+                            //     style: TextStyle(
+                            //       fontFamily: 'ClashDisplay',
+                            //       fontSize: 6.sp,
+                            //       color: AppColors.green,
+                            //       fontWeight: FontWeight.w500,
+                            //     ),
+                            //   )),
+                            // ),
                           ],
                         ),
                         5.verticalSpace,

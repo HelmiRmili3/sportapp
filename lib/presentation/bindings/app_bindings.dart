@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:sportapp/presentation/bindings/connectivity_bindings.dart';
+import 'package:sportapp/presentation/bindings/login_bindings.dart';
 
 import 'bonus_bindings.dart';
 import 'dashboard_bindings.dart';
@@ -26,5 +27,6 @@ class AppBindings extends Bindings {
     SubscriptionBindings().dependencies();
     SecurityBindings().dependencies();
     ConnectivityBindings().dependencies();
+    LoginBindings().dependencies();
   }
 }

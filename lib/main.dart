@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:sportapp/presentation/controllers/connectivity_controller.dart';
 import 'package:sportapp/presentation/controllers/language_controller.dart';
 
 import 'core/routes/app_routes.dart';
 import 'generated/l10n.dart';
+import 'presentation/bindings/app_bindings.dart';
+import 'presentation/controllers/connectivity_controller.dart';
 import 'presentation/controllers/theme_controller.dart';
 
 void main() {
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return Obx(
           () => GetMaterialApp.router(
+            initialBinding: AppBindings(),
+
+            // Localization and routing configurations
             locale: Get.find<LanguageController>().locale,
             routeInformationProvider: AppRouter.router.routeInformationProvider,
             routeInformationParser: AppRouter.router.routeInformationParser,

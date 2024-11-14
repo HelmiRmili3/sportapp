@@ -476,7 +476,7 @@ class AppRouter {
           pageBuilder: (context, state) {
             saveLocalData(screenName: state.name!);
             return CustomTransitionPage(
-              child: const LoginScreen(),
+              child: LoginScreen(),
               transitionDuration: const Duration(seconds: 0),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {

@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/app_images.dart';
-import '../../../core/routes/app_routes.dart';
 import '../../../core/routes/route_names.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,15 +19,29 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    AppRouter.getLocalData();
-    _timer = Timer(
-      const Duration(seconds: 2),
-      () {
-        if (mounted) {
+    _navigateUser();
+  }
+
+  Future<void> _navigateUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+    bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
+
+    // Delay to show splash screen for a brief moment
+    _timer = Timer(const Duration(seconds: 2), () {
+      if (mounted) {
+        if (isLoggedIn) {
+          // Navigate to dashboard if the user is logged in
+          GoRouter.of(context).go(AppRouteConstants.dashboardScreen);
+        } else if (isFirstTime) {
+          // Navigate to onboarding if it's the user's first time
           GoRouter.of(context).go(AppRouteConstants.onBoardingScreen);
+        } else {
+          // Navigate to login if not logged in and not first-time user
+          GoRouter.of(context).go(AppRouteConstants.login);
         }
-      },
-    );
+      }
+    });
   }
 
   @override
