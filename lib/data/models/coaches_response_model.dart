@@ -1,47 +1,27 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'login_response_model.g.dart';
+part 'coaches_response_model.g.dart'; // Generated file
 
 @JsonSerializable()
-class LoginResponse {
+class CoachesResponse {
   final int statusCode;
   final String message;
-  final LoginData data;
+  final List<Coach> data;
 
-  LoginResponse({
+  CoachesResponse({
     required this.statusCode,
     required this.message,
     required this.data,
   });
 
-  factory LoginResponse.fromJson(Map<String, dynamic> json) =>
-      _$LoginResponseFromJson(json);
+  factory CoachesResponse.fromJson(Map<String, dynamic> json) =>
+      _$CoachesResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$LoginResponseToJson(this);
+  Map<String, dynamic> toJson() => _$CoachesResponseToJson(this);
 }
 
 @JsonSerializable()
-class LoginData {
-  final User user;
-  final String access_token;
-  final String refresh_token;
-  final String referralCode;
-
-  LoginData({
-    required this.user,
-    required this.access_token,
-    required this.refresh_token,
-    required this.referralCode,
-  });
-
-  factory LoginData.fromJson(Map<String, dynamic> json) =>
-      _$LoginDataFromJson(json);
-
-  Map<String, dynamic> toJson() => _$LoginDataToJson(this);
-}
-
-@JsonSerializable()
-class User {
+class Coach {
   final String id;
   final String password;
   final String email;
@@ -49,13 +29,13 @@ class User {
   final String created_at;
   final String updated_at;
   final String? uuid;
-  final String? phone_number;
+  final String phone_number;
   final String first_name;
   final String last_name;
   final String job_title;
   final String experience;
   final bool isBanned;
-  final List<dynamic>? auth_provider;
+  final String? auth_provider;
   final bool is_subscribed;
   final bool is_deleted;
   final String referral_link;
@@ -76,7 +56,7 @@ class User {
   final int discountPercentage;
   final String? discountExpiration;
 
-  User({
+  Coach({
     required this.id,
     required this.password,
     required this.email,
@@ -84,7 +64,7 @@ class User {
     required this.created_at,
     required this.updated_at,
     this.uuid,
-    this.phone_number,
+    required this.phone_number,
     required this.first_name,
     required this.last_name,
     required this.job_title,
@@ -112,7 +92,7 @@ class User {
     this.discountExpiration,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory Coach.fromJson(Map<String, dynamic> json) => _$CoachFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  Map<String, dynamic> toJson() => _$CoachToJson(this);
 }

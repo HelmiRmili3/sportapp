@@ -30,7 +30,6 @@ class DashboardScreen extends StatelessWidget {
   ];
   final List<String> labels = [
     'Home',
-    // 'Gyms',
     'QR Code',
     'Coaches',
     'Profile',

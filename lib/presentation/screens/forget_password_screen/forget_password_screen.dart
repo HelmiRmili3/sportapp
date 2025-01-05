@@ -18,19 +18,19 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   TextEditingController emailController = TextEditingController();
-  bool _isValid = false;
+  bool _isValid = true;
   final _formKey = GlobalKey<FormState>();
-  void _updateFormState() {
-    setState(() {
-      _isValid = _formKey.currentState?.validate() ?? false;
-    });
-  }
+  // void _updateFormState() {
+  //   setState(() {
+  //     _isValid = _formKey.currentState?.validate() ?? false;
+  //   });
+  // }
 
-  @override
-  void initState() {
-    super.initState();
-    emailController.addListener(_updateFormState);
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   emailController.addListener(_updateFormState);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -111,11 +111,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       ? AppColors.black
                       : AppColors.black.withOpacity(.4),
                   text: S.of(context).proceed,
-                  onTap: _isValid
-                      ? () {
-                          context.go(AppRouteConstants.otpforgot);
-                        }
-                      : () {},
+                  onTap: () {
+                    context.go(AppRouteConstants.otpforgot);
+                  },
                   backgroundcolor: _isValid
                       ? AppColors.seGreen
                       : AppColors.seGreen.withOpacity(.3),

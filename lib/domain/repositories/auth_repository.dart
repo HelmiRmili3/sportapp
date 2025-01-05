@@ -1,14 +1,23 @@
 import 'package:dartz/dartz.dart';
-import 'package:sportapp/shared/errors/failure.dart';
+
+import '../../data/models/failure_response_model.dart';
+import '../../data/models/login_response_model.dart';
+import '../../data/models/logout_response_model.dart';
+import '../../data/models/register_user_response_model.dart';
+import '../../data/models/user_register_request_model.dart';
+import '../../shared/errors/failure.dart';
 
 abstract class AuthRepository {
-  Future<Either<Failure, Map<String, dynamic>>> login(
+  Future<Either<FailureResponse, LoginResponse>> login(
       String email, String password);
-  Future<Either<Failure, Map<String, dynamic>>> logout(int userId);
+  Future<Either<FailureResponse, LogoutResponse>> logout(String userId);
+  Future<Either<FailureResponse, RegisterUserResponse>> register(
+      UserRegisterRequestModel newUser);
+
   Future<Either<Failure, Map<String, dynamic>>> forgotPassword(String email);
   Future<Either<Failure, Map<String, dynamic>>> changePassword(
-      int id, String newPassword, String oldPassword);
-  // Future<Either<String, Map<String, dynamic>>> getUserProfile();
-  // Future<Either<String, Map<String, dynamic>>> updateUserProfile(
-  //     UpdateUserEntity updateUserEntity);
+    int id,
+    String newPassword,
+    String oldPassword,
+  );
 }

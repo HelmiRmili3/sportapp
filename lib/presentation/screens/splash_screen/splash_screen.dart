@@ -35,6 +35,7 @@ class SplashScreenState extends State<SplashScreen> {
           GoRouter.of(context).go(AppRouteConstants.dashboardScreen);
         } else if (isFirstTime) {
           // Navigate to onboarding if it's the user's first time
+          prefs.setBool('isFirstTime', false);
           GoRouter.of(context).go(AppRouteConstants.onBoardingScreen);
         } else {
           // Navigate to login if not logged in and not first-time user

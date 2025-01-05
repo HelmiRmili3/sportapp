@@ -3,8 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:sportapp/core/app_colors.dart';
+import 'package:sportapp/data/models/user_register_request_model.dart';
 import 'package:sportapp/generated/l10n.dart';
+import 'package:sportapp/presentation/controllers/auth_controller.dart';
 
+import '../../../core/dependency_injection/service_locator.dart';
 import '../../../core/routes/route_names.dart';
 import '../login_screen/widgets/button.dart';
 
@@ -80,16 +83,18 @@ class _RegistractionDoneScreenState extends State<RegistractionDoneScreen> {
                   ])),
               SizedBox(height: 80.h),
               AuthButton(
-                  text: S.of(context).continueAsGuest,
-                  fontcolor: AppColors.black,
-                  backgroundcolor: AppColors.seGreen,
-                  onTap: () {
-                    GoRouter.of(context)
-                        .push(AppRouteConstants.dashboardScreen);
-                  }),
+                text: S.of(context).continueAsGuest,
+                fontcolor: AppColors.black,
+                backgroundcolor: AppColors.seGreen,
+                onTap: () {
+                  // GoRouter.of(context).push(AppRouteConstants.dashboardScreen);
+                },
+              ),
               SizedBox(height: 20.h),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  sl<AuthController>().register();
+                },
                 child: Container(
                   height: 70.h,
                   width: double.infinity,

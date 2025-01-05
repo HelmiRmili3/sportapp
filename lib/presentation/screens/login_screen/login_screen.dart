@@ -3,23 +3,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:sportapp/core/app_colors.dart';
-import 'package:sportapp/generated/l10n.dart';
-import 'package:sportapp/presentation/controllers/connectivity_controller.dart';
-
+import '../../../core/app_colors.dart';
+import '../../../core/dependency_injection/service_locator.dart';
 import '../../../core/routes/route_names.dart';
+import '../../../generated/l10n.dart';
 import '../../../shared/widgets/no_internet_connection.dart';
 import '../../../utils/validators.dart';
-import '../../controllers/login_contoller.dart';
+import '../../controllers/connectivity_controller.dart';
+import '../../controllers/auth_controller.dart';
 import 'widgets/button.dart';
 import 'widgets/text_filed.dart';
 
 // ignore: must_be_immutable
-class LoginScreen extends GetView<LoginContoller> {
-  LoginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
-  bool obsecure = true;
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
 
+class _LoginScreenState extends State<LoginScreen> {
   final ConnectivityController connectivityController =
       Get.put(ConnectivityController());
 
@@ -45,7 +48,7 @@ class LoginScreen extends GetView<LoginContoller> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: controller.formKey,
+          key: sl<AuthController>().formKey,
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -53,26 +56,26 @@ class LoginScreen extends GetView<LoginContoller> {
               children: [
                 SizedBox(height: 20.h),
                 AuthTextField(
-                  controller: controller.emailController,
+                  controller: sl<AuthController>().emailController,
                   hintText: S.of(context).yourEmail,
                   obsecure: false,
                   validator: (value) => Validators.validateEmail(value),
                 ),
                 SizedBox(height: 20.h),
-                AuthTextField(
-                  controller: controller.passwordController,
-                  hintText: S.of(context).enterPassword,
-                  obsecure: obsecure,
-                  validator: (value) => Validators.validatePassword(value),
-                  suffixIcon: InkWell(
-                    onTap: () => controller.toggleObsecure,
-                    child: Icon(
-                      controller.isObsecure.value
-                          ? Icons.visibility_outlined
-                          : Icons.visibility_off_outlined,
-                    ),
-                  ),
-                ),
+                Obx(() => AuthTextField(
+                      controller: sl<AuthController>().passwordController,
+                      hintText: S.of(context).enterPassword,
+                      obsecure: sl<AuthController>().isObsecure.value,
+                      validator: (value) => Validators.validatePassword(value),
+                      suffixIcon: InkWell(
+                        onTap: () => sl<AuthController>().toggleObsecure(),
+                        child: Icon(
+                          sl<AuthController>().isObsecure.value
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
+                        ),
+                      ),
+                    )),
                 SizedBox(height: 20.h),
                 InkWell(
                   onTap: () {
@@ -95,7 +98,7 @@ class LoginScreen extends GetView<LoginContoller> {
                     if (connectivityController.isOfflineValue) {
                       showOfflineDialog(context);
                     } else {
-                      controller.login(context);
+                      sl<AuthController>().login();
                     }
                   },
                   backgroundcolor: AppColors.seGreen,

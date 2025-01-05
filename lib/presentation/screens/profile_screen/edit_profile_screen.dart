@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sportapp/core/app_colors.dart';
 
+import '../../../core/dependency_injection/service_locator.dart';
 import '../../../generated/l10n.dart';
+import '../../controllers/user_controller.dart';
 import '../login_screen/widgets/button.dart';
 import 'widgets/custom_text_field_select_date.dart';
 import 'widgets/custom_text_filed.dart';
@@ -17,14 +19,11 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  TextEditingController dateController =
-      TextEditingController(text: "12/7/2000");
-
-  TextEditingController nameController = TextEditingController(text: "Ahmed");
-  TextEditingController passwordController =
-      TextEditingController(text: "Ahmed123");
-  TextEditingController passwordConfirmationController =
-      TextEditingController(text: "Ahmed123");
+  @override
+  void initState() {
+    sl<UserController>().getUserProfile();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +31,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       body: Column(
         children: [
           ProfileImageSection(
+            image: sl<UserController>().user?.profilePicture ?? '',
             onBackPressed: () {
               Navigator.of(context).pop();
             },
@@ -55,30 +55,34 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomTextFieldWithoutIcon(
-                      controller: nameController,
+                      controller: sl<UserController>().nameController,
                       hintText: S.of(context).username,
                       labelText: S.of(context).username,
                       readOnly: false,
                     ),
-                    const CustomTextFieldWithoutIcon(
-                      hintText: "yaounchi@gmail.com",
+                    CustomTextFieldWithoutIcon(
+                      hintText: sl<UserController>().user?.email ?? "",
                       labelText: "Email I'D",
                       readOnly: true,
                     ),
                     CustomTextFieldWithoutIcon(
-                      hintText: "+143423453532",
+                      controller: sl<UserController>().phoneNumberController,
+                      hintText: sl<UserController>()
+                          .phoneNumberController
+                          .text
+                          .toString(),
                       labelText: S.of(context).phoneNumber,
                       readOnly: true,
                     ),
                     CustomTextFieldSelectDate(
-                      controller: dateController,
+                      controller: sl<UserController>().birthdayController,
                       hintText: "JJ/MM/AA",
                       labelText: S.of(context).dateOfBirth,
                       icon: "assets/Images/calender_icon.png",
                       readOnly: false,
                     ),
                     CustomTextField(
-                      controller: passwordController,
+                      controller: sl<UserController>().passwordController,
                       hintText: S.of(context).password,
                       labelText: S.of(context).password,
                       icon: "assets/Images/open_eye_icon.png",
@@ -87,7 +91,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       readOnly: false,
                     ),
                     CustomTextField(
-                      controller: passwordConfirmationController,
+                      controller:
+                          sl<UserController>().confirmPasswordController,
                       hintText: S.of(context).password,
                       labelText: S.of(context).confirmPassword,
                       icon: "assets/Images/open_eye_icon.png",
@@ -100,7 +105,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       text: S.of(context).update,
                       fontcolor: AppColors.black,
                       backgroundcolor: AppColors.seGreen,
-                      onTap: () {},
+                      onTap: () => sl<UserController>().updateUser(),
                     ),
                     10.verticalSpace,
                   ],

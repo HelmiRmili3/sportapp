@@ -5,10 +5,14 @@ import 'package:go_router/go_router.dart';
 
 import 'package:sportapp/core/app_colors.dart';
 import 'package:sportapp/core/app_sizes.dart';
+import 'package:sportapp/core/dependency_injection/service_locator.dart';
+import 'package:sportapp/core/navigation/navigation_service.dart';
 import 'package:sportapp/generated/l10n.dart';
 import 'package:sportapp/presentation/controllers/language_controller.dart';
+import 'package:sportapp/presentation/controllers/auth_controller.dart';
 import 'package:sportapp/presentation/controllers/theme_controller.dart';
 import '../../../core/routes/route_names.dart';
+import '../../controllers/user_controller.dart';
 import 'widgets/profile_container.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -19,7 +23,11 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  ThemeController themeController = Get.find();
+  @override
+  void initState() {
+    sl<UserController>().getUserProfile();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +52,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       width: AppSizes.size100,
                       height: AppSizes.size100,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(AppSizes.size100),
-                        child: const Image(
-                          image: NetworkImage(
-                            "https://picsum.photos/250?image=9",
-                          ),
-                        ),
+                        borderRadius: BorderRadius.circular(50.r),
+                        child: Obx(() {
+                          final user = sl<UserController>().user;
+                          return Image.network(
+                            fit: BoxFit.cover,
+                            user?.profilePicture ??
+                                "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                          );
+                        }),
                       ),
                     ),
                   ),
@@ -111,16 +122,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               Obx(() => Switch(
                     onChanged: (bool value) {
-                      themeController.setTheme(themeValue: value);
+                      sl<ThemeController>().setTheme(themeValue: value);
                     },
-                    value: themeController.isDarkTheme,
+                    value: sl<ThemeController>().isDarkTheme,
                     activeColor: Colors.white,
                     activeTrackColor: AppColors.seGreen,
                     inactiveThumbColor: Colors.white,
                     inactiveTrackColor: Colors.grey,
                   )),
               Text(
-                "${S.of(context).hi} ,",
+                "${S.of(context).hi} , ",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16.sp,
@@ -130,12 +141,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Mohamed ben rekaya',
-                    style: TextStyle(
+                  Obx(() {
+                    final user = sl<UserController>().user;
+                    return Text(
+                      user?.firstName ?? "Loading...",
+                      style: TextStyle(
                         fontWeight: FontWeight.w300,
-                        color: Theme.of(context).textTheme.bodySmall!.color),
-                  ),
+                        color: Theme.of(context).textTheme.bodySmall!.color,
+                      ),
+                    );
+                  }),
                   const LanguageDropDown()
                 ],
               ),
@@ -172,7 +187,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 title: S.of(context).help,
                 ontap: () {
                   // context.push(AppRouteConstants.helpScreen);
-                  GoRouter.of(context).push(AppRouteConstants.helpScreen);
+                  // GoRouter.of(context).push(AppRouteConstants.helpScreen);
+                  sl<NavigationService>()
+                      .pushNamed(AppRouteConstants.helpScreen);
                 },
               ),
               ProfileContainer(
@@ -180,7 +197,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 icon: Icons.login_outlined,
                 title: S.of(context).logout,
                 ontap: () {
-                  GoRouter.of(context).go(AppRouteConstants.login);
+                  sl<AuthController>().logout();
                 },
               ),
               SizedBox(height: 5.h),

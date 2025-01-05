@@ -5,8 +5,10 @@ import 'package:go_router/go_router.dart';
 import 'package:sportapp/generated/l10n.dart';
 
 import '../../../core/app_colors.dart';
+import '../../../core/dependency_injection/service_locator.dart';
 import '../../../core/routes/route_names.dart';
 
+import '../../controllers/auth_controller.dart';
 import '../login_screen/widgets/button.dart';
 import '../login_screen/widgets/text_filed.dart';
 
@@ -84,7 +86,7 @@ class _ChooseCityScreenState extends State<ChooseCityScreen> {
                   height: 20,
                 ),
                 AuthTextField(
-                  controller: _countryController,
+                  controller: sl<AuthController>().cityController,
                   ontap: _openCityBottomSheet,
                   hintText: S.of(context).chooseCity,
                   obsecure: false,
@@ -102,14 +104,10 @@ class _ChooseCityScreenState extends State<ChooseCityScreen> {
                       ? AppColors.black
                       : AppColors.black.withOpacity(.4),
                   text: S.of(context).proceed,
-                  onTap: _isValid
-                      ? () {
-                          if (_formKey.currentState!.validate()) {
-                            // Handle button tap
-                            context.go(AppRouteConstants.registerDone);
-                          }
-                        }
-                      : null,
+                  onTap: () {
+                    // Handle button tap
+                    context.go(AppRouteConstants.registerDone);
+                  },
                   backgroundcolor: _isValid
                       ? AppColors.seGreen
                       : AppColors.seGreen.withOpacity(.3),

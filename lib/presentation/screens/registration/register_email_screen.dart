@@ -5,8 +5,10 @@ import 'package:go_router/go_router.dart';
 import 'package:sportapp/core/app_colors.dart';
 import 'package:sportapp/generated/l10n.dart';
 
+import '../../../core/dependency_injection/service_locator.dart';
 import '../../../core/routes/route_names.dart';
 
+import '../../controllers/auth_controller.dart';
 import '../login_screen/widgets/button.dart';
 import '../login_screen/widgets/text_filed.dart';
 
@@ -81,7 +83,7 @@ class _RegistrationEmailScreenState extends State<RegistrationEmailScreen> {
               children: [
                 SizedBox(height: 20.h),
                 AuthTextField(
-                  controller: emailController,
+                  controller: sl<AuthController>().emailController,
                   hintText: S.of(context).yourEmail,
                   obsecure: false,
                   // onChanged: (value) => _updateFormState(),
@@ -103,13 +105,9 @@ class _RegistrationEmailScreenState extends State<RegistrationEmailScreen> {
                       ? AppColors.black
                       : AppColors.black.withOpacity(.4),
                   text: 'Continuer avec l\'e-mail',
-                  onTap: _isValid
-                      ? () {
-                          if (_formKey.currentState!.validate()) {
-                            context.push(AppRouteConstants.faceRecognization1);
-                          }
-                        }
-                      : () {},
+                  onTap: () {
+                    context.push(AppRouteConstants.faceRecognization1);
+                  },
                   backgroundcolor: _isValid
                       ? AppColors.seGreen
                       : AppColors.seGreen.withOpacity(.3),

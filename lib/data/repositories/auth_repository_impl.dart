@@ -1,8 +1,13 @@
 // import 'package:sportapp/domain/entites/update_user_entity.dart';
 import 'package:dartz/dartz.dart';
+import 'package:sportapp/data/models/login_response_model.dart';
+import 'package:sportapp/data/models/logout_response_model.dart';
+import 'package:sportapp/data/models/register_user_response_model.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../../shared/errors/failure.dart';
 import '../datasources/remote_data_source.dart';
+import '../models/failure_response_model.dart';
+import '../models/user_register_request_model.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final RemoteDataSource remoteDataSource;
@@ -38,7 +43,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, Map<String, dynamic>>> login(
+  Future<Either<FailureResponse, LoginResponse>> login(
       String email, String password) async {
     final result = await remoteDataSource.login(email, password);
     return result.fold(
@@ -48,13 +53,22 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, Map<String, dynamic>>> logout(int userId) async {
-    try {
-      final result = await remoteDataSource.logout(userId);
-      return Right(result as Map<String, dynamic>); // Successful response
-    } catch (e) {
-      return Left(Failure("Server error : ${e.toString()}")); // Error response
-    }
+  Future<Either<FailureResponse, LogoutResponse>> logout(String userId) async {
+    final result = await remoteDataSource.logout(userId);
+    return result.fold(
+      (l) => Left(l),
+      (r) => Right(r),
+    );
+  }
+
+  @override
+  Future<Either<FailureResponse, RegisterUserResponse>> register(
+      UserRegisterRequestModel newUser) async {
+    final result = await remoteDataSource.register(newUser);
+    return result.fold(
+      (l) => Left(l),
+      (r) => Right(r),
+    );
   }
 
   // @override

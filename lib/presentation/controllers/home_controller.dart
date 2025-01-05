@@ -13,8 +13,8 @@ class HomeController extends GetxController {
     PageViewModel(lat: "36.7975", long: " 10.1658"), //TUNIS
     PageViewModel(lat: "33.8814", long: "10.0983"), // GABES
   ].obs;
-  RxDouble _lat = 35.821430.obs;
-  RxDouble _long = 10.634422.obs;
+  final RxDouble _lat = 35.821430.obs;
+  final RxDouble _long = 10.634422.obs;
 
   double get lat => _lat.value;
   double get long => _long.value;

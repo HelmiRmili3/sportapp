@@ -6,8 +6,10 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 
 import 'package:sportapp/core/app_colors.dart';
 
+import '../../../core/dependency_injection/service_locator.dart';
 import '../../../core/routes/route_names.dart';
 import '../../../generated/l10n.dart';
+import '../../controllers/auth_controller.dart';
 import '../login_screen/widgets/button.dart';
 
 class ValidateAccount extends StatefulWidget {
@@ -82,7 +84,7 @@ class _ValidateAccountState extends State<ValidateAccount> {
                   ),
                 ),
                 IntlPhoneField(
-                  controller: phoneController,
+                  controller: sl<AuthController>().phoneNumberController,
                   showCountryFlag: false,
                   showDropdownIcon: false,
                   initialCountryCode: 'TN',

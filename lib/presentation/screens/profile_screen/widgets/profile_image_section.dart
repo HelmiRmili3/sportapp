@@ -6,11 +6,13 @@ import '../../../../core/app_sizes.dart';
 import '../../../../generated/l10n.dart';
 
 class ProfileImageSection extends StatelessWidget {
+  final String image;
   final VoidCallback onBackPressed;
 
   const ProfileImageSection({
     Key? key,
     required this.onBackPressed,
+    required this.image,
   }) : super(key: key);
 
   @override
@@ -88,9 +90,8 @@ class ProfileImageSection extends StatelessWidget {
                         height: AppSizes.size140,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(AppSizes.size100),
-                          child: const Image(
-                            image: NetworkImage(
-                                "https://picsum.photos/250?image=9"),
+                          child: Image(
+                            image: NetworkImage(image),
                           ),
                         ),
                       ),

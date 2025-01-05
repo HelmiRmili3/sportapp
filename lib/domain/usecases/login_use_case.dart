@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
-import 'package:sportapp/domain/repositories/auth_repository.dart';
-import 'package:sportapp/shared/errors/failure.dart';
+
+import '../../data/models/failure_response_model.dart';
+import '../../data/models/login_response_model.dart';
+import '../repositories/auth_repository.dart';
 
 class LoginUseCase {
   final AuthRepository repository;
-
   LoginUseCase(this.repository);
-
-  Future<Either<Failure, Map<String, dynamic>>> call(
+  Future<Either<FailureResponse, LoginResponse>> call(
       String email, String password) async {
     return repository.login(email, password);
   }

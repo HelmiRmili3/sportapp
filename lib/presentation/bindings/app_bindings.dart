@@ -27,6 +27,6 @@ class AppBindings extends Bindings {
     SubscriptionBindings().dependencies();
     SecurityBindings().dependencies();
     ConnectivityBindings().dependencies();
-    LoginBindings().dependencies();
+    // LoginBindings().dependencies();
   }
 }

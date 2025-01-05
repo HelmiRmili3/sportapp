@@ -7,12 +7,16 @@ import '../../core/app_constants.dart';
 class ThemeController extends GetxController {
   final darkTheme = AppStyle.darkTheme;
   final lightTheme = AppStyle.lightTheme;
+  final SharedPreferences prefs;
 
   final Rx<ThemeData> _themeData = Rx<ThemeData>(AppStyle.lightTheme);
   ThemeData get themeData => _themeData.value;
 
   final RxBool _isDarkTheme = false.obs;
   bool get isDarkTheme => _isDarkTheme.value;
+  ThemeController({
+    required this.prefs,
+  });
 
   @override
   void onInit() {
@@ -27,7 +31,6 @@ class ThemeController extends GetxController {
   }
 
   Future<bool> getStoredThemeValue() async {
-    final prefs = await SharedPreferences.getInstance();
     bool? themeBoolValue = prefs.getBool("themeValue");
     if (themeBoolValue == null) {
       themeBoolValue = false; // Default to dark theme
@@ -42,11 +45,10 @@ class ThemeController extends GetxController {
     AppConstant.themValue = themeValue;
     _themeData.value = themeValue ? darkTheme : lightTheme;
     await saveData('themeValue', themeValue);
-    update(); 
+    update();
   }
 
   Future<void> saveData(String key, dynamic value) async {
-    final prefs = await SharedPreferences.getInstance();
     if (value is int) {
       prefs.setInt(key, value);
     } else if (value is String) {
@@ -54,6 +56,6 @@ class ThemeController extends GetxController {
     } else if (value is bool) {
       prefs.setBool(key, value);
     }
-    update(); 
+    update();
   }
 }

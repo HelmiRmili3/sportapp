@@ -4,7 +4,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:sportapp/core/app_colors.dart';
+import 'package:sportapp/presentation/controllers/coaches_controller.dart';
 
+import '../../../core/dependency_injection/service_locator.dart';
 import '../../../core/routes/route_names.dart';
 import '../../../data/models/appointment_model.dart';
 import '../../../data/models/coach_model.dart';
@@ -51,6 +53,13 @@ class _PrivateCoachState extends State<PrivateCoach> {
     AppointmentModel(booked: true, time: '17:30'),
     AppointmentModel(booked: false, time: '18:20'),
   ];
+
+  @override
+  void initState() {
+    sl<CoachesController>().getAllCoachs();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
