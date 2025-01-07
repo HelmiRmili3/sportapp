@@ -9,8 +9,10 @@ import 'package:sportapp/domain/entites/update_user_entity.dart';
 import 'package:dartz/dartz.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:sportapp/presentation/controllers/user_controller.dart';
 
 import '../../core/app_urls.dart';
+import '../../core/dependency_injection/service_locator.dart';
 import '../models/coaches_response_model.dart';
 import '../models/logout_response_model.dart';
 import '../models/profile_response_model.dart';
@@ -183,8 +185,9 @@ class RemoteDataSourceImpl extends RemoteDataSource {
       // Retrieve JWT token and user object from SharedPreferences
       String? jwtToken = prefs.getString('jwtToken');
       debugPrint("JWT Token: $jwtToken");
-      String userId = "dedc4ed7-470a-4848-adaa-ca055199b399";
+      String userId = sl<UserController>().user!.id;
       debugPrint("User ID: $userId");
+
       // Make the API call to update the user profile
       final response = await client.patch(
         Uri.parse('$baseUrl/user/$userId'), // Use userId instead of id

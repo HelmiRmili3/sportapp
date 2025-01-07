@@ -101,17 +101,14 @@ class _RegistrationEmailScreenState extends State<RegistrationEmailScreen> {
                 ),
                 SizedBox(height: 50.h),
                 AuthButton(
-                  fontcolor: _isValid
-                      ? AppColors.black
-                      : AppColors.black.withOpacity(.4),
-                  text: 'Continuer avec l\'e-mail',
-                  onTap: () {
-                    context.push(AppRouteConstants.faceRecognization1);
-                  },
-                  backgroundcolor: _isValid
-                      ? AppColors.seGreen
-                      : AppColors.seGreen.withOpacity(.3),
-                ),
+                    fontcolor: _isValid
+                        ? AppColors.black
+                        : AppColors.black.withOpacity(.4),
+                    text: 'Continuer avec l\'e-mail',
+                    onTap: () {
+                      context.push(AppRouteConstants.faceRecognization1);
+                    },
+                    backgroundcolor: AppColors.seGreen),
                 SizedBox(height: 50.h),
                 Center(
                   child: RichText(

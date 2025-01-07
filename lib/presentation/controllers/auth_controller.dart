@@ -15,7 +15,7 @@ import '../../core/navigation/navigation_service.dart';
 import '../../data/models/user_register_request_model.dart';
 import '../../domain/usecases/logout_use_case.dart';
 
-class AuthController extends GetxController {
+class AuthController extends GetxController with WidgetsBindingObserver {
   final formKey = GlobalKey<FormState>();
 
   final LoginUseCase loginUseCase;
@@ -25,6 +25,7 @@ class AuthController extends GetxController {
   TextEditingController emailController;
   TextEditingController passwordController;
   TextEditingController nameController;
+  TextEditingController lastNameController;
   TextEditingController referralController;
   TextEditingController phoneNumberController;
   TextEditingController codeController;
@@ -47,6 +48,7 @@ class AuthController extends GetxController {
   })  : emailController = TextEditingController(),
         passwordController = TextEditingController(),
         nameController = TextEditingController(),
+        lastNameController = TextEditingController(),
         referralController = TextEditingController(),
         phoneNumberController = TextEditingController(),
         codeController = TextEditingController(),
@@ -55,41 +57,74 @@ class AuthController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    checkLoginStatus();
+    WidgetsBinding.instance.addObserver(this); // Add observer
     startTokenExpiryCheck();
+  }
+
+  @override
+  void onClose() {
+    WidgetsBinding.instance.removeObserver(this); // Remove observer
+    super.onClose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        checkTokenExpiry(prefs.getString('jwtToken') ?? '');
+        debugPrint('App resumed');
+        break;
+      case AppLifecycleState.inactive:
+        debugPrint('App inactive');
+        break;
+      case AppLifecycleState.paused:
+        debugPrint('App paused');
+        break;
+      case AppLifecycleState.hidden:
+        debugPrint('App hidden');
+        break;
+      case AppLifecycleState.detached:
+        debugPrint('App detached');
+        break;
+    }
   }
 
   void toggleObsecure() {
     isObsecure.value = !isObsecure.value;
   }
 
-  void checkTokenExpiry(String token) {
+  checkTokenExpiry(String token) {
     int remainingTime = JwtDecoder.getRemainingTime(token).inSeconds;
     if (remainingTime > 0) {
-      debugPrint('============= >  : Token expires in: $remainingTime seconds');
+      // debugPrint('============= >  : Token expires in: $remainingTime seconds');
     } else {
       debugPrint('============= >  : Token has already expired');
       // Handle expired token (e.g., log the user out or refresh the token)
     }
   }
 
-  void startTokenExpiryCheck() {
+  startTokenExpiryCheck() async {
+    // debugPrint("============= > Starting token expiry check timer");
     Timer.periodic(const Duration(seconds: 1), (timer) async {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
+      // debugPrint("============= > Timer tick at: ${DateTime.now()}");
       String? token = prefs.getString('jwtToken');
+      // debugPrint('============= >  : Token: $token');
       if (token != null) {
         checkTokenExpiry(token);
-        if (isTokenExpired(token)) {
-          logout();
+        if (JwtDecoder.isExpired(token)) {
+          await logout();
+          timer.cancel(); // Stop the timer only after logout
         }
+      } else {
+        // debugPrint("============= > No token found, stopping timer");
+        timer.cancel(); // Stop the timer if there's no token
       }
     });
   }
 
   Future<void> checkLoginStatus() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('jwtToken');
-    bool isLoggedIn = token != null && !isTokenExpired(token);
+    bool isLoggedIn = token != null && !JwtDecoder.isExpired(token);
     prefs.setBool('isLoggedIn', isLoggedIn);
     if (!isLoggedIn) {
       logout();
@@ -98,7 +133,7 @@ class AuthController extends GetxController {
 
   Future<void> login() async {
     // Check internet connection before proceeding
-    bool isConnected = await GlobalErrorHandler.checkInternetConnection();
+    bool isConnected = await globalErrorHandler.checkInternetConnection();
     debugPrint("==============> isConnected: $isConnected");
     if (!isConnected) {
       globalErrorHandler.showErrorSnackbar(
@@ -113,6 +148,7 @@ class AuthController extends GetxController {
     debugPrint("==============> Password: ${passwordController.text}");
     // Call the login use case
     try {
+      isloading.value = true;
       await loginUseCase(
         emailController.text.trim(),
         passwordController.text.trim(),
@@ -128,30 +164,35 @@ class AuthController extends GetxController {
             debugPrint("==============> User: ${response.data.user}");
             debugPrint("========> Access Token: ${response.data.access_token}");
             debugPrint("==============> ${response.message}");
-
             // Save user data and token to SharedPreferences
-            prefs.setString("user",
-                jsonEncode(response.data.user)); // Encode user object to JSON
+            prefs.setString("user", jsonEncode(response.data.user));
             prefs.setBool('isLoggedIn', true);
             prefs.setString('jwtToken', response.data.access_token);
-            // clear the form
-            formKey.currentState!.reset();
             // Navigate to the dashboard screen
             navigationService.replaceNamed(AppRouteConstants.dashboardScreen,
                 extra: 0);
+            onInit();
           },
         );
+        isloading.value = false;
       });
     } on TimeoutException catch (e) {
+      isloading.value = false;
       debugPrint("==============> Exception: ${e.toString()}");
       globalErrorHandler.handleError(TimeoutException);
     } on SocketException catch (e) {
+      isloading.value = false;
+
       debugPrint("==============> SocketException: ${e.toString()}");
       globalErrorHandler.handleError(NoInternetException);
     } on NoInternetException catch (e) {
+      isloading.value = false;
+
       debugPrint("==============> NoInternetException: ${e.toString()}");
       globalErrorHandler.handleError(NoInternetException);
     } catch (e) {
+      isloading.value = false;
+
       debugPrint("==============> Exception: ${e.toString()}");
       globalErrorHandler.handleError('UnknownException');
     }
@@ -160,7 +201,7 @@ class AuthController extends GetxController {
 
   Future<void> register() async {
     // Check internet connection before proceeding
-    bool isConnected = await GlobalErrorHandler.checkInternetConnection();
+    bool isConnected = await globalErrorHandler.checkInternetConnection();
     if (!isConnected) {
       globalErrorHandler.showErrorSnackbar(
           'No internet connection. Please check your network.');
@@ -173,7 +214,7 @@ class AuthController extends GetxController {
         password: "password123",
         profilePicture: "https://avatar.iran.liara.run/public",
         firstName: nameController.text.trim(),
-        lastName: "rmili",
+        lastName: lastNameController.text.trim(),
         phoneNumber: phoneNumberController.text.trim(),
       );
       await registerUseCase(newUser).then(
@@ -198,7 +239,7 @@ class AuthController extends GetxController {
 
   Future<void> logout() async {
     // Check internet connection before proceeding
-    bool isConnected = await GlobalErrorHandler.checkInternetConnection();
+    bool isConnected = await globalErrorHandler.checkInternetConnection();
     if (!isConnected) {
       globalErrorHandler.showErrorSnackbar(
           'No internet connection. Please check your network.');
@@ -251,19 +292,8 @@ class AuthController extends GetxController {
     });
   }
 
-  bool isTokenExpired(String token) {
-    return JwtDecoder.isExpired(token);
-  }
-
   void clear() {
     emailController.clear();
     passwordController.clear();
-  }
-
-  @override
-  void onClose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.onClose();
   }
 }

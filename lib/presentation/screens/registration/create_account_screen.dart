@@ -92,7 +92,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 obsecure: false,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter name';
+                    return 'Please enter First name';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 20.h),
+              AuthTextField(
+                controller: sl<AuthController>().lastNameController,
+                hintText: "Entrez votre last name",
+                obsecure: false,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter Last name';
                   }
                   return null;
                 },

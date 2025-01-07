@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/app_images.dart';
+import '../../../core/dependency_injection/service_locator.dart';
 import '../../../core/routes/route_names.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,12 +24,11 @@ class SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _navigateUser() async {
-    final prefs = await SharedPreferences.getInstance();
+    final prefs = sl<SharedPreferences>();
     bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
     bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
-
     // Delay to show splash screen for a brief moment
-    _timer = Timer(const Duration(seconds: 2), () {
+    _timer = Timer(const Duration(seconds: 1), () {
       if (mounted) {
         if (isLoggedIn) {
           // Navigate to dashboard if the user is logged in

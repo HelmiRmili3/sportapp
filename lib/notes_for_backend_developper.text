@@ -1,0 +1,31 @@
+
+// Coach
+
+Note 01 : Coach availability needs to be with coach data when i make the request
+
+Note 02 : Coach ( ville , stars )  needs to be with coach response data when i make the request
+
+Note 03 : Date de naissance for the user ,
+
+
+// User
+
+Note 04 : User change password , in the ui i have change password with the user update
+
+Note 05 : User create password , 
+
+Note 06 : When i create a user first name, last name , job title , experience , profile picture ,phone number does not show up on the database
+
+Note 07 : when the email already exist , it does not show up the error message , and the server crashes
+
+Note 08 : When i fetch the user why is there a password field ?
+
+Note 09 : When i update the user , the response data is null
+
+Note 10 : When the jwt is expired i need error response in all the requests 
+
+Note 11 : Mutli user sessions problem  when the user login with same account from multiple devices. 
+
+Note 12 : The refresh token and the access token are the same
+
+Note 13 : the refresh token route is not working

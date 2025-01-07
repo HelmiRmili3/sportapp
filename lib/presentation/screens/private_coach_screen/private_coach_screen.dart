@@ -158,10 +158,11 @@ class _PrivateCoachState extends State<PrivateCoach> {
               child: SizedBox(
                 height: 600,
                 child: ListView.builder(
-                  itemCount: model.length,
+                  itemCount: sl<CoachesController>().coaches.length,
                   shrinkWrap: true,
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
+                    var coaches = sl<CoachesController>().coaches;
                     return Padding(
                       padding: EdgeInsets.symmetric(vertical: 10.w),
                       child: GestureDetector(
@@ -199,7 +200,7 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                   height: 10.h,
                                 ),
                                 Text(
-                                  model[index].name,
+                                  "${coaches[index].first_name} ${coaches[index].last_name}",
                                   style: TextStyle(
                                       color: Theme.of(context)
                                           .textTheme
@@ -210,7 +211,7 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                   textAlign: TextAlign.center,
                                 ),
                                 Text(
-                                  model[index].description,
+                                  coaches[index].experience,
                                   maxLines: 1,
                                   style: TextStyle(
                                       color: Colors.grey.shade500,
@@ -250,7 +251,9 @@ class _PrivateCoachState extends State<PrivateCoach> {
                                               width: 15.w,
                                             ),
                                             Text(
-                                              model[index].rate,
+                                              coaches[index]
+                                                  .total_amount
+                                                  .toString(),
                                               style: TextStyle(
                                                   color: Theme.of(context)
                                                       .textTheme

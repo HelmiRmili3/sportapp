@@ -18,18 +18,26 @@ class CoachesController {
     this.getAllCoachsUseCase,
   );
   Future<void> getAllCoachs() async {
-    final result = await getAllCoachsUseCase();
-    result.fold(
-      (failure) {
-        // Handle failure
-        globalErrorHandler.handleServerError(failure);
-      },
-      (response) {
-        // Handle success
-        _coaches.value = response.data;
-        debugPrint(
-            '===============> Coaches Fetched Successfully ${response.data.first.toJson()}');
-      },
-    );
+    bool isConnected = await globalErrorHandler.checkInternetConnection();
+    debugPrint("==============> isConnected: $isConnected");
+    if (!isConnected) {
+      globalErrorHandler.showErrorSnackbar(
+          'No internet connection. Please check your network.');
+      return;
+    }
+    try {
+      final result = await getAllCoachsUseCase();
+      result.fold(
+        (failure) {
+          // Handle failure
+          globalErrorHandler.handleServerError(failure);
+        },
+        (response) {
+          // Handle success
+          _coaches.value = response.data;
+          debugPrint('====> Coaches Fetched  ${response.data.first.toJson()}');
+        },
+      );
+    } catch (e) {}
   }
 }

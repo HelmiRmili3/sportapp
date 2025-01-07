@@ -48,7 +48,7 @@ class GlobalErrorHandler {
     );
   }
 
-  static Future<bool> checkInternetConnection() async {
+  Future<bool> checkInternetConnection() async {
     // Check connectivity and handle the case where it returns a list
     List<ConnectivityResult> connectivityResult =
         await Connectivity().checkConnectivity();

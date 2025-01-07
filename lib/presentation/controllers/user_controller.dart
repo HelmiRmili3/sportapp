@@ -7,6 +7,8 @@ import '../../domain/entites/update_user_entity.dart';
 import '../../domain/usecases/get_user_profile_use_case.dart';
 
 class UserController extends GetxController {
+  RxBool isloading = false.obs;
+
   // error handling
   final GlobalErrorHandler globalErrorHandler;
   //  use cases
@@ -14,6 +16,7 @@ class UserController extends GetxController {
   final UpdateUserProfileUseCase updateUserProfileUseCase;
   // text editing controllers
   final TextEditingController nameController;
+  final TextEditingController lastNameController;
   final TextEditingController emailController;
   final TextEditingController phoneNumberController;
   final TextEditingController birthdayController;
@@ -28,6 +31,7 @@ class UserController extends GetxController {
     required this.getUserProfileUseCase,
     required this.globalErrorHandler,
   })  : nameController = TextEditingController(),
+        lastNameController = TextEditingController(),
         emailController = TextEditingController(),
         phoneNumberController = TextEditingController(),
         birthdayController = TextEditingController(),
@@ -47,6 +51,7 @@ class UserController extends GetxController {
         debugPrint(
             '===============> User Profile Fetched Successfully ${_user.toJson()}');
         nameController.text = response.data.firstName;
+        lastNameController.text = response.data.lastName;
         emailController.text = response.data.email;
         phoneNumberController.text = response.data.phoneNumber.toString();
         birthdayController.text =
@@ -62,10 +67,11 @@ class UserController extends GetxController {
   }
 
   Future<void> updateUser() async {
+    isloading.value = true;
     final userdata = UpdateUserEntity(
       phoneNumber: phoneNumberController.text,
       firstName: nameController.text,
-      lastName: 'rmili',
+      lastName: lastNameController.text,
       jobTitle: 'Flutter Developer',
       experience: 'senior',
       profilePicture: 'https://avatar.iran.liara.run/public/job/police/female',
@@ -74,23 +80,29 @@ class UserController extends GetxController {
       referralAvailedCount: 0,
       credit: 0,
     );
-    final result = await updateUserProfileUseCase(userdata);
-    result.fold(
-      (failure) {
-        globalErrorHandler.handleServerError(failure);
-      },
-      (response) {
-        _user.value = response.data;
-        getUserProfile();
-        debugPrint(
-            '===============> User Profile Updated Successfully ${response.data.toJson()}');
-      },
-    );
+    try {
+      final result = await updateUserProfileUseCase(userdata);
+      result.fold(
+        (failure) {
+          globalErrorHandler.handleServerError(failure);
+        },
+        (response) {
+          _user.value = response.data;
+          debugPrint('==>Profile Updated Successfully ${response.data}');
+        },
+      );
+      await getUserProfile();
+      isloading.value = false;
+    } catch (e) {
+      debugPrint('===============> Error updating user: $e');
+      isloading.value = false;
+    }
   }
 
   @override
   void onClose() {
     nameController.dispose();
+    lastNameController.dispose();
     emailController.dispose();
     phoneNumberController.dispose();
     birthdayController.dispose();
